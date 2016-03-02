@@ -9,7 +9,7 @@ public class SimpleCalculator implements ICalculator {
 	}
 
 	public float divide(int x, int y) {
-		return (float) (x / y);
+		return (float)x / (float)y;
 	}
 
 }
