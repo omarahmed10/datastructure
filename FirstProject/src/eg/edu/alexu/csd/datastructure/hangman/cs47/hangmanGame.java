@@ -11,7 +11,7 @@ public class hangmanGame implements IHangman {
 	public static int count =0;
 	final static int n = 100000;
 	public static String[] wordDir = new String[n];
-	public static char[] codedWord = new char[n];
+	public static String codedWord = new String() ;
 	public static int maxAttemp;
 	public static int choosen;
 	
@@ -26,8 +26,8 @@ public class hangmanGame implements IHangman {
 	public String selectRandomSecretWord() {
 		Random x =new Random();
 		choosen = x.nextInt(wordDir.length);
-		for (int i = 0; i < wordDir[z].length(); i++) {
-			codedWord[i]='-';
+		for (int i = 0; i < wordDir[choosen].length(); i++) {
+			codedWord = codedWord + "-" ;
 		}
 		return codedWord;
 	}
@@ -39,13 +39,18 @@ public class hangmanGame implements IHangman {
 			return codedWord;
 		else if( count == maxAttemp )
 			return null;
-		else if( x ){
-			codedWord[x] = wordDir[choosen].charAt(x);
-			count++;
+		else if( x >= 0 ){
+			// myName.substring(0,4)+'x'+myName.substring(5);
+			codedWord = codedWord.substring(0, x) + wordDir[choosen].charAt(x) + codedWord.substring(x+1);
 			return codedWord;
 		}
-		else
-			return codedWord;
+		else{
+			count++;
+			if(count == maxAttemp)
+				return null;
+			else
+				return codedWord;
+		}
 	}
 
 	@Override
@@ -58,7 +63,7 @@ public class hangmanGame implements IHangman {
 	}
 
 	public static void main(String[] args) {
-		IHangman hangman = new HangmanEngine(); // Here you will create an
+		hangmanGame hangman = new hangmanGame(); // Here you will create an
 												// object of your class
 		hangman.setDictionary(directionary);
 		hangman.setMaxWrongGuesses(5);
