@@ -2,7 +2,6 @@ package eg.edu.alexu.csd.datastructure.hangman.cs47;
 
 import eg.edu.alexu.csd.datastructure.hangman.IHangman;
 import java.util.*;
-import java.io.*;
 
 public class hangmanGame implements IHangman {
 	static String[] directionary = new String[] { "BELGIUM", "BURUNDI", "COLOMBIA", "EGYPT", "KAZAKHSTAN", "MAURITANIA",
@@ -14,6 +13,7 @@ public class hangmanGame implements IHangman {
 	public static String codedWord = new String() ;
 	public static int maxAttemp;
 	public static int choosen;
+	private static Scanner input;
 	
 	public void setDictionary(String[] words) {
 		for (int i = 0; i < words.length; i++) {
@@ -40,7 +40,6 @@ public class hangmanGame implements IHangman {
 		else if( count == maxAttemp )
 			return null;
 		else if( x >= 0 ){
-			// myName.substring(0,4)+'x'+myName.substring(5);
 			codedWord = codedWord.substring(0, x) + wordDir[choosen].charAt(x) + codedWord.substring(x+1);
 			return codedWord;
 		}
@@ -68,7 +67,7 @@ public class hangmanGame implements IHangman {
 		hangman.setDictionary(directionary);
 		hangman.setMaxWrongGuesses(5);
 		String secret = hangman.selectRandomSecretWord();
-		Scanner input = new Scanner(System.in); // Get user input
+		input = new Scanner(System.in);
 		Character guess = null;
 		do {
 			String result = hangman.guess(guess);
