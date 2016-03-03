@@ -6,15 +6,14 @@ import java.util.Random;
 import java.util.*;
 
 public class hangmanGame implements IHangman {
-	static String[] directionary = new String[] { "BELGIUM", "BURUNDI", "COLOMBIA", "EGYPT", "KAZAKHSTAN", "MAURITANIA",
-			"SINGAPORE", "UZBEKISTAN" }; // this should be read from file,
+	static String[] directionary = new String[] { "OMARAOMAR","AHMEDAHMED" }; // this should be read from file,
 											// instead of having them hard-coded
-	public static int count = 0;
-	public static String[] wordDir = new String[directionary.length];
-	public static String codedWord = new String();
-	public static int maxAttemp;
-	public static int choosen;
-	private static Scanner input;
+	static int count = 0;
+	static String[] wordDir = new String[directionary.length];
+	static String codedWord = new String();
+	static int maxAttemp;
+	static int choosen;
+	static Scanner input;
 
 	public void setDictionary(String[] words) {
 		for (int i = 0; i < words.length; i++) {
@@ -30,20 +29,22 @@ public class hangmanGame implements IHangman {
 		for (int i = 0; i < wordDir[choosen].length(); i++) {
 			codedWord = codedWord + "-";
 		}
-		return codedWord;
+		return wordDir[choosen];
 	}
 
 	@Override
 	public String guess(Character c) {
-		int x = wordDir[choosen].indexOf(c);
 		if (c == null)
 			return codedWord;
-		else if (count == maxAttemp)
-			return null;
-		else if (x >= 0) {
-			codedWord = codedWord.substring(0, x) + wordDir[choosen].charAt(x) + codedWord.substring(x + 1);
+		int x = wordDir[choosen].indexOf(c,0);
+		if(x >= 0){
+			do{
+				codedWord = codedWord.substring(0, x) + wordDir[choosen].charAt(x) + codedWord.substring(x + 1);
+				x = wordDir[choosen].indexOf(c, x+1);
+			}while(x >= 0);
 			return codedWord;
-		} else {
+		}
+		else {
 			count++;
 			if (count == maxAttemp)
 				return null;
