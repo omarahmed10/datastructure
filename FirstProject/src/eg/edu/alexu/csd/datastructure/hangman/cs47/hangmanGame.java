@@ -9,13 +9,16 @@ public class hangmanGame implements IHangman {
 //	static String[] directionary = new String[] { "OMARAOMAR","AHMEDAHMED" }; // this should be read from file,
 //											// instead of having them hard-coded
 	static int count = 0;
-	static String[] wordDir = new String[directionary.length];
+	static int n;
+	static String[] wordDir ;
 	static String codedWord = new String();
 	static int maxAttemp;
 	static int choosen;
 	static Scanner input;
 
 	public void setDictionary(String[] words) {
+		n= words.length;
+		wordDir = new String[n];
 		for (int i = 0; i < words.length; i++) {
 			wordDir[i] = words[i];
 		}
