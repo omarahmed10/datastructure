@@ -13,14 +13,14 @@ public class hangmanGame implements IHangman {
 																										// from
 																										// file,
 	// instead of having them hard-coded
-	static int count = 0;
-	static int n;
-	static String[] wordDir;
+	int count = 0;
+	int n;
+	String[] wordDir;
+	static String choosenWord = new String();
 	static String codedWord = new String();
-	static int maxAttemp;
-	static int choosen;
-	static Scanner input;
-	static boolean[] vist = new boolean[26];
+	int maxAttemp;
+	int choosen;
+//	boolean[] vist = new boolean[26];
 
 	public void setDictionary(String[] words) {
 		n = words.length;
@@ -38,26 +38,27 @@ public class hangmanGame implements IHangman {
 		for (int i = 0; i < wordDir[choosen].length(); i++) {
 			codedWord = codedWord + "-";
 		}
-		return wordDir[choosen];
+		choosenWord = wordDir[choosen];
+		return choosenWord;
 	}
 
 	@Override
 	public String guess(Character c) {
 		if (c == null)
 			return codedWord;
-		boolean hasuppercase = wordDir[choosen].equals(wordDir[choosen].toUpperCase());
-		boolean haslowercase = wordDir[choosen].equals(wordDir[choosen].toLowerCase());
+		boolean hasuppercase = choosenWord.equals(choosenWord.toUpperCase());
+		boolean haslowercase = choosenWord.equals(choosenWord.toLowerCase());
 
 		if (hasuppercase)
 			c = Character.toUpperCase(c);
 		else if (haslowercase)
 			c = Character.toLowerCase(c);
 
-		int x = wordDir[choosen].indexOf(c, 0);
+		int x = choosenWord.indexOf(c, 0);
 		if (x >= 0) {
 			do {
-				codedWord = codedWord.substring(0, x) + wordDir[choosen].charAt(x) + codedWord.substring(x + 1);
-				x = wordDir[choosen].indexOf(c, x + 1);
+				codedWord = codedWord.substring(0, x) + choosenWord.charAt(x) + codedWord.substring(x + 1);
+				x = choosenWord.indexOf(c, x + 1);
 			} while (x >= 0);
 			return codedWord;
 		} else {
@@ -84,7 +85,7 @@ public class hangmanGame implements IHangman {
 //		hangman.setDictionary(directionary);
 //		hangman.setMaxWrongGuesses(5);
 //		String secret = hangman.selectRandomSecretWord();
-//		input = new Scanner(System.in);
+//		Scanner input = new Scanner(System.in);
 //		Character guess = null;
 //		do {
 //			String result = hangman.guess(guess);
