@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.*;
 
 public class hangmanGame implements IHangman {
-//	static String[] directionary = new String[] { "OMARAOMAR","AHMEDAHMED" }; // this should be read from file,
+//	static String[] directionary = new String[] { "OMARAOMAR","AHMEDAHMED","ABCDEFG","SADFGHJKL" }; // this should be read from file,
 //											// instead of having them hard-coded
 	static int count = 0;
 	static int n;
@@ -15,7 +15,8 @@ public class hangmanGame implements IHangman {
 	static int maxAttemp;
 	static int choosen;
 	static Scanner input;
-
+	static boolean[] vist = new boolean[26];
+	
 	public void setDictionary(String[] words) {
 		n= words.length;
 		wordDir = new String[n];
@@ -39,6 +40,11 @@ public class hangmanGame implements IHangman {
 	public String guess(Character c) {
 		if (c == null)
 			return codedWord;
+		boolean hasuppercase = wordDir[choosen].equals( wordDir[choosen].toUpperCase() );
+		if(hasuppercase)
+			c = Character.toUpperCase(c);
+		else 
+			c = Character.toLowerCase(c);
 		int x = wordDir[choosen].indexOf(c,0);
 		if(x >= 0){
 			do{
@@ -64,7 +70,7 @@ public class hangmanGame implements IHangman {
 			maxAttemp = max;
 
 	}
-//
+
 //	public static void main(String[] args) {
 //		hangmanGame hangman = new hangmanGame(); // Here you will create an
 //													// object of your class
@@ -84,7 +90,7 @@ public class hangmanGame implements IHangman {
 //				System.out.println("Well Done!"); // win
 //				return;
 //			}
-//			guess = input.next().toUpperCase().charAt(0);
+//			guess = input.next().charAt(0);
 //		} while (true);
 //
 //	}
