@@ -6,19 +6,24 @@ import java.util.Random;
 import java.util.*;
 
 public class hangmanGame implements IHangman {
-//	static String[] directionary = new String[] { "OMARAOMAR","AHMEDAHMED","ABCDEFG","SADFGHJKL" }; // this should be read from file,
-//											// instead of having them hard-coded
+//	static String[] directionary = new String[] { "OMARAOMAR", "AHMEDAHMED", "ABCDEFG", "SADFGHJKL" }; // this
+																										// should
+																										// be
+																										// read
+																										// from
+																										// file,
+	// instead of having them hard-coded
 	static int count = 0;
 	static int n;
-	static String[] wordDir ;
+	static String[] wordDir;
 	static String codedWord = new String();
 	static int maxAttemp;
 	static int choosen;
 	static Scanner input;
 	static boolean[] vist = new boolean[26];
-	
+
 	public void setDictionary(String[] words) {
-		n= words.length;
+		n = words.length;
 		wordDir = new String[n];
 		for (int i = 0; i < words.length; i++) {
 			wordDir[i] = words[i];
@@ -40,20 +45,22 @@ public class hangmanGame implements IHangman {
 	public String guess(Character c) {
 		if (c == null)
 			return codedWord;
-		boolean hasuppercase = wordDir[choosen].equals( wordDir[choosen].toUpperCase() );
-		if(hasuppercase)
+		boolean hasuppercase = wordDir[choosen].equals(wordDir[choosen].toUpperCase());
+		boolean haslowercase = wordDir[choosen].equals(wordDir[choosen].toLowerCase());
+
+		if (hasuppercase)
 			c = Character.toUpperCase(c);
-		else 
+		else if (haslowercase)
 			c = Character.toLowerCase(c);
-		int x = wordDir[choosen].indexOf(c,0);
-		if(x >= 0){
-			do{
+
+		int x = wordDir[choosen].indexOf(c, 0);
+		if (x >= 0) {
+			do {
 				codedWord = codedWord.substring(0, x) + wordDir[choosen].charAt(x) + codedWord.substring(x + 1);
-				x = wordDir[choosen].indexOf(c, x+1);
-			}while(x >= 0);
+				x = wordDir[choosen].indexOf(c, x + 1);
+			} while (x >= 0);
 			return codedWord;
-		}
-		else {
+		} else {
 			count++;
 			if (count == maxAttemp)
 				return null;
