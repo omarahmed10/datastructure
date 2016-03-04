@@ -6,10 +6,7 @@ import java.util.Random;
 import java.util.*;
 
 public class hangmanGame implements IHangman {
-	// static String[] directionary = new String[] { "BELGIUM", "BURUNDI",
-	// "COLOMBIA", "EGYPT", "KAZAKHSTAN", "MAURITANIA",
-	// "SINGAPORE", "UZBEKISTAN" }; // this should be read from file,
-	// // instead of having them hard-coded
+
 	int count = 0;
 	int n;
 	String[] wordDir;
@@ -17,7 +14,6 @@ public class hangmanGame implements IHangman {
 	String codedWord = new String();
 	int maxAttemp;
 	int choosen;
-	// boolean[] vist = new boolean[26];
 
 	public void setDictionary(String[] words) {
 		n = words.length;
@@ -75,29 +71,5 @@ public class hangmanGame implements IHangman {
 			maxAttemp = max;
 
 	}
-
-//	public static void main(String[] args) {
-//		hangmanGame hangman = new hangmanGame(); // Here you will create an
-//		// object of your class
-//		hangman.setDictionary(directionary);
-//		hangman.setMaxWrongGuesses(5);
-//		String secret = hangman.selectRandomSecretWord();
-//		Scanner input = new Scanner(System.in);
-//		Character guess = null;
-//		do {
-//			String result = hangman.guess(guess);
-//			if (result == null) {
-//				System.out.println("Fail! correct answer = '" + secret + "'"); // fail
-//				return;
-//			}
-//			System.out.println(result);
-//			if (!result.contains("-")) {
-//				System.out.println("Well Done!"); // win
-//				return;
-//			}
-//			guess = input.next().charAt(0);
-//		} while (true);
-//
-//	}
 
 }
