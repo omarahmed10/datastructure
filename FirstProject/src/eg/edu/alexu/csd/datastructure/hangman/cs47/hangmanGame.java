@@ -67,7 +67,7 @@ public class hangmanGame implements IHangman {
 		}
 		//////////// if this char used then return
 		if (vist[Z])
-			return null;
+			return codedWord;
 		
 		if( codedWord == choosenWord )
 			return null;
