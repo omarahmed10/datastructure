@@ -47,9 +47,16 @@ public class hangmanGame implements IHangman {
 
 	@Override
 	public String guess(Character c) {
+		
+		if(count >= maxAttemp)
+			return null;
+		
 		if (c == null)
 			return codedWord;
-
+		
+		if(count >= maxAttemp)
+			return null;
+		
 		boolean hasuppercase = choosenWord.equals(choosenWord.toUpperCase());
 		boolean haslowercase = choosenWord.equals(choosenWord.toLowerCase());
 
