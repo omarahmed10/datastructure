@@ -32,7 +32,7 @@ public class hangmanGame implements IHangman {
 			choosen = x.nextInt(wordDir.length);
 			choosenWord = wordDir[choosen];
 			
-			if(choosenWord == null)
+			if(choosenWord == null || count >= maxAttemp)
 				return null;
 			
 			for (int i = 0; i < choosenWord.length(); i++) {
