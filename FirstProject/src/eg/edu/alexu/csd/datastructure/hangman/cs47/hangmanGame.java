@@ -95,10 +95,10 @@ public class hangmanGame implements IHangman {
 
 	@Override
 	public void setMaxWrongGuesses(Integer max) {
-		if (max == null)
+		if (max.equals(null))
 			maxAttemp = 0;
 		else
-			maxAttemp = max;
+			maxAttemp = max.intValue();
 
 	}
 
