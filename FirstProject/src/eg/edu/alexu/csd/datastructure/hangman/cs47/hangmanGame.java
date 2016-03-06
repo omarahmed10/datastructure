@@ -9,8 +9,8 @@ public class hangmanGame implements IHangman {
 	static String[] directionary = new String[] { "omaromar", "BLAGHHF" };
 	int count = 0;
 	int n;
-	static String[] wordDir;
-	static String choosenWord = new String();
+	String[] wordDir;
+	String choosenWord = new String();
 	String codedWord = new String();
 	int maxAttemp;
 	int choosen;
@@ -35,6 +35,8 @@ public class hangmanGame implements IHangman {
 			if(choosenWord == null)
 				return null;
 			
+			if(count >= maxAttemp)
+				return null;
 			for (int i = 0; i < choosenWord.length(); i++) {
 				codedWord = codedWord + "-";
 			}
@@ -104,7 +106,7 @@ public class hangmanGame implements IHangman {
 		hangmanGame hangman = new hangmanGame(); // Here you will create an
 		// object of your class
 		hangman.setDictionary(directionary);
-		hangman.setMaxWrongGuesses(3);
+		hangman.setMaxWrongGuesses(0);
 		String secret = hangman.selectRandomSecretWord();
 		Scanner input = new Scanner(System.in);
 		Character guess = null;
