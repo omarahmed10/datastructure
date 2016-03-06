@@ -32,7 +32,7 @@ public class hangmanGame implements IHangman {
 			choosen = x.nextInt(wordDir.length);
 			choosenWord = wordDir[choosen];
 			
-			if(choosenWord == null || count >= maxAttemp)
+			if(choosenWord == null)
 				return null;
 			
 			for (int i = 0; i < choosenWord.length(); i++) {
@@ -47,9 +47,6 @@ public class hangmanGame implements IHangman {
 
 	@Override
 	public String guess(Character c) {
-		
-		if(count >= maxAttemp)
-			return null;
 		
 		if (c == null)
 			return codedWord;
@@ -70,7 +67,7 @@ public class hangmanGame implements IHangman {
 		}
 		//////////// if this char used then return
 		if (vist[Z])
-			return codedWord;
+			return null;
 		
 		if( codedWord == choosenWord )
 			return null;
