@@ -32,9 +32,6 @@ public class hangmanGame implements IHangman {
 			choosen = x.nextInt(wordDir.length);
 			choosenWord = wordDir[choosen];
 			
-			if( choosenWord == null )
-				return null;
-			
 			for (int i = 0; i < wordDir[choosen].length(); i++) {
 				codedWord = codedWord + "-";
 			}
@@ -80,9 +77,9 @@ public class hangmanGame implements IHangman {
 		} else {
 			count++;
 			vist[Z] = true;
-			if (count >= maxAttemp)
+			if (count >= maxAttemp || choosenWord == null)
 				return null;
-			else
+			else 
 				return codedWord;
 		}
 	}
