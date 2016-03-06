@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.*;
 
 public class hangmanGame implements IHangman {
-//	static String[] directionary = new String[] { "omaromar", "BLAGHHF" };
+	static String[] directionary = new String[] { "omaromar", "BLAGHHF" };
 	int count = 0;
 	int n;
 	String[] wordDir;
@@ -27,21 +27,16 @@ public class hangmanGame implements IHangman {
 
 	@Override
 	public String selectRandomSecretWord() {
-		try {
-			if (wordDir.length > 0) {
-				Random x = new Random();
-				choosen = x.nextInt(wordDir.length);
-				for (int i = 0; i < wordDir[choosen].length(); i++) {
-					codedWord = codedWord + "-";
-				}
-				choosenWord = wordDir[choosen];
-				return choosenWord;
-			} else
-				return null;
-		} catch (Exception e) {
-			
-		}
-		return null;
+		if (wordDir.length > 0) {
+			Random x = new Random();
+			choosen = x.nextInt(wordDir.length);
+			for (int i = 0; i < wordDir[choosen].length(); i++) {
+				codedWord = codedWord + "-";
+			}
+			choosenWord = wordDir[choosen];
+			return choosenWord;
+		} else
+			return null;
 	}
 
 	@Override
@@ -63,7 +58,10 @@ public class hangmanGame implements IHangman {
 		//////////// if this char used then return
 		if (vist[Z])
 			return codedWord;
-
+		
+		if( codedWord == choosenWord )
+			return null;
+		
 		int x = choosenWord.indexOf(c, 0);
 		if (x >= 0) {
 			do {
@@ -92,28 +90,28 @@ public class hangmanGame implements IHangman {
 
 	}
 
-//	public static void main(String[] args) {
-//		hangmanGame hangman = new hangmanGame(); // Here you will create an
-//		// object of your class
-//		hangman.setDictionary(directionary);
-//		hangman.setMaxWrongGuesses(3);
-//		String secret = hangman.selectRandomSecretWord();
-//		Scanner input = new Scanner(System.in);
-//		Character guess = null;
-//		do {
-//			String result = hangman.guess(guess);
-//			if (result == null) {
-//				System.out.println("Fail! correct answer = '" + secret + "'"); // fail
-//				return;
-//			}
-//			System.out.println(result);
-//			if (!result.contains("-")) {
-//				System.out.println("Well Done!"); // win
-//				return;
-//			}
-//			guess = input.next().charAt(0);
-//		} while (true);
-//
-//	}
+	public static void main(String[] args) {
+		hangmanGame hangman = new hangmanGame(); // Here you will create an
+		// object of your class
+		hangman.setDictionary(directionary);
+		hangman.setMaxWrongGuesses(3);
+		String secret = hangman.selectRandomSecretWord();
+		Scanner input = new Scanner(System.in);
+		Character guess = null;
+		do {
+			String result = hangman.guess(guess);
+			if (result == null) {
+				System.out.println("Fail! correct answer = '" + secret + "'"); // fail
+				return;
+			}
+			System.out.println(result);
+			if (!result.contains("-")) {
+				System.out.println("Well Done!"); // win
+				return;
+			}
+			guess = input.next().charAt(0);
+		} while (true);
+
+	}
 
 }
