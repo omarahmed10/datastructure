@@ -9,7 +9,7 @@ public class hangmanGame implements IHangman {
 	static String[] directionary = new String[] { "omaromar", "BLAGHHF" };
 	int count = 0;
 	int n;
-	String[] wordDir;
+	static String[] wordDir;
 	String choosenWord = new String();
 	String codedWord = new String();
 	int maxAttemp;
