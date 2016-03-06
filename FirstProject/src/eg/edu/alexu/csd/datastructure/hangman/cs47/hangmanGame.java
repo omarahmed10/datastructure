@@ -30,10 +30,15 @@ public class hangmanGame implements IHangman {
 		if (n > 0) {
 			Random x = new Random();
 			choosen = x.nextInt(wordDir.length);
+			choosenWord = wordDir[choosen];
+			
+			if( choosenWord == null )
+				return null;
+			
 			for (int i = 0; i < wordDir[choosen].length(); i++) {
 				codedWord = codedWord + "-";
 			}
-			choosenWord = wordDir[choosen];
+			
 			return choosenWord;
 		} else
 			return null;
