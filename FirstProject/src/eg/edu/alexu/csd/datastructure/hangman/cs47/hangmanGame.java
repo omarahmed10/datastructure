@@ -10,7 +10,7 @@ public class hangmanGame implements IHangman {
 	int count = 0;
 	int n;
 	static String[] wordDir;
-	String choosenWord = new String();
+	static String choosenWord = new String();
 	String codedWord = new String();
 	int maxAttemp;
 	int choosen;
