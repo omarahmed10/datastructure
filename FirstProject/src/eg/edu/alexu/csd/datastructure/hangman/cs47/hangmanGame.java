@@ -14,7 +14,7 @@ public class hangmanGame implements IHangman {
 	String codedWord = new String();
 	int maxAttemp;
 	int choosen;
-	boolean[] vist = new boolean[26];
+//	boolean[] vist = new boolean[26];
 
 	public void setDictionary(String[] words) {
 		n = words.length;
@@ -34,9 +34,7 @@ public class hangmanGame implements IHangman {
 			
 			if(choosenWord == null)
 				return null;
-			
-			if(count >= maxAttemp)
-				return null;
+
 			for (int i = 0; i < choosenWord.length(); i++) {
 				codedWord = codedWord + "-";
 			}
@@ -59,17 +57,17 @@ public class hangmanGame implements IHangman {
 		boolean hasuppercase = choosenWord.equals(choosenWord.toUpperCase());
 		boolean haslowercase = choosenWord.equals(choosenWord.toLowerCase());
 
-		int Z = 0;
+//		int Z = 0;
 		if (hasuppercase) {
 			c = Character.toUpperCase(c);
-			Z = (int) c.charValue() - 65;
+//			Z = (int) c.charValue() - 65;
 		} else if (haslowercase) {
 			c = Character.toLowerCase(c);
-			Z = (int) c.charValue() - 97;
+//			Z = (int) c.charValue() - 97;
 		}
 		//////////// if this char used then return
-		if (vist[Z])
-			return codedWord;
+//		if (vist[Z])
+//			return codedWord;
 		
 		if( codedWord == choosenWord )
 			return null;
@@ -81,12 +79,12 @@ public class hangmanGame implements IHangman {
 				x = choosenWord.indexOf(c, x + 1);
 			} while (x >= 0);
 
-			vist[Z] = true;
+//			vist[Z] = true;
 			return codedWord;
 		} else {
 			count++;
-			vist[Z] = true;
-			if (count >= maxAttemp || choosenWord == null)
+//			vist[Z] = true;
+			if (count >= maxAttemp)
 				return null;
 			else 
 				return codedWord;
