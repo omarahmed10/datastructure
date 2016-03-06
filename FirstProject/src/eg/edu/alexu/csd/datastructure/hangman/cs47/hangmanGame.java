@@ -39,7 +39,7 @@ public class hangmanGame implements IHangman {
 		} else
 			return null;
 		}
-		catch{
+		catch(Exception e){
 			
 		}
 		return null;
