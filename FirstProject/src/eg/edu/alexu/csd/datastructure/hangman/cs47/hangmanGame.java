@@ -27,6 +27,7 @@ public class hangmanGame implements IHangman {
 
 	@Override
 	public String selectRandomSecretWord() {
+		try{
 		if (wordDir.length > 0) {
 			Random x = new Random();
 			choosen = x.nextInt(wordDir.length);
@@ -37,7 +38,13 @@ public class hangmanGame implements IHangman {
 			return choosenWord;
 		} else
 			return null;
+		}
+		catch{
+			
+		}
+		return null;
 	}
+	
 
 	@Override
 	public String guess(Character c) {
