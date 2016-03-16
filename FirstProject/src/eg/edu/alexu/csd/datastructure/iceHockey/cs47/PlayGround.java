@@ -1,6 +1,8 @@
 package eg.edu.alexu.csd.datastructure.iceHockey.cs47;
 
 import java.awt.Point;
+import java.util.Arrays;
+import java.util.Comparator;
 
 import eg.edu.alexu.csd.datastructure.iceHockey.IPlayersFinder;
 
@@ -8,11 +10,13 @@ public class PlayGround implements IPlayersFinder {
 
 	final int max = 51;
 	int cnt;
+	int c = 0;
 	int team;
 	int threshold;
 	String[] maze;
 	boolean[][] vis = new boolean[max][max];
 	int[][] playerPosition;
+	Point[] positions;
 
 	@Override
 	public Point[] findPlayers(String[] photo, int team, int threshold) {
@@ -36,10 +40,12 @@ public class PlayGround implements IPlayersFinder {
 				/////////
 				cnt = 0;
 				cntReachalbleCells(photo.length, photo[0].length());
+				positions[c] = new Point(getPlayerCenter(playerPosition, cnt));
+				c++;
 			}
 		}
-
-		return null;
+		Arrays.sort(positions, new PointCmp());
+		return positions;
 	}
 
 	public void cntReachalbleCells(int r, int c) {
@@ -66,15 +72,41 @@ public class PlayGround implements IPlayersFinder {
 		return true;
 	}
 
-	public static void main(String[] args) {
-		PlayGround pgObject = new PlayGround();
-
-		for (int i = 0; i < 4; i++)
-			for (int j = 0; j < 4; j++) {
-				pgObject.cnt = 0;
-				pgObject.cntReachalbleCells(i, j);
-				System.out.println(pgObject.cnt + "\n");
-			}
+	public Point getPlayerCenter(int a[][], int n) {
+		Point x ;
+		int min = 0, max = 0, row, col;
+		for (int j = 0; j < n; j++) {
+			if (a[j][0] < min)
+				min = a[j][0];
+			else if (a[j][0] > max)
+				max = a[j][0];
+		}
+		row = ((max * 2) + 2 - (min * 2)) / 2 + (2 * min);
+		for (int j = 0; j < n; j++) {
+			if (a[j][1] < min)
+				min = a[j][1];
+			else if (a[j][1] > max)
+				max = a[j][1];
+		}
+		col = ((max * 2) + 2 - (min * 2)) / 2 + (2 * min);
+		x = new Point(row ,col) ;
+		return x;
 	}
 
+	public static void main(String[] args) {
+		PlayGround pgObject = new PlayGround();
+		// for (int i = 0; i < 4; i++)
+		// for (int j = 0; j < 4; j++) {
+		// pgObject.cnt = 0;
+		// pgObject.cntReachalbleCells(i, j);
+		// System.out.println(pgObject.cnt + "\n");
+		// }
+	}
+
+}
+
+class PointCmp implements Comparator<Point> {
+	public int compare(Point a, Point b) {
+		return (a.x < b.x) ? -1 : (a.x > b.x) ? 1 : 0;
+	}
 }
