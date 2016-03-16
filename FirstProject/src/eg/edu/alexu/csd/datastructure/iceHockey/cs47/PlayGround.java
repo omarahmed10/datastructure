@@ -1,8 +1,10 @@
 package eg.edu.alexu.csd.datastructure.iceHockey.cs47;
 
 import java.awt.Point;
+import java.util.Arrays;
 //import java.util.Arrays;
 //import java.util.Comparator;
+import java.util.Comparator;
 
 import eg.edu.alexu.csd.datastructure.iceHockey.IPlayersFinder;
 
@@ -49,7 +51,8 @@ public class PlayGround implements IPlayersFinder {
 					}
 				}
 			}
-//			 Arrays.sort(positions, new PointCmp());
+			int [] o = new int[c];
+			Arrays.sort(positions, 0, c,new PointCmp());
 			return positions;
 		}
 		return null;
@@ -64,8 +67,8 @@ public class PlayGround implements IPlayersFinder {
 		vis[r][c] = true; // we just visited it, don't allow any one back to it
 
 		if (maze[r].charAt(c) == team) {
-			playerPosition[cnt][0] = r; ////// saving player position (x coordinate)
-			playerPosition[cnt][1] = c; ////// (y coordinate)
+			playerPosition[cnt][0] = c; ////// saving player position (c coordinate)
+			playerPosition[cnt][1] = r; ////// (y coordinate)
 //			System.out.println(playerPosition[cnt][0] + "," + playerPosition[cnt][1]);
 			cnt++; ///// counting number of cell where a player was found
 		}
@@ -103,17 +106,23 @@ public class PlayGround implements IPlayersFinder {
 		col = ((max * 2) + 2 - (min * 2)) / 2 + (2 * min);
 //		System.out.println(max +" "+ min);
 		x = new Point(row, col);
-		System.out.println(x.x + "," + x.y);
+//		System.out.println(x.x + "," + x.y);
 		return x;
 	}
 
 	public static void main(String[] args) {
-		String[] image = { "33JUBU33", "3U3O4433", "O33P44NB", "PO3NSDP3", "VNDSD333", "OINFD33X" };
+		String[] image = {
+				"11111",
+				"1AAA1",
+				"1A1A1",
+				"1AAA1",
+				"11111"
+				};
 		PlayGround pgObject = new PlayGround();
-		Point[] answer = pgObject.findPlayers(image, 3, 16);
-		System.out.println(answer[0].x + "," + answer[0].y);
+		Point[] answer = pgObject.findPlayers(image, 1, 3);
+//		System.out.println(answer[0].x + "," + answer[0].y);
 //		System.out.println(answer.length);
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < answer.length; i++)
 			if (answer[i] != null)
 				System.out.println(answer[i].x + "," + answer[i].y);
 		// for (int i = 0; i < 4; i++)
@@ -126,8 +135,8 @@ public class PlayGround implements IPlayersFinder {
 
 }
 
-// class PointCmp implements Comparator<Point> {
-// public int compare(Point a, Point b) {
-// return (a.x < b.x) ? -1 : (a.x > b.x) ? 1 : 0;
-// }
-// }
+class PointCmp implements Comparator<Point> {
+	public int compare(Point a, Point b) {
+		return (a.x < b.x) ? -1 : (a.x > b.x) ? 1 : 0;
+	}
+}
