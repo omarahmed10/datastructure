@@ -35,8 +35,7 @@ public class PlayGround implements IPlayersFinder {
 
 			for (int I = 0; I < photo.length; I++) {
 				for (int J = 0; J < photo[I].length(); J++) {
-					////////// initializing playerPositions list to avoid
-					////////// NullPointer
+					////////// initializing playerPositions list to avoid NullPointer
 					for (int i = 0; i < x; i++)
 						for (int j = 0; j < 2; j++)
 							playerPosition[i][j] = 0;
@@ -45,15 +44,18 @@ public class PlayGround implements IPlayersFinder {
 					cntReachalbleCells(I,J);
 					if (cnt * 4 >= threshold) {
 //						System.out.println(cnt);
+						positions[c] = new Point(0,0); ////// initializing
 						positions[c] = new Point(getPlayerCenter(playerPosition, cnt));
 						c++;
 //						System.out.println(positions[c].x + "," + positions[c].y);
 					}
 				}
 			}
-			int [] o = new int[c];
 			Arrays.sort(positions, 0, c,new PointCmp());
-			return positions;
+			Point[] finalPositions = new Point[c];
+			for(int i = 0;i < c;i++)
+				finalPositions[i] = positions[i];
+			return finalPositions;
 		}
 		return null;
 	}
@@ -112,14 +114,10 @@ public class PlayGround implements IPlayersFinder {
 
 	public static void main(String[] args) {
 		String[] image = {
-				"11111",
-				"1AAA1",
-				"1A1A1",
-				"1AAA1",
-				"11111"
+
 				};
 		PlayGround pgObject = new PlayGround();
-		Point[] answer = pgObject.findPlayers(image, 1, 3);
+		Point[] answer = pgObject.findPlayers(image, 1, 4);
 //		System.out.println(answer[0].x + "," + answer[0].y);
 //		System.out.println(answer.length);
 		for (int i = 0; i < answer.length; i++)
