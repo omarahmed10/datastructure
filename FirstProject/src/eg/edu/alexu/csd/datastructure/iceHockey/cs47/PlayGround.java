@@ -12,7 +12,7 @@ public class PlayGround implements IPlayersFinder {
 
 	final int max = 51;
 	int cnt;
-	int c = 0;
+	int c ;
 	char team;
 	int threshold;
 	String[] image;
@@ -24,6 +24,7 @@ public class PlayGround implements IPlayersFinder {
 	public Point[] findPlayers(String[] photo, int team, int threshold) {
 		image = new String[photo.length];
 		image = photo;
+		c = 0;
 		if (photo.length != 0) {
 			
 			this.team = (char) (team + 48);
@@ -55,7 +56,8 @@ public class PlayGround implements IPlayersFinder {
 				finalPositions[i] = positions[i];
 			return finalPositions;
 		}
-		return null;
+		Point[] finalPositions = {};
+		return finalPositions;
 	}
 
 	public void cntReachalbleCells(int r, int c) {
@@ -107,11 +109,7 @@ public class PlayGround implements IPlayersFinder {
 
 	public static void main(String[] args) {
 		String[] image = {
-				"AA111",
-				"AAAA1",
-				"1A1A1",
-				"1AAA1",
-				"11111"
+				
 				};
 		PlayGround pgObject = new PlayGround();
 		Point[] answer = pgObject.findPlayers(image, 1, 4);
@@ -127,3 +125,6 @@ class PointCmp implements Comparator<Point> {
 		return (a.x < b.x) ? -1 : (a.x > b.x) ? 1 : 0;
 	}
 }
+
+
+
