@@ -15,15 +15,15 @@ public class PlayGround implements IPlayersFinder {
 	int c = 0;
 	char team;
 	int threshold;
-	String[] maze;
+	String[] image;
 	boolean[][] vis = new boolean[max][max];
 	int[][] playerPosition;
 	Point[] positions = new Point[250];
 
 	@Override
 	public Point[] findPlayers(String[] photo, int team, int threshold) {
-		maze = new String[photo.length];
-		maze = photo;
+		image = new String[photo.length];
+		image = photo;
 		if (photo.length != 0) {
 			
 			this.team = (char) (team + 48);
@@ -43,11 +43,9 @@ public class PlayGround implements IPlayersFinder {
 					cnt = 0;
 					cntReachalbleCells(I,J);
 					if (cnt * 4 >= threshold) {
-//						System.out.println(cnt);
 						positions[c] = new Point(0,0); ////// initializing
 						positions[c] = new Point(getPlayerCenter(playerPosition, cnt));
 						c++;
-//						System.out.println(positions[c].x + "," + positions[c].y);
 					}
 				}
 			}
@@ -61,20 +59,18 @@ public class PlayGround implements IPlayersFinder {
 	}
 
 	public void cntReachalbleCells(int r, int c) {
-		if (!valid(r, c) || maze[r].charAt(c) != team || vis[r][c] == true)
-			if (r != maze.length || c != maze[0].length()) {
+		if (!valid(r, c) || image[r].charAt(c) != team || vis[r][c] == true)
+			if (r != 0 || c != 0) {
 				return; // invalid position
 			}
 
 		vis[r][c] = true; // we just visited it, don't allow any one back to it
 
-		if (maze[r].charAt(c) == team) {
+		if (image[r].charAt(c) == team) {
 			playerPosition[cnt][0] = c; ////// saving player position (c coordinate)
 			playerPosition[cnt][1] = r; ////// (y coordinate)
-//			System.out.println(playerPosition[cnt][0] + "," + playerPosition[cnt][1]);
 			cnt++; ///// counting number of cell where a player was found
 		}
-		// Try the 4 neighbor cells
 		cntReachalbleCells(r, c - 1);
 		cntReachalbleCells(r, c + 1);
 		cntReachalbleCells(r - 1, c);
@@ -82,7 +78,7 @@ public class PlayGround implements IPlayersFinder {
 	}
 
 	public boolean valid(int r, int c) {
-		if (r < 0 || r >= maze.length || c < 0 || c >= maze[0].length())
+		if (r < 0 || r >= image.length || c < 0 || c >= image[0].length())
 			return false;
 		return true;
 	}
@@ -97,7 +93,6 @@ public class PlayGround implements IPlayersFinder {
 				max = a[j][0];
 		}
 		row = ((max * 2) + 2 - (min * 2)) / 2 + (2 * min);
-//		System.out.println(max +" "+ min);
 		min = max = a[0][1];
 		for (int j = 0; j < n; j++) {
 			if (a[j][1] < min)
@@ -106,29 +101,23 @@ public class PlayGround implements IPlayersFinder {
 				max = a[j][1];
 		}
 		col = ((max * 2) + 2 - (min * 2)) / 2 + (2 * min);
-//		System.out.println(max +" "+ min);
 		x = new Point(row, col);
-//		System.out.println(x.x + "," + x.y);
 		return x;
 	}
 
 	public static void main(String[] args) {
 		String[] image = {
-
+				"AA111",
+				"AAAA1",
+				"1A1A1",
+				"1AAA1",
+				"11111"
 				};
 		PlayGround pgObject = new PlayGround();
 		Point[] answer = pgObject.findPlayers(image, 1, 4);
-//		System.out.println(answer[0].x + "," + answer[0].y);
-//		System.out.println(answer.length);
 		for (int i = 0; i < answer.length; i++)
 			if (answer[i] != null)
 				System.out.println(answer[i].x + "," + answer[i].y);
-		// for (int i = 0; i < 4; i++)
-		// for (int j = 0; j < 4; j++) {
-		// pgObject.cnt = 0;
-		// pgObject.cntReachalbleCells(i, j);
-		// System.out.println(pgObject.cnt + "\n");
-		// }
 	}
 
 }
