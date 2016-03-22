@@ -21,7 +21,6 @@ public class PlayGround implements IPlayersFinder {
 	public Point[] findPlayers(String[] photo, int team, int threshold) {
 		image = new String[photo.length];
 		image = photo;
-		noOfPlayer = 0;
 		if (photo.length != 0) {
 			
 			this.team = (char) (team + 48);
