@@ -2,8 +2,6 @@ package eg.edu.alexu.csd.datastructure.iceHockey.cs47;
 
 import java.awt.Point;
 import java.util.Arrays;
-//import java.util.Arrays;
-//import java.util.Comparator;
 import java.util.Comparator;
 
 import eg.edu.alexu.csd.datastructure.iceHockey.IPlayersFinder;
@@ -12,7 +10,7 @@ public class PlayGround implements IPlayersFinder {
 
 	final int max = 51;
 	int cnt;
-	int c ;
+	int noOfPlayer ;
 	char team;
 	int threshold;
 	String[] image;
@@ -24,7 +22,7 @@ public class PlayGround implements IPlayersFinder {
 	public Point[] findPlayers(String[] photo, int team, int threshold) {
 		image = new String[photo.length];
 		image = photo;
-		c = 0;
+		noOfPlayer = 0;
 		if (photo.length != 0) {
 			
 			this.team = (char) (team + 48);
@@ -44,15 +42,15 @@ public class PlayGround implements IPlayersFinder {
 					cnt = 0;
 					cntReachalbleCells(I,J);
 					if (cnt * 4 >= threshold) {
-						positions[c] = new Point(0,0); ////// initializing
-						positions[c] = new Point(getPlayerCenter(playerPosition, cnt));
-						c++;
+						positions[noOfPlayer] = new Point(0,0); ////// initializing
+						positions[noOfPlayer] = new Point(getPlayerCenter(playerPosition, cnt));
+						noOfPlayer++;
 					}
 				}
 			}
-			Arrays.sort(positions, 0, c,new PointCmp());
-			Point[] finalPositions = new Point[c];
-			for(int i = 0;i < c;i++)
+			Arrays.sort(positions, 0, noOfPlayer,new PointCmp());
+			Point[] finalPositions = new Point[noOfPlayer];
+			for(int i = 0;i < noOfPlayer;i++)
 				finalPositions[i] = positions[i];
 			return finalPositions;
 		}
@@ -109,10 +107,14 @@ public class PlayGround implements IPlayersFinder {
 
 	public static void main(String[] args) {
 		String[] image = {
-				
+				"AA111",
+				"AAAA1",
+				"1A1A1",
+				"1AAA1",
+				"11111"
 				};
 		PlayGround pgObject = new PlayGround();
-		Point[] answer = pgObject.findPlayers(image, 1, 4);
+		Point[] answer = pgObject.findPlayers(image, 1, 100);
 		for (int i = 0; i < answer.length; i++)
 			if (answer[i] != null)
 				System.out.println(answer[i].x + "," + answer[i].y);
