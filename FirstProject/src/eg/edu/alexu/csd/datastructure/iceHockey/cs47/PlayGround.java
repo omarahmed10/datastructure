@@ -8,15 +8,14 @@ import eg.edu.alexu.csd.datastructure.iceHockey.IPlayersFinder;
 
 public class PlayGround implements IPlayersFinder {
 
-	final int max = 51;
-	int cnt;
-	int noOfPlayer ;
-	char team;
-	int threshold;
-	String[] image;
-	boolean[][] vis = new boolean[max][max];
-	int[][] playerPosition;
-	Point[] positions = new Point[250];
+	private final int max = 51;
+	private int cnt;
+	private int noOfPlayer ;
+	private char team;
+	private String[] image;
+	private boolean[][] vis = new boolean[max][max];
+	private int[][] playerPosition;
+	private Point[] positions = new Point[250];
 
 	@Override
 	public Point[] findPlayers(String[] photo, int team, int threshold) {
@@ -26,12 +25,10 @@ public class PlayGround implements IPlayersFinder {
 		if (photo.length != 0) {
 			
 			this.team = (char) (team + 48);
-			this.threshold = threshold;
 			
 			int x = photo.length * photo[0].length(); ///// photo[0].length() is length of one string
 														///// as all given string are equal in length
 			playerPosition = new int[x][2];
-
 			for (int I = 0; I < photo.length; I++) {
 				for (int J = 0; J < photo[I].length(); J++) {
 					////////// initializing playerPositions list to avoid NullPointer
@@ -60,9 +57,7 @@ public class PlayGround implements IPlayersFinder {
 
 	public void cntReachalbleCells(int r, int c) {
 		if (!valid(r, c) || image[r].charAt(c) != team || vis[r][c] == true)
-			if (r != 0 || c != 0) {
 				return; // invalid position
-			}
 
 		vis[r][c] = true; // we just visited it, don't allow any one back to it
 
@@ -107,14 +102,14 @@ public class PlayGround implements IPlayersFinder {
 
 	public static void main(String[] args) {
 		String[] image = {
-				"AA111",
-				"AAAA1",
-				"1A1A1",
-				"1AAA1",
-				"11111"
+				"1",
+				"1",
+				"1",
+				"1",
+				"1"
 				};
 		PlayGround pgObject = new PlayGround();
-		Point[] answer = pgObject.findPlayers(image, 1, 100);
+		Point[] answer = pgObject.findPlayers(image, 1, 4);
 		for (int i = 0; i < answer.length; i++)
 			if (answer[i] != null)
 				System.out.println(answer[i].x + "," + answer[i].y);
