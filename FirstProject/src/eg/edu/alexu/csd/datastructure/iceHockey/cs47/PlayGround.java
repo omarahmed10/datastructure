@@ -11,7 +11,7 @@ public class PlayGround implements IPlayersFinder {
 	private final int max = 51;
 	private int cnt;
 	private int noOfPlayer = 0;
-	private char[] team = new char[2];
+	private char team ;
 	private String[] image;
 	private boolean[][] vis = new boolean[max][max];
 	private int[][] playerPosition;
@@ -22,13 +22,8 @@ public class PlayGround implements IPlayersFinder {
 	public Point[] findPlayers(String[] photo, int team, int threshold) {
 		image = new String[photo.length];
 		image = photo;
-		this.team[i] = (char) (team + 48);
+		this.team = (char)(team+48);
 		i++;
-		System.out.println(noOfPlayer);
-		if (this.team[1] != this.team[0]){
-			System.out.println("yes");
-			noOfPlayer = 0;
-		}
 		if (photo.length != 0) {
 			int x = photo.length * photo[0].length(); ///// photo[0].length() is
 														///// length of one
@@ -67,12 +62,12 @@ public class PlayGround implements IPlayersFinder {
 	}
 
 	public void cntReachalbleCells(int r, int c) {
-		if (!valid(r, c) || image[r].charAt(c) != team[i] || vis[r][c] == true)
+		if (!valid(r, c) || image[r].charAt(c) != team || vis[r][c] == true)
 			return; // invalid position
 
 		vis[r][c] = true; // we just visited it, don't allow any one back to it
 
-		if (image[r].charAt(c) == team[i]) {
+		if (image[r].charAt(c) == team) {
 			playerPosition[cnt][0] = c; ////// saving player position (c
 										////// coordinate)
 			playerPosition[cnt][1] = r; ////// (y coordinate)
