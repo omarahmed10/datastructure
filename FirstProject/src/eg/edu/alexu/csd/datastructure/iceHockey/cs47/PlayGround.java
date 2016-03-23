@@ -71,7 +71,7 @@ public class PlayGround implements IPlayersFinder {
 //		}
 //		Point[] finalPositions = {};
 //		return finalPositions;
-		return null;
+//		return null;
 	}
 
 	public void cntReachalbleCells(int r, int c) {
