@@ -26,46 +26,46 @@ public class PlayGround implements IPlayersFinder {
 		this.team = (char)(team+48);
 		i++;
 		if(i>1){
-			integer o = i;
-			throw new RuntimeException(o.tostring);
+			Integer o = i;
+			throw new RuntimeException(o.toString());
 			}
 		throw new RuntimeException(image[0]);
-		/*
-		if (photo.length != 0) {
-			int x = photo.length * photo[0].length(); ///// photo[0].length() is
-														///// length of one
-														///// string
-														///// as all given
-														///// string are equal
-														///// in length
-			playerPosition = new int[x][2];
-			for (int I = 0; I < photo.length; I++) {
-				for (int J = 0; J < photo[I].length(); J++) {
-					////////// initializing playerPositions list to avoid
-					////////// NullPointer
-					for (int i = 0; i < x; i++)
-						for (int j = 0; j < 2; j++)
-							playerPosition[i][j] = 0;
-					/////////
-					cnt = 0;
-					cntReachalbleCells(I, J);
-					if (cnt * 4 >= threshold) {
-						positions[noOfPlayer] = new Point(0, 0); ////// initializing
-						positions[noOfPlayer] = new Point(getPlayerCenter(playerPosition, cnt));
-						noOfPlayer++;
-						System.out.println(positions[noOfPlayer]);
-						System.out.println(noOfPlayer);
-					}
-				}
-			}
-			Arrays.sort(positions, 0, noOfPlayer, new PointCmp());
-			Point[] finalPositions = new Point[noOfPlayer];
-			for (int i = 0; i < noOfPlayer; i++)
-				finalPositions[i] = positions[i];
-			return finalPositions;
-		}
-		Point[] finalPositions = {};
-		return finalPositions;
+//
+//		if (photo.length != 0) {
+//			int x = photo.length * photo[0].length(); ///// photo[0].length() is
+//														///// length of one
+//														///// string
+//														///// as all given
+//														///// string are equal
+//														///// in length
+//			playerPosition = new int[x][2];
+//			for (int I = 0; I < photo.length; I++) {
+//				for (int J = 0; J < photo[I].length(); J++) {
+//					////////// initializing playerPositions list to avoid
+//					////////// NullPointer
+//					for (int i = 0; i < x; i++)
+//						for (int j = 0; j < 2; j++)
+//							playerPosition[i][j] = 0;
+//					/////////
+//					cnt = 0;
+//					cntReachalbleCells(I, J);
+//					if (cnt * 4 >= threshold) {
+//						positions[noOfPlayer] = new Point(0, 0); ////// initializing
+//						positions[noOfPlayer] = new Point(getPlayerCenter(playerPosition, cnt));
+//						noOfPlayer++;
+//						System.out.println(positions[noOfPlayer]);
+//						System.out.println(noOfPlayer);
+//					}
+//				}
+//			}
+//			Arrays.sort(positions, 0, noOfPlayer, new PointCmp());
+//			Point[] finalPositions = new Point[noOfPlayer];
+//			for (int i = 0; i < noOfPlayer; i++)
+//				finalPositions[i] = positions[i];
+//			return finalPositions;
+//		}
+//		Point[] finalPositions = {};
+//		return finalPositions;
 	}
 
 	public void cntReachalbleCells(int r, int c) {
@@ -112,7 +112,6 @@ public class PlayGround implements IPlayersFinder {
 		col = ((max * 2) + 2 - (min * 2)) / 2 + (2 * min);
 		x = new Point(row, col);
 		return x;
-		*/
 	}
 
 	public static void main(String[] args) {
