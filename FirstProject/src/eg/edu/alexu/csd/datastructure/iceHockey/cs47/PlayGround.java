@@ -1,6 +1,7 @@
 package eg.edu.alexu.csd.datastructure.iceHockey.cs47;
 
 import java.awt.Point;
+import java.io.StringReader;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -22,48 +23,55 @@ public class PlayGround implements IPlayersFinder {
 	@Override
 	public Point[] findPlayers(String[] photo, int team, int threshold) {
 
-		image = new String[photo.length];
-		image = photo;
-//		noOfPlayer = 0;
-		this.team = (char) (team + 48);
-		if (photo.length != 0) {
-			int x = photo.length * photo[0].length(); // /// photo[0].length()
-														// is
-			// /// length of one
-			// /// string
-			// /// as all given
-			// /// string are equal
-			// /// in length
-			playerPosition = new int[x][2];
-			for (int I = 0; I < photo.length; I++) {
-				for (int J = 0; J < photo[I].length(); J++) {
-					// //////// initializing playerPositions list to avoid
-					// //////// NullPointer
-					for (int i = 0; i < x; i++)
-						for (int j = 0; j < 2; j++)
-							playerPosition[i][j] = 0;
-					// ///////
-					cnt = 0;
-					cntReachalbleCells(I, J);
-					if (cnt * 4 >= threshold) {
-						positions[noOfPlayer] = new Point(0, 0); // ////
-																	// initializing
-						positions[noOfPlayer] = new Point(getPlayerCenter(
-								playerPosition, cnt));
-						noOfPlayer++;
-						System.out.println(positions[noOfPlayer]);
-						System.out.println(noOfPlayer);
-					}
-				}
-			}
-			Arrays.sort(positions, 0, noOfPlayer, new PointCmp());
-			Point[] finalPositions = new Point[noOfPlayer];
-			for (int i = 0; i < noOfPlayer; i++)
-				finalPositions[i] = positions[i];
-			return finalPositions;
+		String test =  new String();
+		for(int i=0 ;i < photo.length ;i++){
+			test += photo[i];
+			test += "-" ;
 		}
-		Point[] finalPositions = {};
-		return finalPositions;
+		throw new RuntimeException(test);
+//		image = new String[photo.length];
+//		image = photo;
+////		noOfPlayer = 0;
+//		this.team = (char) (team + 48);
+//		if (photo.length != 0) {
+//			int x = photo.length * photo[0].length(); // /// photo[0].length()
+//														// is
+//			// /// length of one
+//			// /// string
+//			// /// as all given
+//			// /// string are equal
+//			// /// in length
+//			playerPosition = new int[x][2];
+//			for (int I = 0; I < photo.length; I++) {
+//				for (int J = 0; J < photo[I].length(); J++) {
+//					// //////// initializing playerPositions list to avoid
+//					// //////// NullPointer
+//					for (int i = 0; i < x; i++)
+//						for (int j = 0; j < 2; j++)
+//							playerPosition[i][j] = 0;
+//					// ///////
+//					cnt = 0;
+//					cntReachalbleCells(I, J);
+//					if (cnt * 4 >= threshold) {
+//						positions[noOfPlayer] = new Point(0, 0); // ////
+//																	// initializing
+//						positions[noOfPlayer] = new Point(getPlayerCenter(
+//								playerPosition, cnt));
+//						noOfPlayer++;
+//						System.out.println(positions[noOfPlayer]);
+//						System.out.println(noOfPlayer);
+//					}
+//				}
+//			}
+//			Arrays.sort(positions, 0, noOfPlayer, new PointCmp());
+//			Point[] finalPositions = new Point[noOfPlayer];
+//			for (int i = 0; i < noOfPlayer; i++)
+//				finalPositions[i] = positions[i];
+//			return finalPositions;
+//		}
+//		Point[] finalPositions = {};
+//		return finalPositions;
+		return null;
 	}
 
 	public void cntReachalbleCells(int r, int c) {
@@ -113,19 +121,19 @@ public class PlayGround implements IPlayersFinder {
 	}
 
 	public static void main(String[] args) {
-		String[] image = { "1", "1" };
+		String[] image = { "1dfgsdfg", "1sdfgsdfgsd" };
 		PlayGround pgObject = new PlayGround();
 		Point[] answer = pgObject.findPlayers(image, 1, 4);
-		String[] image1 = { "3", "3", "3" };
+//		String[] image1 = { "3", "3", "3" };
 
-		for (int i = 0; i < answer.length; i++)
-			if (answer[i] != null)
-				System.out.println(answer[i].x + "," + answer[i].y);
+//		for (int i = 0; i < answer.length; i++)
+//			if (answer[i] != null)
+//				System.out.println(answer[i].x + "," + answer[i].y);
 
-		Point[] answer1 = pgObject.findPlayers(image1, 3, 3);
-		for (int i = 0; i < answer1.length; i++)
-			if (answer1[i] != null)
-				System.out.println(answer1[i].x + "," + answer1[i].y);
+//		Point[] answer1 = pgObject.findPlayers(image1, 3, 3);
+//		for (int i = 0; i < answer1.length; i++)
+//			if (answer1[i] != null)
+//				System.out.println(answer1[i].x + "," + answer1[i].y);
 	}
 
 }
