@@ -20,10 +20,17 @@ public class PlayGround implements IPlayersFinder {
 
 	@Override
 	public Point[] findPlayers(String[] photo, int team, int threshold) {
+	
 		image = new String[photo.length];
 		image = photo;
 		this.team = (char)(team+48);
 		i++;
+		if(i>1){
+			integer o = i;
+			throw new RuntimeException(o.tostring);
+			}
+		throw new RuntimeException(image[0]);
+		/*
 		if (photo.length != 0) {
 			int x = photo.length * photo[0].length(); ///// photo[0].length() is
 														///// length of one
@@ -105,6 +112,7 @@ public class PlayGround implements IPlayersFinder {
 		col = ((max * 2) + 2 - (min * 2)) / 2 + (2 * min);
 		x = new Point(row, col);
 		return x;
+		*/
 	}
 
 	public static void main(String[] args) {
