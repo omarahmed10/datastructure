@@ -11,7 +11,9 @@ public class testing {
 	@Test
 	public void test() {
 		PlayGround objectGround = new PlayGround();
-		String[] image = new String[]{	
+		String[] image = new String[]{
+				"333333",
+				"222222"
 		};
 		Integer team =1;
 		Integer threshold = 3;
