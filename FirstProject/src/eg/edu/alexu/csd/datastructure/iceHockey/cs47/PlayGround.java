@@ -24,7 +24,7 @@ public class PlayGround implements IPlayersFinder {
 
 		image = new String[photo.length];
 		image = photo;
-		noOfPlayer = 0;
+//		noOfPlayer = 0;
 		this.team = (char) (team + 48);
 		if (photo.length != 0) {
 			int x = photo.length * photo[0].length(); // /// photo[0].length()
