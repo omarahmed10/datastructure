@@ -5,6 +5,8 @@ import java.io.StringReader;
 import java.util.Arrays;
 import java.util.Comparator;
 
+import javax.management.RuntimeErrorException;
+
 import eg.edu.alexu.csd.datastructure.iceHockey.IPlayersFinder;
 
 public class PlayGround implements IPlayersFinder {
@@ -23,12 +25,9 @@ public class PlayGround implements IPlayersFinder {
 	@Override
 	public Point[] findPlayers(String[] photo, int team, int threshold) {
 
-		String test =  new String();
-		for(int i=0 ;i < photo.length ;i++){
-			test += photo[i];
-			test += "-" ;
-		}
-		throw new RuntimeException(test);
+		Integer o = team;
+		String z = o.toString();
+		throw new RuntimeException(z);
 //		image = new String[photo.length];
 //		image = photo;
 ////		noOfPlayer = 0;
