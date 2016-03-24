@@ -67,7 +67,7 @@ public class PlayGround implements IPlayersFinder {
 //		}
 //		Point[] finalPositions = {};
 //		return finalPositions;
-//	}
+	}
 //
 //	public void cntReachalbleCells(int r, int c) {
 //		if (!valid(r, c) || image[r].charAt(c) != team || vis[r][c] == true)
@@ -181,6 +181,7 @@ public class PlayGround implements IPlayersFinder {
 ////			if (answer1[i] != null)
 ////				System.out.println(answer1[i].x + "," + answer1[i].y);
 //	}
+		
 }
 
 class PointCmp implements Comparator<Point> {
