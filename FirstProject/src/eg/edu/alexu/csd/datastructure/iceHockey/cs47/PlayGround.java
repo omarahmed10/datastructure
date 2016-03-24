@@ -4,18 +4,20 @@ import java.awt.Point;
 import java.util.Arrays;
 import java.util.Comparator;
 
+
 import eg.edu.alexu.csd.datastructure.iceHockey.IPlayersFinder;
 
 public class PlayGround implements IPlayersFinder {
 
 	private final int max = 51;
 	private int cnt;
-	private int noOfPlayer = 0;
+	private int noOfPlayer =0;
 	private char team;
 	private String[] image;
 	private boolean[][] vis = new boolean[max][max];
 	private int[][] playerPosition;
 	private Point[] positions = new Point[max*max];
+	private Point[] finalPositions ;
 
 	// private int i = 0;
 
@@ -34,7 +36,7 @@ public class PlayGround implements IPlayersFinder {
 		image = new String[photo.length+1];
 		image = photo;
 //		System.out.println(photo.length);
-		 noOfPlayer = 0;
+		noOfPlayer = 0;
 		this.team = (char) (team + 48);
 		if (photo.length != 0) {
 			int x = photo.length * photo[0].length();  	// photo[0].length()
@@ -52,21 +54,20 @@ public class PlayGround implements IPlayersFinder {
 					cnt = 0;
 					cntReachalbleCells(I, J);
 					if (cnt * 4 >= threshold) {
-						positions[noOfPlayer] = new Point(0, 0); // ////
-																	// initializing
-						positions[noOfPlayer] = new Point(getPlayerCenter(
-								playerPosition, cnt));
+						positions[noOfPlayer] = new Point(0, 0); // initializing
+						positions[noOfPlayer] = new Point(getPlayerCenter(playerPosition, cnt));
 						noOfPlayer++;
 					}
 				}
 			}
 			Arrays.sort(positions, 0, noOfPlayer, new PointCmp());
-			Point[] finalPositions = new Point[noOfPlayer];
+			finalPositions = new Point[noOfPlayer];
+//			Point[] finalPositions = new Point[noOfPlayer];
 			for (int i = 0; i < noOfPlayer; i++)
 				finalPositions[i] = positions[i];
 			return finalPositions;
 		}
-		Point[] finalPositions = {};
+		finalPositions = new Point[]{};
 		return finalPositions;
 	}
 
