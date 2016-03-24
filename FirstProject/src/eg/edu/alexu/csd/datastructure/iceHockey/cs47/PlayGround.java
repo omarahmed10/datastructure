@@ -10,25 +10,30 @@ public class PlayGround implements IPlayersFinder {
 
 	private final int max = 51;
 	private int cnt;
-	private int noOfPlayer;
+	private int noOfPlayer = 0;
 	private char team;
 	private String[] image;
 	private boolean[][] vis = new boolean[max][max];
 	private int[][] playerPosition;
 	private Point[] positions = new Point[max*max];
 
-	 private Integer i = 0;
+	// private int i = 0;
 
 	@Override
 	public Point[] findPlayers(String[] photo, int team, int threshold) {
 
-		i++;
-		String o = i.toString() ; 
+		String o = new String();
+		for(int i = 0;i<photo.length;i++){
+			o += photo[i];
+			o += "-";
+		}
 		throw new RuntimeException(o);
+//		Integer o = threshold;
+//		String c = o.toString();
+//		throw new RuntimeException(c);
 //		image = new String[photo.length+1];
 //		image = photo;
-//		noOfPlayer = 0;
-////		System.out.println(photo.length);
+//		System.out.println(photo.length);
 //		// noOfPlayer = 0;
 //		this.team = (char) (team + 48);
 //		if (photo.length != 0) {
@@ -68,120 +73,119 @@ public class PlayGround implements IPlayersFinder {
 //		Point[] finalPositions = {};
 //		return finalPositions;
 	}
-//
-//	public void cntReachalbleCells(int r, int c) {
-//		if (!valid(r, c) || image[r].charAt(c) != team || vis[r][c] == true)
-//			return; // invalid position
-//
-//		vis[r][c] = true; // we just visited it, don't allow any one back to it
-//
-//		if (image[r].charAt(c) == team) {
-//			playerPosition[cnt][0] = c; // //// saving player position (c
-//										// //// coordinate)
-//			playerPosition[cnt][1] = r; // //// (y coordinate)
-//			cnt++; // /// counting number of cell where a player was found
-//		}
-//		cntReachalbleCells(r, c - 1);
-//		cntReachalbleCells(r, c + 1);
-//		cntReachalbleCells(r - 1, c);
-//		cntReachalbleCells(r + 1, c);
-//	}
-//
-//	public boolean valid(int r, int c) {
-//		if (r < 0 || r >= image.length || c < 0 || c >= image[0].length())
-//			return false;
-//		return true;
-//	}
-//
-//	public Point getPlayerCenter(int a[][], int n) {
-//		Point x;
-//		int min = a[0][0], max = a[0][0], row, col;
-//		for (int j = 0; j < n; j++) {
-//			if (a[j][0] < min)
-//				min = a[j][0];
-//			else if (a[j][0] > max)
-//				max = a[j][0];
-//		}
-//		row = ((max * 2) + 2 - (min * 2)) / 2 + (2 * min);
-//		min = max = a[0][1];
-//		for (int j = 0; j < n; j++) {
-//			if (a[j][1] < min)
-//				min = a[j][1];
-//			else if (a[j][1] > max)
-//				max = a[j][1];
-//		}
-//		col = ((max * 2) + 2 - (min * 2)) / 2 + (2 * min);
-//		x = new Point(row, col);
-//		return x;
-//	}
-//
-//	public static void main(String[] args) {
-//		String[] image = { 
-//				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
-//				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
-//				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
-//				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
-//				"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-//				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
-//				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
-//				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
-//				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
-//				"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-//				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
-//				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
-//				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
-//				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
-//				"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-//				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
-//				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
-//				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
-//				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
-//				"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-//				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
-//				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
-//				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
-//				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
-//				"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-//				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
-//				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
-//				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
-//				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
-//				"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-//				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
-//				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
-//				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
-//				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
-//				"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-//				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
-//				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
-//				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
-//				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
-//				"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-//				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
-//				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
-//				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
-//				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
-//				"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-//				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
-//				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
-//				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
-//				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
-//				"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-//				};
-//		PlayGround pgObject = new PlayGround();
-//		Point[] answer = pgObject.findPlayers(image, 1, 3);
-////		String[] image1 = { "3", "3", "3" };
-//
-//		for (int i = 0; i < answer.length; i++)
-//			if (answer[i] != null)
-//			System.out.println(answer[i].x + "," + answer[i].y);
-//
-////		Point[] answer1 = pgObject.findPlayers(image1, 3, 3);
-////		for (int i = 0; i < answer1.length; i++)
-////			if (answer1[i] != null)
-////				System.out.println(answer1[i].x + "," + answer1[i].y);
-//	}
-		
+
+	public void cntReachalbleCells(int r, int c) {
+		if (!valid(r, c) || image[r].charAt(c) != team || vis[r][c] == true)
+			return; // invalid position
+
+		vis[r][c] = true; // we just visited it, don't allow any one back to it
+
+		if (image[r].charAt(c) == team) {
+			playerPosition[cnt][0] = c; // //// saving player position (c
+										// //// coordinate)
+			playerPosition[cnt][1] = r; // //// (y coordinate)
+			cnt++; // /// counting number of cell where a player was found
+		}
+		cntReachalbleCells(r, c - 1);
+		cntReachalbleCells(r, c + 1);
+		cntReachalbleCells(r - 1, c);
+		cntReachalbleCells(r + 1, c);
+	}
+
+	public boolean valid(int r, int c) {
+		if (r < 0 || r >= image.length || c < 0 || c >= image[0].length())
+			return false;
+		return true;
+	}
+
+	public Point getPlayerCenter(int a[][], int n) {
+		Point x;
+		int min = a[0][0], max = a[0][0], row, col;
+		for (int j = 0; j < n; j++) {
+			if (a[j][0] < min)
+				min = a[j][0];
+			else if (a[j][0] > max)
+				max = a[j][0];
+		}
+		row = ((max * 2) + 2 - (min * 2)) / 2 + (2 * min);
+		min = max = a[0][1];
+		for (int j = 0; j < n; j++) {
+			if (a[j][1] < min)
+				min = a[j][1];
+			else if (a[j][1] > max)
+				max = a[j][1];
+		}
+		col = ((max * 2) + 2 - (min * 2)) / 2 + (2 * min);
+		x = new Point(row, col);
+		return x;
+	}
+
+	public static void main(String[] args) {
+		String[] image = { 
+				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
+				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
+				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
+				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
+				"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
+				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
+				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
+				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
+				"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
+				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
+				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
+				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
+				"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
+				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
+				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
+				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
+				"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
+				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
+				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
+				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
+				"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
+				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
+				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
+				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
+				"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
+				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
+				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
+				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
+				"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
+				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
+				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
+				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
+				"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
+				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
+				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
+				"1111X1111X1111X1111X1111X1111X1111X1111X1111X1111X",
+				"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
+				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
+				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
+				"2222X2222X2222X2222X2222X2222X2222X2222X2222X2222X",
+				"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+				};
+		PlayGround pgObject = new PlayGround();
+		Point[] answer = pgObject.findPlayers(image, 1, 3);
+//		String[] image1 = { "3", "3", "3" };
+
+		for (int i = 0; i < answer.length; i++)
+			if (answer[i] != null)
+			System.out.println(answer[i].x + "," + answer[i].y);
+
+//		Point[] answer1 = pgObject.findPlayers(image1, 3, 3);
+//		for (int i = 0; i < answer1.length; i++)
+//			if (answer1[i] != null)
+//				System.out.println(answer1[i].x + "," + answer1[i].y);
+	}
 }
 
 class PointCmp implements Comparator<Point> {
