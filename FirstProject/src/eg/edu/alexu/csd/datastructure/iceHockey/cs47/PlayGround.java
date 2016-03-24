@@ -22,56 +22,52 @@ public class PlayGround implements IPlayersFinder {
 	@Override
 	public Point[] findPlayers(String[] photo, int team, int threshold) {
 
-		String o = new String();
-		for(int i = 0;i<photo.length;i++){
-			o += photo[i];
-			o += "-";
-		}
-		throw new RuntimeException(o);
+//		String o = new String();
+//		for(int i = 0;i<photo.length;i++){
+//			o += photo[i];
+//			o += "-";
+//		}
+//		throw new RuntimeException(o);
 //		Integer o = threshold;
 //		String c = o.toString();
 //		throw new RuntimeException(c);
-//		image = new String[photo.length+1];
-//		image = photo;
+		image = new String[photo.length+1];
+		image = photo;
 //		System.out.println(photo.length);
-//		// noOfPlayer = 0;
-//		this.team = (char) (team + 48);
-//		if (photo.length != 0) {
-//			int x = photo.length * photo[0].length(); // /// photo[0].length()
-//														// is
-//			// /// length of one
-//			// /// string
-//			// /// as all given
-//			// /// string are equal
-//			// /// in length
-//			playerPosition = new int[x][2];
-//			for (int I = 0; I < photo.length; I++) {
-//				for (int J = 0; J < photo[I].length(); J++) {
-//					// //////// initializing playerPositions list to avoid
-//					// //////// NullPointer
-//					for (int i = 0; i < x; i++)
-//						for (int j = 0; j < 2; j++)
-//							playerPosition[i][j] = 0;
-//					// ///////
-//					cnt = 0;
-//					cntReachalbleCells(I, J);
-//					if (cnt * 4 >= threshold) {
-//						positions[noOfPlayer] = new Point(0, 0); // ////
-//																	// initializing
-//						positions[noOfPlayer] = new Point(getPlayerCenter(
-//								playerPosition, cnt));
-//						noOfPlayer++;
-//					}
-//				}
-//			}
-//			Arrays.sort(positions, 0, noOfPlayer, new PointCmp());
-//			Point[] finalPositions = new Point[noOfPlayer];
-//			for (int i = 0; i < noOfPlayer; i++)
-//				finalPositions[i] = positions[i];
-//			return finalPositions;
-//		}
-//		Point[] finalPositions = {};
-//		return finalPositions;
+		 noOfPlayer = 0;
+		this.team = (char) (team + 48);
+		if (photo.length != 0) {
+			int x = photo.length * photo[0].length();  	// photo[0].length()
+														// is length of one string 
+														// as all given string are equal in length
+			playerPosition = new int[x][2];
+			for (int I = 0; I < photo.length; I++) {
+				for (int J = 0; J < photo[I].length(); J++) {
+					// //////// initializing playerPositions list to avoid
+					// //////// NullPointer
+					for (int i = 0; i < x; i++)
+						for (int j = 0; j < 2; j++)
+							playerPosition[i][j] = 0;
+					// ///////
+					cnt = 0;
+					cntReachalbleCells(I, J);
+					if (cnt * 4 >= threshold) {
+						positions[noOfPlayer] = new Point(0, 0); // ////
+																	// initializing
+						positions[noOfPlayer] = new Point(getPlayerCenter(
+								playerPosition, cnt));
+						noOfPlayer++;
+					}
+				}
+			}
+			Arrays.sort(positions, 0, noOfPlayer, new PointCmp());
+			Point[] finalPositions = new Point[noOfPlayer];
+			for (int i = 0; i < noOfPlayer; i++)
+				finalPositions[i] = positions[i];
+			return finalPositions;
+		}
+		Point[] finalPositions = {};
+		return finalPositions;
 	}
 
 	public void cntReachalbleCells(int r, int c) {
