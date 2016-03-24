@@ -4,7 +4,6 @@ import java.awt.Point;
 import java.util.Arrays;
 import java.util.Comparator;
 
-
 import eg.edu.alexu.csd.datastructure.iceHockey.IPlayersFinder;
 
 public class PlayGround implements IPlayersFinder {
@@ -42,30 +41,31 @@ public class PlayGround implements IPlayersFinder {
 			int x = photo.length * photo[0].length();  	// photo[0].length()
 														// is length of one string 
 														// as all given string are equal in length
-			playerPosition = new int[x][2];
-			for (int I = 0; I < photo.length; I++) {
-				for (int J = 0; J < photo[I].length(); J++) {
-					// //////// initializing playerPositions list to avoid
-					// //////// NullPointer
-					for (int i = 0; i < x; i++)
-						for (int j = 0; j < 2; j++)
-							playerPosition[i][j] = 0;
-					// ///////
-					cnt = 0;
-					cntReachalbleCells(I, J);
-					if (cnt * 4 >= threshold) {
-						positions[noOfPlayer] = new Point(0, 0); // initializing
-						positions[noOfPlayer] = new Point(getPlayerCenter(playerPosition, cnt));
-						noOfPlayer++;
-					}
-				}
-			}
-			Arrays.sort(positions, 0, noOfPlayer, new PointCmp());
-			finalPositions = new Point[noOfPlayer];
-//			Point[] finalPositions = new Point[noOfPlayer];
-			for (int i = 0; i < noOfPlayer; i++)
-				finalPositions[i] = positions[i];
-			return finalPositions;
+			throw new RuntimeException("hello");
+//			playerPosition = new int[x][2];
+//			for (int I = 0; I < photo.length; I++) {
+//				for (int J = 0; J < photo[I].length(); J++) {
+//					// //////// initializing playerPositions list to avoid
+//					// //////// NullPointer
+//					for (int i = 0; i < x; i++)
+//						for (int j = 0; j < 2; j++)
+//							playerPosition[i][j] = 0;
+//					// ///////
+//					cnt = 0;
+//					cntReachalbleCells(I, J);
+//					if (cnt * 4 >= threshold) {
+//						positions[noOfPlayer] = new Point(0, 0); // initializing
+//						positions[noOfPlayer] = new Point(getPlayerCenter(playerPosition, cnt));
+//						noOfPlayer++;
+//					}
+//				}
+//			}
+//			Arrays.sort(positions, 0, noOfPlayer, new PointCmp());
+//			finalPositions = new Point[noOfPlayer];
+////			Point[] finalPositions = new Point[noOfPlayer];
+//			for (int i = 0; i < noOfPlayer; i++)
+//				finalPositions[i] = positions[i];
+//			return finalPositions;
 		}
 		finalPositions = new Point[]{};
 		return finalPositions;
