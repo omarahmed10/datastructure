@@ -10,7 +10,7 @@ public class PlayGround implements IPlayersFinder {
 
 	private final int max = 51;
 	private int cnt;
-	private int noOfPlayer = 0;
+	private int noOfPlayer;
 	private char team;
 	private String[] image;
 	private boolean[][] vis = new boolean[max][max];
@@ -27,7 +27,8 @@ public class PlayGround implements IPlayersFinder {
 //		throw new RuntimeException(c);
 		image = new String[photo.length+1];
 		image = photo;
-		System.out.println(photo.length);
+		noOfPlayer = 0;
+//		System.out.println(photo.length);
 		// noOfPlayer = 0;
 		this.team = (char) (team + 48);
 		if (photo.length != 0) {
