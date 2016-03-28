@@ -17,13 +17,20 @@ public class MyLinkedList implements ILinkedList {
 			newNode.next = n.next ;
 			n.next = newNode ;
 		}
-		else if (index == 1) {
+		else if (index == 0) {
 			head = newNode ;
 		}
 		System.out.println("Anta7omar");
 		
 	}
-
+	public void printNode(){
+		SNode i = head;
+		
+		while(i != null){
+			System.out.print(i.value + ",");
+			i = i.next;
+		}
+	}
 	@Override
 	public void add(Object element) {
 		// TODO Auto-generated method stub
