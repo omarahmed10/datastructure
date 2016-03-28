@@ -4,10 +4,24 @@ import eg.edu.alexu.csd.datastructure.linkedList.ILinkedList;
 
 public class MyLinkedList implements ILinkedList {
 
+	public SNode head = null;
+
 	@Override
 	public void add(int index, Object element) {
-		// TODO Auto-generated method stub
-
+		SNode newNode = new SNode(element);
+		SNode n = head;
+		if (n != null) {
+			for (int i = 0; i < index - 1; i++) {
+				n = n.next;
+			}
+			newNode.next = n.next ;
+			n.next = newNode ;
+		}
+		else if (index == 1) {
+			head = newNode ;
+		}
+		System.out.println("Anta7omar");
+		
 	}
 
 	@Override
@@ -62,11 +76,6 @@ public class MyLinkedList implements ILinkedList {
 	public boolean contains(Object o) {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 	}
 
 }
