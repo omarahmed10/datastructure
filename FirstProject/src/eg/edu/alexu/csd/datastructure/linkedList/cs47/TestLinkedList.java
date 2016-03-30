@@ -6,9 +6,11 @@ public class TestLinkedList {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		MyLinkedList l = new MyLinkedList();
-		l.add(0, 5);
+		l.add(0,5);
 		l.add(1,6);
 		l.add(2,6);
+		l.add(0,1);
+		
 		l.printNode();
 
 	}

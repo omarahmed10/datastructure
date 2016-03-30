@@ -10,27 +10,33 @@ public class MyLinkedList implements ILinkedList {
 	public void add(int index, Object element) {
 		SNode newNode = new SNode(element);
 		SNode n = head;
-		if (n != null) {
+		if (n != null && index != 0) {
 			for (int i = 0; i < index - 1; i++) {
 				n = n.next;
 			}
-			newNode.next = n.next ;
-			n.next = newNode ;
+			newNode.next = n.next;
+			n.next = newNode;
+		} else if (index == 0) {
+			newNode.next = head;
+			head = newNode;
+		}else if(n != null){
+			throw new RuntimeException("yamokos");
 		}
-		else if (index == 0) {
-			head = newNode ;
-		}
-		System.out.println("Anta7omar");
-		
+
 	}
-	public void printNode(){
+
+	public void printNode() {
 		SNode i = head;
-		
-		while(i != null){
-			System.out.print(i.value + ",");
+		System.out.print("[");
+		while (i != null) {
+			System.out.print(i.value);
 			i = i.next;
+			if (i != null)
+				System.out.print(",");
 		}
+		System.out.print("]");
 	}
+
 	@Override
 	public void add(Object element) {
 		// TODO Auto-generated method stub
