@@ -24,7 +24,7 @@ public class MyLinkedList implements ILinkedList {
 
 	}
 
-	public void printNode() {
+	public void printList() {
 		SNode i = head;
 		System.out.print("[");
 		while (i != null) {
@@ -33,7 +33,7 @@ public class MyLinkedList implements ILinkedList {
 			if (i != null)
 				System.out.print(",");
 		}
-		System.out.print("]");
+		System.out.println("]");
 	}
 
 	@Override
@@ -53,38 +53,62 @@ public class MyLinkedList implements ILinkedList {
 	@Override
 	public Object get(int index) {
 		SNode i = head;
-		if (index != 0) {
-			for (int count = 0; count < index - 1; count++) {
+		if (i != null && index != 0) {
+			for (int count = 0; count < index; count++) {
 				i = i.next;
+				if (i == null)
+					throw new RuntimeException("yamokos");
 			}
 		} else if (i == null)
 			throw new RuntimeException("yamokos");
-		else
-			return i.value;
+
 		return i.value;
 	}
 
 	@Override
 	public void set(int index, Object element) {
-		// TODO Auto-generated method stub
+
+		SNode i = head;
+		if (i != null && index != 0) {
+			for (int count = 0; count < index; count++) {
+				i = i.next;
+				if (i == null)
+					throw new RuntimeException("yamokos");
+			}
+		} else if (i == null)
+			throw new RuntimeException("yamokos");
+
+		i.value = element;
 
 	}
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-
+		head = null;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
+		if (head == null)
+			return true;
 		return false;
 	}
 
 	@Override
 	public void remove(int index) {
-		// TODO Auto-generated method stub
+		SNode m;
+		SNode n = head;
+		if (n != null && index != 0) {
+			for (int i = 0; i < index - 1; i++) {
+				n = n.next;
+			}
+			m = n.next;
+			n.next = m.next;
+		} else if (index == 0) {
+			m = head;
+			head = m.next;
+		} else
+			throw new RuntimeException("yamokos");
 
 	}
 

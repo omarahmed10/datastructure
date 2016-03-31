@@ -13,9 +13,17 @@ public class TestLinkedList {
 		l.add(0,1);
 		l.add("omar");
 		l.add(6, "element");
-		System.out.println(l.get(2));
-//		l.add(8, 7);
-		l.printNode();
+//		l.clear();
+		l.add(12);
+		l.add(8, 7);
+		l.printList();
+		l.set(0, "ahmed");
+		l.printList();
+		l.remove(9);
+		l.printList();
+		System.out.println(l.get(0));
+//		System.out.println(l.get(8));
+		System.out.println(l.isEmpty());
 
 	}
 
