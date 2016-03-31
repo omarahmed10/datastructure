@@ -19,9 +19,8 @@ public class MyLinkedList implements ILinkedList {
 		} else if (index == 0) {
 			newNode.next = head;
 			head = newNode;
-		}else if(n != null){
+		} else
 			throw new RuntimeException("yamokos");
-		}
 
 	}
 
@@ -39,14 +38,30 @@ public class MyLinkedList implements ILinkedList {
 
 	@Override
 	public void add(Object element) {
-		// TODO Auto-generated method stub
-
+		SNode newNode = new SNode(element);
+		SNode i = head;
+		if (i != null) {
+			while (i.next != null) {
+				i = i.next;
+			}
+			i.next = newNode;
+		} else {
+			head = newNode;
+		}
 	}
 
 	@Override
 	public Object get(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		SNode i = head;
+		if (index != 0) {
+			for (int count = 0; count < index - 1; count++) {
+				i = i.next;
+			}
+		} else if (i == null)
+			throw new RuntimeException("yamokos");
+		else
+			return i.value;
+		return i.value;
 	}
 
 	@Override
