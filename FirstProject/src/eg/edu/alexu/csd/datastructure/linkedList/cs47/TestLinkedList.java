@@ -16,14 +16,19 @@ public class TestLinkedList {
 //		l.clear();
 		l.add(12);
 		l.add(8, 7);
+//		l.add(10, 8);
 		l.printList();
 		l.set(0, "ahmed");
 		l.printList();
-		l.remove(9);
-		l.printList();
-		System.out.println(l.get(0));
+//		l.remove(9);
+//		l.printList();
+//		System.out.println(l.get(100));
 //		System.out.println(l.get(8));
 		System.out.println(l.isEmpty());
+		System.out.println(l.size());
+//		l.clear();
+//		System.out.println(l.size());
+		System.out.println(l.contains("msdfogv"));
 
 	}
 

@@ -13,15 +13,15 @@ public class MyLinkedList implements ILinkedList {
 		if (n != null && index != 0) {
 			for (int i = 0; i < index - 1; i++) {
 				n = n.next;
+				if (n == null)
+					throw new RuntimeException("yamokos");
 			}
 			newNode.next = n.next;
 			n.next = newNode;
 		} else if (index == 0) {
 			newNode.next = head;
 			head = newNode;
-		} else
-			throw new RuntimeException("yamokos");
-
+		}
 	}
 
 	public void printList() {
@@ -43,6 +43,8 @@ public class MyLinkedList implements ILinkedList {
 		if (i != null) {
 			while (i.next != null) {
 				i = i.next;
+				if (i == null)
+					throw new RuntimeException("yamokos");
 			}
 			i.next = newNode;
 		} else {
@@ -52,17 +54,24 @@ public class MyLinkedList implements ILinkedList {
 
 	@Override
 	public Object get(int index) {
-		SNode i = head;
-		if (i != null && index != 0) {
-			for (int count = 0; count < index; count++) {
-				i = i.next;
-				if (i == null)
-					throw new RuntimeException("yamokos");
+		try {
+			SNode i = head;
+			if (i != null && index != 0) {
+				for (int count = 0; count < index; count++) {
+					i = i.next;
+					// if (i == null)
+					// throw new RuntimeException("yamokos");
+				}
 			}
-		} else if (i == null)
-			throw new RuntimeException("yamokos");
+			// else if (i == null)
+			// // throw new RuntimeException("yamokos");
 
-		return i.value;
+			return i.value;
+
+		} catch (Exception e) {
+			throw new RuntimeException("yamokos");
+		}
+
 	}
 
 	@Override
@@ -96,26 +105,55 @@ public class MyLinkedList implements ILinkedList {
 
 	@Override
 	public void remove(int index) {
-		SNode m;
-		SNode n = head;
-		if (n != null && index != 0) {
-			for (int i = 0; i < index - 1; i++) {
-				n = n.next;
+		try {
+			SNode m;
+			SNode n = head;
+			if (n != null && index != 0) {
+				for (int i = 0; i < index - 1; i++) {
+					n = n.next;
+					// if( n == null )
+					// throw new RuntimeException("yamokos");
+				}
+				m = n.next;
+				// if( m == null )
+				// throw new RuntimeException("yamokos");
+				n.next = m.next;
+			} else if (index == 0) {
+				m = head;
+				head = m.next;
 			}
-			m = n.next;
-			n.next = m.next;
-		} else if (index == 0) {
-			m = head;
-			head = m.next;
-		} else
+
+		} catch (Exception e) {
 			throw new RuntimeException("yamokos");
+		}
+		// SNode m;
+		// SNode n = head;
+		// if (n != null && index != 0) {
+		// for (int i = 0; i < index - 1; i++) {
+		// n = n.next;
+		// // if( n == null )
+		// // throw new RuntimeException("yamokos");
+		// }
+		// m = n.next;
+		// // if( m == null )
+		// // throw new RuntimeException("yamokos");
+		// n.next = m.next;
+		// } else if (index == 0) {
+		// m = head;
+		// head = m.next;
+		// }
 
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		SNode n = head;
+		int count = 0;
+		while (n != null) {
+			n = n.next;
+			count++;
+		}
+		return count;
 	}
 
 	@Override
@@ -126,8 +164,17 @@ public class MyLinkedList implements ILinkedList {
 
 	@Override
 	public boolean contains(Object o) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			SNode n = head;
+			while (n != null && !n.value.equals(o)) {
+				n = n.next;
+			}
+			if( n.value.equals(o))
+				return true;
+			return false;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 }
