@@ -158,8 +158,18 @@ public class MyLinkedList implements ILinkedList {
 
 	@Override
 	public ILinkedList sublist(int fromIndex, int toIndex) {
-		// TODO Auto-generated method stub
-		return null;
+		MyLinkedList subList = new MyLinkedList();
+		SNode x = head ;
+		for(int i = 0; i < fromIndex ;i++){
+			x =x.next;
+		}
+		subList.head = x;
+		for(int j =0; j < toIndex-1 ;j++){
+			subList.add(x);
+			x = x.next;
+		}
+		x.next = null;
+		return subList;
 	}
 
 	@Override

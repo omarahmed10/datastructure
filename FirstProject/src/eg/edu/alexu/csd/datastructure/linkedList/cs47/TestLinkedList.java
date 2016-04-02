@@ -1,6 +1,9 @@
 package eg.edu.alexu.csd.datastructure.linkedList.cs47;
 
 
+import eg.edu.alexu.csd.datastructure.linkedList.ILinkedList;
+
+
 public class TestLinkedList {
 
 	public static void main(String[] args) {
@@ -18,7 +21,7 @@ public class TestLinkedList {
 		l.add(8, 7);
 //		l.add(10, 8);
 		l.printList();
-		l.set(0, "ahmed");
+		l.set(8, "ahmed");
 		l.printList();
 //		l.remove(9);
 //		l.printList();
@@ -28,8 +31,14 @@ public class TestLinkedList {
 		System.out.println(l.size());
 //		l.clear();
 //		System.out.println(l.size());
-		System.out.println(l.contains("msdfogv"));
-
+		System.out.println(l.contains("ahmed"));
+		System.out.println(l.sublist(0, 4).size());
+		System.out.println(l.sublist(0, 4).get(3));
+//		ILinkedList o = l.sublist(0, 4);
+////		o = l.sublist(0, 4);
+//		o.printList();
+//		o.clear();
+//		System.out.println(o.size());
 	}
 
 }
