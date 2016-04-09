@@ -197,10 +197,4 @@ public class SinglyLinkedList implements ILinkedList {
 		return temp;
 	}
 
-	@Override
-	public void printList() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

@@ -43,6 +43,5 @@ public interface ILinkedList {
 	 * specified element.
 	 */
 	public boolean contains(Object o);
-	public void printList();
 	
 }
