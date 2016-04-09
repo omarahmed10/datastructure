@@ -1,6 +1,5 @@
 package eg.edu.alexu.csd.datastructure.linkedList;
 
-import java.security.PublicKey;
 
 public interface ILinkedList {
 	
@@ -44,5 +43,6 @@ public interface ILinkedList {
 	 * specified element.
 	 */
 	public boolean contains(Object o);
+	public void printList();
 	
 }
