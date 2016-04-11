@@ -58,25 +58,25 @@ public class PolynomialSolver implements IPolynomialSolver {
 	}
 
 	public String print(char poly) {
-		String message = "2";
-		message += poly;
-		throw new RuntimeException(message);
-//		switch (poly) {
-//		case 'A':
-//			System.out.println(myPrintStyle(a));
-//			return myPrintStyle(a);
-//		case 'B':
-//			System.out.println(myPrintStyle(b));
-//			return myPrintStyle(b);
-//		case 'C':
-//			System.out.println(myPrintStyle(c));
-//			return myPrintStyle(c);
-//		case 'R':
-//			System.out.println(myPrintStyle(r));
-//			return myPrintStyle(r);
-//		default:
-//			throw new RuntimeException();
-//		}
+//		String message = "2";
+//		message += poly;
+//		throw new RuntimeException(message);
+		switch (poly) {
+		case 'A':
+			System.out.println(myPrintStyle(a));
+			return myPrintStyle(a);
+		case 'B':
+			System.out.println(myPrintStyle(b));
+			return myPrintStyle(b);
+		case 'C':
+			System.out.println(myPrintStyle(c));
+			return myPrintStyle(c);
+		case 'R':
+			System.out.println(myPrintStyle(r));
+			return myPrintStyle(r);
+		default:
+			throw new RuntimeException();
+		}
 	}
 
 	public String myPrintStyle(SinglyLinkedList z) {
