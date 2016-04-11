@@ -7,7 +7,7 @@ public class PolynomialSolver implements IPolynomialSolver {
 	private SinglyLinkedList a;
 	private SinglyLinkedList b;
 	private SinglyLinkedList c;
-	private SinglyLinkedList r = null;
+	private SinglyLinkedList r = new SinglyLinkedList();
 	private SinglyLinkedList l = new SinglyLinkedList();
 	private SinglyLinkedList multiVar = new SinglyLinkedList();
 
@@ -226,7 +226,6 @@ public class PolynomialSolver implements IPolynomialSolver {
 	 * @return the result polynomial
 	 */
 	public int[][] add(char poly1, char poly2) {
-		r = new SinglyLinkedList();
 		if (poly1 == 'A' || poly2 == 'A') {
 			if (poly1 == 'B' || poly2 == 'B') {
 				myAddStyle(a, b);
@@ -245,11 +244,17 @@ public class PolynomialSolver implements IPolynomialSolver {
 			myAddStyle(b, b);
 		else if (poly1 == 'C' && poly2 == 'C')
 			myAddStyle(c, c);
+
+		if (r.size() == 0) {
+			int[][] temp = { { 0, 0 } };
+			return temp;
+		}
+		// return null;
 		int[][] R = new int[r.size()][];
 		for (int i = 0; i < r.size(); i++) {
 			R[i] = (int[]) r.get(i);
 		}
-		r.clear();
+		// r.clear();
 		return R;
 	}
 
@@ -285,7 +290,6 @@ public class PolynomialSolver implements IPolynomialSolver {
 	}
 
 	public int[][] subtract(char poly1, char poly2) {
-		r = new SinglyLinkedList();
 		/*
 		 * Because A - B != B - A
 		 */
@@ -307,6 +311,11 @@ public class PolynomialSolver implements IPolynomialSolver {
 		} else
 			throw new RuntimeException();
 
+		if (r.size() == 0) {
+			int[][] temp = { { 0, 0 } };
+			return temp;
+		}
+		// return null;
 		int[][] R = new int[r.size()][];
 		for (int i = 0; i < r.size(); i++) {
 			R[i] = (int[]) r.get(i);
@@ -346,7 +355,6 @@ public class PolynomialSolver implements IPolynomialSolver {
 	}
 
 	public int[][] multiply(char poly1, char poly2) {
-		r = new SinglyLinkedList();
 		if (poly1 == 'A' && poly2 == 'A') {
 			myMultiplyStyle(a, a);
 		}
@@ -370,6 +378,12 @@ public class PolynomialSolver implements IPolynomialSolver {
 				myMultiplyStyle(b, c);
 			}
 		}
+
+		if (r.size() == 0) {
+			int[][] temp = { { 0, 0 } };
+			return temp;
+		}
+		// return null;
 		int[][] R = new int[r.size()][];
 		for (int i = 0; i < r.size(); i++)
 			R[i] = (int[]) r.get(i);
