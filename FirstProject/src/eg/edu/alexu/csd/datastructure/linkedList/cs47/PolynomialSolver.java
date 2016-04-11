@@ -74,8 +74,9 @@ public class PolynomialSolver implements IPolynomialSolver {
 	}
 
 	public final String myPrintStyle(SinglyLinkedList z) {
+		if( z.size() == 0 )
+			return null;
 		String tempStr = new String("");
-
 		for (int i = 0; i < z.size(); i++) {
 			int[] temp = (int[]) z.get(i);
 			if (i == 0) {
