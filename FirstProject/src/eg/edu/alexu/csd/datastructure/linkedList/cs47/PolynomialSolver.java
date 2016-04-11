@@ -150,21 +150,26 @@ public class PolynomialSolver implements IPolynomialSolver {
 	public final void clearPolynomial(final char poly) {
 		switch (poly) {
 		case 'A': {
-			if (a.size() <= 0)
+			if (a.size() < 0)
 				throw new RuntimeException();
 			a.clear();
 		}
 			break;
 		case 'B': {
-			if (b.size() <= 0)
+			if (b.size() < 0)
 				throw new RuntimeException();
-		}
 			b.clear();
+		}
 			break;
 		case 'C': {
-			if (c.size() <= 0)
+			if (c.size() < 0)
 				throw new RuntimeException();
 			c.clear();
+		}
+		case 'R': {
+			if (r.size() < 0)
+				throw new RuntimeException();
+			r.clear();
 		}
 			break;
 		default:
@@ -233,11 +238,17 @@ public class PolynomialSolver implements IPolynomialSolver {
 			}
 		} else if (poly1 == 'R' && poly2 == 'M') {
 			myAddStyle(r, multiVar);
-		}
+		} else if (poly1 == 'A' && poly2 == 'A')
+			myAddStyle(a, a);
+		else if (poly1 == 'B' && poly2 == 'B')
+			myAddStyle(b, b);
+		else if (poly1 == 'C' && poly2 == 'C')
+			myAddStyle(c, c);
 		int[][] R = new int[r.size()][];
 		for (int i = 0; i < r.size(); i++) {
 			R[i] = (int[]) r.get(i);
 		}
+		r.clear();
 		return R;
 	}
 
@@ -288,15 +299,17 @@ public class PolynomialSolver implements IPolynomialSolver {
 			myStubtractStyle(c, a);
 		else if (poly1 == 'C' && poly2 == 'B')
 			myStubtractStyle(c, b);
-		else if (poly1 == poly2)
-			r.add(0);
-		else
+		else if (poly1 == poly2) {
+			int[][] temp = { { 0, 0 } };
+			return temp;
+		} else
 			throw new RuntimeException();
 
 		int[][] R = new int[r.size()][];
 		for (int i = 0; i < r.size(); i++) {
 			R[i] = (int[]) r.get(i);
 		}
+		r.clear();
 		return R;
 	}
 
@@ -358,7 +371,7 @@ public class PolynomialSolver implements IPolynomialSolver {
 		int[][] R = new int[r.size()][];
 		for (int i = 0; i < r.size(); i++)
 			R[i] = (int[]) r.get(i);
-
+		r.clear();
 		return R;
 	}
 
@@ -400,6 +413,8 @@ public class PolynomialSolver implements IPolynomialSolver {
 		int[][] c = { { 2, 2 }, { 1, 1 }, { 1, 0 } };
 		PolynomialSolver omar = new PolynomialSolver();
 		omar.setPolynomial('A', o);
+		omar.print('A');
+		omar.clearPolynomial('A');
 		omar.print('A');
 		omar.setPolynomial('B', m);
 		omar.print('B');
