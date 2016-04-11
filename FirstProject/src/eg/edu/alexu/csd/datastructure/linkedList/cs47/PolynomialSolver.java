@@ -74,7 +74,7 @@ public class PolynomialSolver implements IPolynomialSolver {
 	}
 
 	public final String myPrintStyle(SinglyLinkedList z) {
-		if( z.size() == 0 )
+		if (z.size() == 0)
 			return null;
 		String tempStr = new String("");
 		for (int i = 0; i < z.size(); i++) {
@@ -244,20 +244,20 @@ public class PolynomialSolver implements IPolynomialSolver {
 			myAddStyle(b, b);
 		else if (poly1 == 'C' && poly2 == 'C')
 			myAddStyle(c, c);
-		else 
+		else
 			throw new RuntimeException();
-		
-		if (r.size() == 0) 
-//		{
-//			int[][] temp = { { 0, 0 } };
-//			return temp;
-//		}
-		 return null;
+
+		if (r.size() == 0)
+			// {
+			// int[][] temp = { { 0, 0 } };
+			// return temp;
+			// }
+			return null;
 		int[][] R = new int[r.size()][];
 		for (int i = 0; i < r.size(); i++) {
 			R[i] = (int[]) r.get(i);
 		}
-		// r.clear();
+		 r.clear();
 		return R;
 	}
 
@@ -314,17 +314,17 @@ public class PolynomialSolver implements IPolynomialSolver {
 		} else
 			throw new RuntimeException();
 
-		if (r.size() == 0) 
-//		{
-//			int[][] temp = { { 0, 0 } };
-//			return temp;
-//		}
-		 return null;
+		if (r.size() == 0)
+			// {
+			// int[][] temp = { { 0, 0 } };
+			// return temp;
+			// }
+			return null;
 		int[][] R = new int[r.size()][];
 		for (int i = 0; i < r.size(); i++) {
 			R[i] = (int[]) r.get(i);
 		}
-//		r.clear();
+		 r.clear();
 		return R;
 	}
 
@@ -381,20 +381,19 @@ public class PolynomialSolver implements IPolynomialSolver {
 			if (poly1 == 'C' || poly2 == 'C') {
 				myMultiplyStyle(b, c);
 			}
-		}
-		else 
+		} else
 			throw new RuntimeException();
 
-		if (r.size() == 0) 
-//		{
-//			int[][] temp = { { 0, 0 } };
-//			return temp;
-//		}
-		 return null;
+		if (r.size() == 0)
+			// {
+			// int[][] temp = { { 0, 0 } };
+			// return temp;
+			// }
+			return null;
 		int[][] R = new int[r.size()][];
 		for (int i = 0; i < r.size(); i++)
 			R[i] = (int[]) r.get(i);
-//		r.clear();
+		 r.clear();
 		return R;
 	}
 
