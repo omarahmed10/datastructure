@@ -49,7 +49,7 @@ public class PolynomialSolver implements IPolynomialSolver {
 		}
 			break;
 		default:
-			break;
+			throw new RuntimeException();
 		}
 
 	}
@@ -69,7 +69,7 @@ public class PolynomialSolver implements IPolynomialSolver {
 			System.out.println(myPrintStyle(r));
 			return myPrintStyle(r);
 		default:
-			return null;
+			throw new RuntimeException();
 		}
 	}
 
