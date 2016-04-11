@@ -12,9 +12,9 @@ public class PolynomialSolver implements IPolynomialSolver {
 	private SinglyLinkedList multiVar = new SinglyLinkedList();
 
 	public void setPolynomial(char poly, int[][] terms) {
-		String message = "";
-		message += poly;
-		throw new RuntimeException(message);
+//		String message = "";
+//		message += poly;
+//		throw new RuntimeException(message);
 //		for (int i = 0; i < terms.length - 1; i++) {
 //			if (terms[i][1] <= terms[i + 1][1]) {
 //				throw new RuntimeException();
@@ -58,9 +58,9 @@ public class PolynomialSolver implements IPolynomialSolver {
 	}
 
 	public String print(char poly) {
-		String message = "";
-		message += poly;
-		throw new RuntimeException(message);
+//		String message = "";
+//		message += poly;
+//		throw new RuntimeException(message);
 //		switch (poly) {
 //		case 'A':
 //			System.out.println(myPrintStyle(a));
@@ -155,9 +155,9 @@ public class PolynomialSolver implements IPolynomialSolver {
 	 *            name of the polynomial
 	 */
 	public void clearPolynomial(char poly) {
-		String message = "";
-		message += poly;
-		throw new RuntimeException(message);
+//		String message = "";
+//		message += poly;
+//		throw new RuntimeException(message);
 //		switch (poly) {
 //		case 'A': {
 //			if (a.size() < 0)
