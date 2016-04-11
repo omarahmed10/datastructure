@@ -1,6 +1,5 @@
 package eg.edu.alexu.csd.datastructure.linkedList.cs47;
 
-import eg.edu.alexu.csd.datastructure.linkedList.ILinkedList;
 
 public class TestLinkedList {
 

@@ -38,7 +38,7 @@ public class DoublyLinkedList implements ILinkedList {
 		} else {
 			DoublyNode n = new DoublyNode(element);
 			DoublyNode x = header.next;
-			for (int i = 0; i < index-1; i++)
+			for (int i = 0; i < index; i++)
 				x = x.next;
 
 			n.next = x;
@@ -151,7 +151,8 @@ public class DoublyLinkedList implements ILinkedList {
 
 	@Override
 	public ILinkedList sublist(int fromIndex, int toIndex) {
-		if (fromIndex >= Size || fromIndex < 0 || toIndex < 0 || toIndex >= Size || fromIndex > toIndex) {
+		if (fromIndex >= Size || fromIndex < 0 || toIndex < 0
+				|| toIndex >= Size || fromIndex > toIndex) {
 			throw new RuntimeException("");
 		} else {
 			ILinkedList subList = new DoublyLinkedList();
@@ -168,13 +169,13 @@ public class DoublyLinkedList implements ILinkedList {
 
 	@Override
 	public boolean contains(Object o) {
-		if(isEmpty()){
+		if (isEmpty()) {
 			throw new RuntimeException();
 		}
 		DoublyNode n = header.next;
 		if (n.element.equals(o))
 			return true;
-		for (int i = 0; i < Size ; i++) {
+		for (int i = 0; i < Size; i++) {
 			if (n.element.equals(o))
 				return true;
 
