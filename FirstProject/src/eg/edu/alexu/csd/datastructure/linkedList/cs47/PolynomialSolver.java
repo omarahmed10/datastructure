@@ -245,11 +245,12 @@ public class PolynomialSolver implements IPolynomialSolver {
 		else if (poly1 == 'C' && poly2 == 'C')
 			myAddStyle(c, c);
 
-		if (r.size() == 0) {
-			int[][] temp = { { 0, 0 } };
-			return temp;
-		}
-		// return null;
+		if (r.size() == 0) 
+//		{
+//			int[][] temp = { { 0, 0 } };
+//			return temp;
+//		}
+		 return null;
 		int[][] R = new int[r.size()][];
 		for (int i = 0; i < r.size(); i++) {
 			R[i] = (int[]) r.get(i);
@@ -311,11 +312,12 @@ public class PolynomialSolver implements IPolynomialSolver {
 		} else
 			throw new RuntimeException();
 
-		if (r.size() == 0) {
-			int[][] temp = { { 0, 0 } };
-			return temp;
-		}
-		// return null;
+		if (r.size() == 0) 
+//		{
+//			int[][] temp = { { 0, 0 } };
+//			return temp;
+//		}
+		 return null;
 		int[][] R = new int[r.size()][];
 		for (int i = 0; i < r.size(); i++) {
 			R[i] = (int[]) r.get(i);
@@ -379,11 +381,12 @@ public class PolynomialSolver implements IPolynomialSolver {
 			}
 		}
 
-		if (r.size() == 0) {
-			int[][] temp = { { 0, 0 } };
-			return temp;
-		}
-		// return null;
+		if (r.size() == 0) 
+//		{
+//			int[][] temp = { { 0, 0 } };
+//			return temp;
+//		}
+		 return null;
 		int[][] R = new int[r.size()][];
 		for (int i = 0; i < r.size(); i++)
 			R[i] = (int[]) r.get(i);
