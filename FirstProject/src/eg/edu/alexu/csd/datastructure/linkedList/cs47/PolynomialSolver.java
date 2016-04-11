@@ -12,48 +12,48 @@ public class PolynomialSolver implements IPolynomialSolver {
 	private SinglyLinkedList multiVar = new SinglyLinkedList();
 
 	public void setPolynomial(char poly, int[][] terms) {
-		String message = "1";
-		message += poly;
-		throw new RuntimeException(message);
-//		for (int i = 0; i < terms.length - 1; i++) {
-//			if (terms[i][1] <= terms[i + 1][1]) {
-//				throw new RuntimeException();
-//			}
-//		}
-//		switch (poly) {
-//		case 'A': {
-//			a = new SinglyLinkedList();
-//			for (int i = 0; i < terms.length; i++) {
-//				if (terms[i][1] < 0)
-//					throw new RuntimeException();
-//				a.add(terms[i]);
-//			}
-//			System.out.println("Polynomial A is set");
-//		}
-//			break;
-//		case 'B': {
-//			b = new SinglyLinkedList();
-//			for (int i = 0; i < terms.length; i++) {
-//				if (terms[i][1] < 0)
-//					throw new RuntimeException();
-//				b.add(terms[i]);
-//			}
-//			System.out.println("Polynomial B is set");
-//		}
-//			break;
-//		case 'C': {
-//			c = new SinglyLinkedList();
-//			for (int i = 0; i < terms.length; i++) {
-//				if (terms[i][1] < 0)
-//					throw new RuntimeException();
-//				c.add(terms[i]);
-//			}
-//			System.out.println("Polynomial C is set");
-//		}
-//			break;
-//		default:
-//			throw new RuntimeException();
-//		}
+//		String message = "1";
+//		message += poly;
+//		throw new RuntimeException(message);
+		for (int i = 0; i < terms.length - 1; i++) {
+			if (terms[i][1] <= terms[i + 1][1]) {
+				throw new RuntimeException();
+			}
+		}
+		switch (poly) {
+		case 'A': {
+			a = new SinglyLinkedList();
+			for (int i = 0; i < terms.length; i++) {
+				if (terms[i][1] < 0)
+					throw new RuntimeException();
+				a.add(terms[i]);
+			}
+			System.out.println("Polynomial A is set");
+		}
+			break;
+		case 'B': {
+			b = new SinglyLinkedList();
+			for (int i = 0; i < terms.length; i++) {
+				if (terms[i][1] < 0)
+					throw new RuntimeException();
+				b.add(terms[i]);
+			}
+			System.out.println("Polynomial B is set");
+		}
+			break;
+		case 'C': {
+			c = new SinglyLinkedList();
+			for (int i = 0; i < terms.length; i++) {
+				if (terms[i][1] < 0)
+					throw new RuntimeException();
+				c.add(terms[i]);
+			}
+			System.out.println("Polynomial C is set");
+		}
+			break;
+		default:
+			throw new RuntimeException();
+		}
 
 	}
 
