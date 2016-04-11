@@ -212,9 +212,8 @@ public class PolynomialSolver implements IPolynomialSolver {
 		}
 			return v;
 		default:
-			break;
+			throw new RuntimeException();
 		}
-		return 0;
 	}
 
 	/**
@@ -245,7 +244,9 @@ public class PolynomialSolver implements IPolynomialSolver {
 			myAddStyle(b, b);
 		else if (poly1 == 'C' && poly2 == 'C')
 			myAddStyle(c, c);
-
+		else 
+			throw new RuntimeException();
+		
 		if (r.size() == 0) 
 //		{
 //			int[][] temp = { { 0, 0 } };
@@ -381,6 +382,8 @@ public class PolynomialSolver implements IPolynomialSolver {
 				myMultiplyStyle(b, c);
 			}
 		}
+		else 
+			throw new RuntimeException();
 
 		if (r.size() == 0) 
 //		{
