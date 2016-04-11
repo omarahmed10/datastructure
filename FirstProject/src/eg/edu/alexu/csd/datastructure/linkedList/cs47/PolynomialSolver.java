@@ -238,7 +238,7 @@ public class PolynomialSolver implements IPolynomialSolver {
 	 * @return the result polynomial
 	 */
 	public int[][] add(char poly1, char poly2) {
-		String message = "";
+		String message = "1 ";
 		message += poly1 + "," + poly2;
 		throw new RuntimeException(message);
 //		if (poly1 == 'A' || poly2 == 'A') {
@@ -308,7 +308,7 @@ public class PolynomialSolver implements IPolynomialSolver {
 	}
 
 	public int[][] subtract(char poly1, char poly2) {
-		String message = "";
+		String message = "2 ";
 		message += poly1 + "," + poly2;
 		throw new RuntimeException(message);
 //		/*
@@ -377,7 +377,7 @@ public class PolynomialSolver implements IPolynomialSolver {
 	}
 
 	public int[][] multiply(char poly1, char poly2) {
-		String message = "";
+		String message = "3 ";
 		message += poly1 + "," + poly2;
 		throw new RuntimeException(message);
 //		if (poly1 == 'A' && poly2 == 'A') {
