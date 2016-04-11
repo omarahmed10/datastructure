@@ -248,7 +248,7 @@ public class PolynomialSolver implements IPolynomialSolver {
 		for (int i = 0; i < r.size(); i++) {
 			R[i] = (int[]) r.get(i);
 		}
-		r.clear();
+//		r.clear();
 		return R;
 	}
 
@@ -309,7 +309,7 @@ public class PolynomialSolver implements IPolynomialSolver {
 		for (int i = 0; i < r.size(); i++) {
 			R[i] = (int[]) r.get(i);
 		}
-		r.clear();
+//		r.clear();
 		return R;
 	}
 
@@ -371,7 +371,7 @@ public class PolynomialSolver implements IPolynomialSolver {
 		int[][] R = new int[r.size()][];
 		for (int i = 0; i < r.size(); i++)
 			R[i] = (int[]) r.get(i);
-		r.clear();
+//		r.clear();
 		return R;
 	}
 
