@@ -1,88 +1,146 @@
-package eg.edu.alexu.csd.datastructure.linkedList.cs47;
+/**
+* Domain classes used to produce .....
+* <p>
+* These classes contain the ......
+* </p>
+*
+* @since 1.0
+* @author Ali Metawea
+* @version 1.0
+*/
+package eg.edu.alexu.csd.datastructure.linkedList.cs45;
+
+import javax.management.RuntimeErrorException;
 
 import eg.edu.alexu.csd.datastructure.linkedList.IPolynomialSolver;
 
+/**
+ * 
+ * @author Ali-Metawea
+ *
+ */
 public class PolynomialSolver implements IPolynomialSolver {
-
-	private SinglyLinkedList a;
-	private SinglyLinkedList b;
-	private SinglyLinkedList c;
+	/**
+	 * 
+	 */
+	private SinglyLinkedList multiVar = new SinglyLinkedList();
+	/**
+	 * 
+	 */
+	private SinglyLinkedList a = new SinglyLinkedList();
+	/**
+	 * 
+	 */
+	private SinglyLinkedList b = new SinglyLinkedList();
+	/**
+	 * 
+	 */
+	private SinglyLinkedList c = new SinglyLinkedList();
+	/**
+	 * 
+	 */
 	private SinglyLinkedList r = new SinglyLinkedList();
 	private SinglyLinkedList l = new SinglyLinkedList();
-	private SinglyLinkedList multiVar = new SinglyLinkedList();
 
-	public void setPolynomial(char poly, int[][] terms) {
-//		String message = "1";
-//		message += poly;
-//		throw new RuntimeException(message);
+	/**
+	 * . Set polynomial terms (coefficients & exponents)
+	 * 
+	 * @param poly
+	 *            name of the polynomial
+	 * @param terms
+	 *            array of [coefficients][exponents]
+	 */
+	public final void setPolynomial(final char poly, final int[][] terms) {
+		// String str="";
+		// for (int i = 0; i < terms.length; i++) {
+		// str+=terms[i][0]+" "+terms[i][1]+'\n';
+		// }
+		// throw new RuntimeException(str);
 		for (int i = 0; i < terms.length - 1; i++) {
 			if (terms[i][1] <= terms[i + 1][1]) {
 				throw new RuntimeException();
 			}
 		}
 		switch (poly) {
-		case 'A': {
-			a = new SinglyLinkedList();
+		case 'A':
 			for (int i = 0; i < terms.length; i++) {
-				if (terms[i][1] < 0)
+				if (terms[i][1] < 0) {
 					throw new RuntimeException();
+				}
 				a.add(terms[i]);
 			}
-			System.out.println("Polynomial A is set");
-		}
+
 			break;
-		case 'B': {
-			b = new SinglyLinkedList();
+
+		case 'B':
 			for (int i = 0; i < terms.length; i++) {
-				if (terms[i][1] < 0)
+				if (terms[i][1] < 0) {
 					throw new RuntimeException();
+				}
 				b.add(terms[i]);
 			}
-			System.out.println("Polynomial B is set");
-		}
 			break;
-		case 'C': {
-			c = new SinglyLinkedList();
+
+		case 'C':
 			for (int i = 0; i < terms.length; i++) {
-				if (terms[i][1] < 0)
+				if (terms[i][1] < 0) {
 					throw new RuntimeException();
+				}
 				c.add(terms[i]);
 			}
-			System.out.println("Polynomial C is set");
-		}
 			break;
+		case 'R':
+			for (int i = 0; i < terms.length; i++) {
+				if (terms[i][1] < 0) {
+					throw new RuntimeException();
+				}
+				r.add(terms[i]);
+			}
+			break;
+
 		default:
 			throw new RuntimeException();
 		}
 
 	}
 
-	public String print(char poly) {
-//		String message = "2";
-//		message += poly;
-//		throw new RuntimeException(message);
+	/**
+	 * . Print the polynomial in human readable representation
+	 * 
+	 * @param poly
+	 *            name of the polynomial
+	 * @return polynomial in the form like 27x^2+x-1
+	 */
+	public final String print(final char poly) {
 		switch (poly) {
 		case 'A':
-			System.out.println(myPrintStyle(a));
-			return myPrintStyle(a);
+			if (a.size() == 0)
+				return null;
+			else
+				return myPrintStyle(a);
 		case 'B':
-			System.out.println(myPrintStyle(b));
-			return myPrintStyle(b);
+			if (b.size() == 0)
+				return null;
+			else
+				return myPrintStyle(b);
 		case 'C':
-			System.out.println(myPrintStyle(c));
-			return myPrintStyle(c);
+			if (c.size() == 0)
+				return null;
+			else
+				return myPrintStyle(c);
 		case 'R':
-			System.out.println(myPrintStyle(r));
-			return myPrintStyle(r);
+			if (r.size() == 0)
+				return null;
+			else
+				return myPrintStyle(r);
 		default:
-			return null;
+			throw new RuntimeException();
 		}
 	}
 
-	public String myPrintStyle(SinglyLinkedList z) {
-		if (z.size() == 0)
-			return null;
+	public final String myPrintStyle(SinglyLinkedList z) {
 		String tempStr = new String("");
+
 		for (int i = 0; i < z.size(); i++) {
 			int[] temp = (int[]) z.get(i);
 			if (i == 0) {
@@ -154,34 +212,21 @@ public class PolynomialSolver implements IPolynomialSolver {
 	 * @param poly
 	 *            name of the polynomial
 	 */
-	public void clearPolynomial(char poly) {
-//		String message = "3";
-//		message += poly;
-//		throw new RuntimeException(message);
+	public final void clearPolynomial(final char poly) {
 		switch (poly) {
-		case 'A': {
-			if (a.size() < 0)
-				throw new RuntimeException();
+		case 'A':
 			a.clear();
-		}
 			break;
-		case 'B': {
-			if (b.size() < 0)
-				throw new RuntimeException();
+		case 'B':
 			b.clear();
-		}
 			break;
-		case 'C': {
-			if (c.size() < 0)
-				throw new RuntimeException();
+		case 'C':
 			c.clear();
-		}
-		case 'R': {
-			if (r.size() < 0)
-				throw new RuntimeException();
-			r.clear();
-		}
 			break;
+		case 'R':
+			r.clear();
+			break;
+
 		default:
 			throw new RuntimeException();
 		}
@@ -189,43 +234,61 @@ public class PolynomialSolver implements IPolynomialSolver {
 
 	/**
 	 * . Evaluate the polynomial
-	 *
+	 * 
 	 * @param poly
 	 *            name of the polynomial
-	 * @param polynomial
-	 *            constant value
+	 * @param value
+	 *            polynomial constant value
 	 * @return the value of the polynomial
 	 */
-	public float evaluatePolynomial(char poly, float value) {
-//		String message = "";
-//		message += poly;
-//		throw new RuntimeException(message);
+	public final float evaluatePolynomial(final char poly, final float value) {
+
 		float v = 0;
 		switch (poly) {
-		case 'A': {
+		case 'A':
+			if (a.size() == 0) {
+				throw new RuntimeException();
+			}
 			for (int i = 0; i < a.size(); i++) {
 				int[] term = (int[]) a.get(i);
 				v += term[0] * Math.pow(value, term[1]);
 			}
-		}
 			return v;
-		case 'B': {
+
+		case 'B':
+			if (b.size() == 0) {
+				throw new RuntimeException();
+			}
 			for (int i = 0; i < b.size(); i++) {
 				int[] term = (int[]) b.get(i);
 				v += term[0] * Math.pow(value, term[1]);
 			}
-		}
 			return v;
-		case 'C': {
+
+		case 'C':
+			if (c.size() == 0) {
+				throw new RuntimeException();
+			}
 			for (int i = 0; i < c.size(); i++) {
 				int[] term = (int[]) c.get(i);
 				v += term[0] * Math.pow(value, term[1]);
 			}
-		}
 			return v;
+
+		case 'R':
+			if (r.size() == 0) {
+				throw new RuntimeException();
+			}
+			for (int i = 0; i < r.size(); i++) {
+				int[] term = (int[]) r.get(i);
+				v += term[0] * Math.pow(value, term[1]);
+			}
+			return v;
+
 		default:
 			throw new RuntimeException();
 		}
+
 	}
 
 	/**
@@ -238,115 +301,45 @@ public class PolynomialSolver implements IPolynomialSolver {
 	 * @return the result polynomial
 	 */
 	public int[][] add(char poly1, char poly2) {
-//		String message = "1 ";
-//		message += poly1 + "," + poly2;
-//		throw new RuntimeException(message);
-		if (poly1 == 'A' || poly2 == 'A') {
-			if (poly1 == 'B' || poly2 == 'B') {
+		boolean x = a.size() == 0 && b.size() == 0;
+		boolean y = a.size() == 0 && c.size() == 0;
+		boolean z = b.size() == 0 && c.size() == 0;
+		if (x || y || z && (poly1 != poly2)) {
+			throw new RuntimeException();
+		}
+		test(poly1, poly2);
+		r.clear();
+		if (poly1 == 'A' && poly2 == 'A' && a.size() != 0) {
+			myAddStyle(a, a);
+		} else if (poly1 == 'B' && poly2 == 'B' && b.size() != 0 {
+			myAddStyle(b, b);
+		} else if (poly1 == 'C' && poly2 == 'C' && c.size() != 0 ) {
+			myAddStyle(c, c);
+		}
+
+		else if ((poly1 == 'A' || poly2 == 'A') && a.size() != 0) {
+			if ((poly1 == 'B' || poly2 == 'B') && b.size() != 0) {
 				myAddStyle(a, b);
-			} else if (poly1 == 'C' || poly2 == 'C') {
+			} else if ((poly1 == 'C' || poly2 == 'C') && c.size() != 0) {
 				myAddStyle(a, c);
 			}
-		} else if (poly1 == 'B' || poly2 == 'B') {
-			if (poly1 == 'C' || poly2 == 'C') {
+		}
+
+		else if ((poly1 == 'B' || poly2 == 'B') && b.size() != 0) {
+			if ((poly1 == 'C' || poly2 == 'C') && c.size() != 0) {
 				myAddStyle(b, c);
 			}
-		} else if (poly1 == 'R' && poly2 == 'M') {
-			myAddStyle(r, multiVar);
-		} else if (poly1 == 'A' && poly2 == 'A')
-			myAddStyle(a, a);
-		else if (poly1 == 'B' && poly2 == 'B')
-			myAddStyle(b, b);
-		else if (poly1 == 'C' && poly2 == 'C')
-			myAddStyle(c, c);
-		else
-			throw new RuntimeException();
+		}
 
-		if (r.size() == 0)
-			// {
-			// int[][] temp = { { 0, 0 } };
-			// return temp;
-			// }
-			return null;
-		int[][] R = new int[r.size()][];
+		int[][] R = new int[r.size()][2];
 		for (int i = 0; i < r.size(); i++) {
 			R[i] = (int[]) r.get(i);
 		}
-		 r.clear();
 		return R;
 	}
 
 	public void myAddStyle(SinglyLinkedList x, SinglyLinkedList y) {
-		int i = 0, j = 0;
-		while (i < x.size() && j < y.size()) {
-			int[] t1 = (int[]) x.get(i), t2 = (int[]) y.get(j), t3;
-			if (t1[1] > t2[1]) {
-				i++;
-				r.add(t1);
-			} else if (t2[1] > t1[1]) {
-				j++;
-				r.add(t2);
-			} else {
-				i++;
-				j++;
-				t3 = t1; // b7ot al exp.
-				t3[0] = t1[0] + t2[0]; // adding coff.
-				if (t3[0] != 0)
-					r.add(t3);
-			}
-		}
-		while (i < x.size()) {
-			int[] t1 = (int[]) x.get(i);
-			i++;
-			r.add(t1);
-		}
-		while (j < y.size()) {
-			int[] t2 = (int[]) y.get(j);
-			j++;
-			r.add(t2);
-		}
-	}
 
-	public int[][] subtract(char poly1, char poly2) {
-//		String message = "2 ";
-//		message += poly1 + "," + poly2;
-//		throw new RuntimeException(message);
-		/*
-		 * Because A - B != B - A
-		 */
-		if (poly1 == 'A' && poly2 == 'B')
-			myStubtractStyle(a, b);
-		else if (poly1 == 'A' && poly2 == 'C')
-			myStubtractStyle(a, c);
-		else if (poly1 == 'B' && poly2 == 'C')
-			myStubtractStyle(b, c);
-		else if (poly1 == 'B' && poly2 == 'A')
-			myAddStyle(b, a);
-		else if (poly1 == 'C' && poly2 == 'A')
-			myStubtractStyle(c, a);
-		else if (poly1 == 'C' && poly2 == 'B')
-			myStubtractStyle(c, b);
-		else if (poly1 == poly2) {
-			int[][] temp = { { 0, 0 } };
-			return temp;
-		} else
-			throw new RuntimeException();
-
-		if (r.size() == 0)
-			// {
-			// int[][] temp = { { 0, 0 } };
-			// return temp;
-			// }
-			return null;
-		int[][] R = new int[r.size()][];
-		for (int i = 0; i < r.size(); i++) {
-			R[i] = (int[]) r.get(i);
-		}
-		 r.clear();
-		return R;
-	}
-
-	public void myStubtractStyle(SinglyLinkedList x, SinglyLinkedList y) {
 		int i = 0, j = 0;
 		while (i < x.size() && j < y.size()) {
 			int[] t1 = (int[]) x.get(i), t2 = (int[]) y.get(j);
@@ -357,11 +350,14 @@ public class PolynomialSolver implements IPolynomialSolver {
 				j++;
 				r.add(t2);
 			} else {
+				int[] t3 = new int[2]; // b7ot al exp.
+				t3[0] = t1[0] + t2[0];
+				t3[1] = t1[1];
+				if (t3[0] != 0) {
+					r.add(t3);
+				}
 				i++;
 				j++;
-				int[] t3 = t1; // b7ot al exp.
-				t3[0] = t1[0] - t2[0]; // adding coff.
-				r.add(t3);
 			}
 		}
 		while (i < x.size()) {
@@ -374,51 +370,146 @@ public class PolynomialSolver implements IPolynomialSolver {
 			j++;
 			r.add(t2);
 		}
+
 	}
 
-	public int[][] multiply(char poly1, char poly2) {
-//		String message = "3 ";
-//		message += poly1 + "," + poly2;
-//		throw new RuntimeException(message);
-		if (poly1 == 'A' && poly2 == 'A') {
-			myMultiplyStyle(a, a);
-		}
+	/**
+	 * . Multiply two polynomials
+	 * 
+	 * @param poly1
+	 *            first polynomial
+	 * @param poly2
+	 *            second polynomial
+	 * @return the result polynomial
+	 */
+	public final int[][] subtract(final char poly1, final char poly2) {
+		/*
+		 * Because A - B != B - A
+		 */
+		r.clear();
+		int[][] temp = { { 0, 0 } };
+		boolean x = a.size() == 0 && b.size() == 0;
+		boolean y = a.size() == 0 && c.size() == 0;
+		boolean z = b.size() == 0 && c.size() == 0;
 
-		else if (poly1 == 'B' && poly2 == 'B') {
-			myMultiplyStyle(b, b);
-		}
+		test(poly1, poly2);
 
-		else if (poly1 == 'C' && poly2 == 'C') {
-			myMultiplyStyle(c, c);
-		}
-
-		if (poly1 == 'A' || poly2 == 'A') {
-			if (poly1 == 'B' || poly2 == 'B') {
-				myMultiplyStyle(a, b);
-			} else if (poly1 == 'C' || poly2 == 'C') {
-				myMultiplyStyle(a, c);
-			}
-		} else if (poly1 == 'B' || poly2 == 'B') {
-			if (poly1 == 'C' || poly2 == 'C') {
-				myMultiplyStyle(b, c);
-			}
-		} else
+		if (x || y || z && (poly1 != poly2)) {
 			throw new RuntimeException();
+		} else if (poly1 == 'A' && poly2 == 'B') {
+			mySubtractStyle(a, b);
+		} else if (poly1 == 'A' && poly2 == 'C') {
+			mySubtractStyle(a, c);
+		} else if (poly1 == 'B' && poly2 == 'C') {
+			mySubtractStyle(b, c);
+		} else if (poly1 == 'B' && poly2 == 'A') {
+			mySubtractStyle(b, a);
+		} else if (poly1 == 'C' && poly2 == 'A') {
+			mySubtractStyle(c, a);
+		} else if (poly1 == 'C' && poly2 == 'B') {
+			mySubtractStyle(c, b);
+		} else if (poly1 == poly2) {
+			return temp;
+		}
 
-		if (r.size() == 0)
-			// {
-			// int[][] temp = { { 0, 0 } };
-			// return temp;
-			// }
-			return null;
 		int[][] R = new int[r.size()][];
-		for (int i = 0; i < r.size(); i++)
+		for (int i = 0; i < r.size(); i++) {
 			R[i] = (int[]) r.get(i);
-		 r.clear();
+		}
 		return R;
 	}
 
-	public void myMultiplyStyle(SinglyLinkedList x, SinglyLinkedList y) {
+	public void mySubtractStyle(SinglyLinkedList x, SinglyLinkedList y) {
+		int i = 0, j = 0;
+		while (i < x.size() && j < y.size()) {
+			int[] t1 = (int[]) x.get(i), t2 = (int[]) y.get(j);
+			if (t1[1] > t2[1]) {
+				i++;
+				r.add(t1);
+			} else if (t2[1] > t1[1]) {
+				j++;
+				t2[0] = -t2[0];
+				r.add(t2);
+			} else {
+				int[] t3 = new int[2];
+				t3[0] = t1[0] - t2[0];
+				t3[1] = t1[1];
+				if (t3[0] != 0) {
+					r.add(t3);
+				}
+				i++;
+				j++;
+			}
+		}
+		while (i < x.size()) {
+			int[] t1 = (int[]) x.get(i);
+			i++;
+			r.add(t1);
+		}
+		while (j < y.size()) {
+			int[] t2 = (int[]) y.get(j);
+			j++;
+			t2[0] = -t2[0];
+			r.add(t2);
+		}
+
+	}
+
+	/**
+	 * . Multiply two polynomials
+	 * 
+	 * @param poly1
+	 *            first polynomial
+	 * @param poly2
+	 *            second polynomial
+	 * @return the result polynomial
+	 */
+	public final int[][] multiply(final char poly1, final char poly2) {
+		r.clear();
+		boolean x = a.size() == 0 && b.size() == 0;
+		boolean y = a.size() == 0 && c.size() == 0;
+		boolean z = b.size() == 0 && c.size() == 0;
+		test(poly1, poly2);
+		if (x || y || z && (poly1 != poly2)) {
+			throw new RuntimeException();
+		} else if (poly1 == 'A' && poly2 == 'A' && a.size() != 0) {
+			myMultiplyStyle(a, a);
+		}
+
+		else if (poly1 == 'B' && poly2 == 'B' && b.size() != 0) {
+			myMultiplyStyle(b, b);
+		}
+
+		else if (poly1 == 'C' && poly2 == 'C' && c.size() != 0) {
+			myMultiplyStyle(c, c);
+		}
+
+		if (poly1 == 'A' || poly2 == 'A' && a.size() != 0) {
+			if (poly1 == 'B' || poly2 == 'B' && b.size() != 0) {
+				myMultiplyStyle(a, b);
+			} else if (poly1 == 'C' || poly2 == 'C' && c.size() != 0) {
+				myMultiplyStyle(a, c);
+			}
+		} else if (poly1 == 'B' || poly2 == 'B' && b.size() != 0) {
+			if (poly1 == 'C' || poly2 == 'C' && c.size() != 0) {
+				myMultiplyStyle(b, c);
+			}
+		}
+		int[][] v = new int[r.size()][];
+		for (int i = 0; i < r.size(); i++) {
+			v[i] = (int[]) r.get(i);
+		}
+
+		return v;
+	}
+
+	/**
+	 * @param x
+	 *            1st Polynomail
+	 * @param y
+	 *            2nd polynomail
+	 */
+	public final void myMultiplyStyle(final SinglyLinkedList x, final SinglyLinkedList y) {
 		for (int i = 0; i < x.size(); i++) {
 			int[] termX = (int[]) x.get(i);
 			multiVar.clear();
@@ -435,37 +526,39 @@ public class PolynomialSolver implements IPolynomialSolver {
 				l.add(m);
 			}
 			r.clear();
-			myAddStyle(l, multiVar); // where M is multiVar and R is the
-			// accumulator
+			myAddStyle(l, multiVar);
+
 		}
 	}
 
-	public static void main(String[] args) {
-		System.out.println("Please choose an action");
-		System.out.println("-----------------------");
-		System.out.println("1- Set a polynomial variable");
-		System.out.println("2- Print the value of a polynomial variable");
-		System.out.println("3- Add two polynomials");
-		System.out.println("4- Subtract two polynomials");
-		System.out.println("5- Multiply two polynomials");
-		System.out.println("6- Evaluate a polynomial at some point");
-		System.out.println("7- Clear a polynomial variable");
-		System.out.println("====================================================================");
-		int[][] o = { { 2, 5 }, { -2, 4 }, { -1, 3 }, { 5, 1 } };
-		int[][] m = { { 2, 2 }, { 2, 0 } };
-		int[][] c = { { 2, 2 }, { 1, 1 }, { 1, 0 } };
-		PolynomialSolver omar = new PolynomialSolver();
-		omar.setPolynomial('A', o);
-		omar.print('A');
-		omar.clearPolynomial('A');
-		omar.print('A');
-		omar.setPolynomial('B', m);
-		omar.print('B');
-		omar.setPolynomial('C', c);
-		omar.print('C');
-		omar.add('A', 'B');
-		omar.print('R');
-		omar.multiply('B', 'C');
-		omar.print('R');
+	/**
+	 * 
+	 * @param q
+	 *            1st char
+	 * @param w
+	 *            2nd char
+	 */
+	public final void test(final char q, final char w) {
+		switch (q) {
+		case 'A':
+			break;
+		case 'B':
+			break;
+		case 'C':
+			break;
+		default:
+			throw new RuntimeException();
+		}
+		switch (w) {
+		case 'A':
+			break;
+		case 'B':
+			break;
+		case 'C':
+			break;
+		default:
+			throw new RuntimeException();
+		}
 	}
+
 }
