@@ -8,9 +8,7 @@
 * @author Ali Metawea
 * @version 1.0
 */
-package eg.edu.alexu.csd.datastructure.linkedList.cs45;
-
-import javax.management.RuntimeErrorException;
+package eg.edu.alexu.csd.datastructure.linkedList.cs47;
 
 import eg.edu.alexu.csd.datastructure.linkedList.IPolynomialSolver;
 
@@ -311,9 +309,9 @@ public class PolynomialSolver implements IPolynomialSolver {
 		r.clear();
 		if (poly1 == 'A' && poly2 == 'A' && a.size() != 0) {
 			myAddStyle(a, a);
-		} else if (poly1 == 'B' && poly2 == 'B' && b.size() != 0 {
+		} else if (poly1 == 'B' && poly2 == 'B' && b.size() != 0) {
 			myAddStyle(b, b);
-		} else if (poly1 == 'C' && poly2 == 'C' && c.size() != 0 ) {
+		} else if (poly1 == 'C' && poly2 == 'C' && c.size() != 0) {
 			myAddStyle(c, c);
 		}
 
