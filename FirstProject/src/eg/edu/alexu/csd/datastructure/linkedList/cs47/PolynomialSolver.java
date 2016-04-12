@@ -5,44 +5,47 @@
 * </p>
 *
 * @since 1.0
-* @author Ali Metawea
+* @author Omar Ahmed Mohamed
 * @version 1.0
 */
 package eg.edu.alexu.csd.datastructure.linkedList.cs47;
 
+import java.io.IOException;
+import java.util.Scanner;
+
 import eg.edu.alexu.csd.datastructure.linkedList.IPolynomialSolver;
 
 /**
- * 
+ *
  * @author Ali-Metawea
  *
  */
 public class PolynomialSolver implements IPolynomialSolver {
 	/**
-	 * 
+	 *
 	 */
 	private SinglyLinkedList multiVar = new SinglyLinkedList();
 	/**
-	 * 
+	 *
 	 */
 	private SinglyLinkedList a = new SinglyLinkedList();
 	/**
-	 * 
+	 *
 	 */
 	private SinglyLinkedList b = new SinglyLinkedList();
 	/**
-	 * 
+	 *
 	 */
 	private SinglyLinkedList c = new SinglyLinkedList();
 	/**
-	 * 
+	 *
 	 */
 	private SinglyLinkedList r = new SinglyLinkedList();
 	private SinglyLinkedList l = new SinglyLinkedList();
 
 	/**
 	 * . Set polynomial terms (coefficients & exponents)
-	 * 
+	 *
 	 * @param poly
 	 *            name of the polynomial
 	 * @param terms
@@ -112,20 +115,23 @@ public class PolynomialSolver implements IPolynomialSolver {
 	public final String print(final char poly) {
 		switch (poly) {
 		case 'A':
-			if (a.size() == 0)
+			if (a.size() == 0) {
 				return null;
-			else
+			} else {
 				return myPrintStyle(a);
+			}
 		case 'B':
-			if (b.size() == 0)
+			if (b.size() == 0) {
 				return null;
-			else
+			} else {
 				return myPrintStyle(b);
+			}
 		case 'C':
 			if (c.size() == 0)
 				return null;
-			else
+			else {
 				return myPrintStyle(c);
+			}
 		case 'R':
 			if (r.size() == 0)
 				return null;
@@ -142,15 +148,17 @@ public class PolynomialSolver implements IPolynomialSolver {
 		for (int i = 0; i < z.size(); i++) {
 			int[] temp = (int[]) z.get(i);
 			if (i == 0) {
-				if (temp[0] == 0)
+				if (temp[0] == 0) {
 					tempStr += 0;
-				else if (temp[0] == 1) {
-					if (temp[1] == 1)
-						tempStr += "x"; // ex (1,1)=x
-					else if (temp[1] == 0)
-						tempStr += "1"; // ex (1,0) = +1
-					else
-						tempStr += "x^" + temp[1]; // ex (1,-5) = +x^-5
+				} else if (temp[0] == 1) {
+					if (temp[1] == 1) {
+						tempStr += "x";
+					} else if (temp[1] == 0) {
+						tempStr += "1";
+					} // ex (1,0) = +1
+					else {
+						tempStr += "x^" + temp[1];
+					} // ex (1,-5) = +x^-5
 				} else if (temp[0] == -1) {
 					if (temp[1] == 1)
 						tempStr += "-x"; // ex (-1,1) = -x
@@ -169,17 +177,22 @@ public class PolynomialSolver implements IPolynomialSolver {
 				if (temp[0] == 0) {
 					continue;
 				} else if (temp[0] == 1) {
-					if (temp[1] == 1)
-						tempStr += "+x"; // ex (1,1)=x
-					else if (temp[1] == 0)
-						tempStr += "+1"; // ex (1,0) = +1
-					else
-						tempStr += "+x^" + temp[1]; // ex (1,-5) = +x^-5
+					if (temp[1] == 1) {
+						tempStr += "+x";
+					} // ex (1,1)=x
+					else if (temp[1] == 0) {
+						tempStr += "+1";
+					} // ex (1,0) = +1
+					else {
+						tempStr += "+x^" + temp[1];
+					} // ex (1,-5) = +x^-5
 				} else if (temp[0] == -1) {
-					if (temp[1] == 1)
-						tempStr += "-x"; // ex (-1,1) = -x
-					else if (temp[1] == 0)
-						tempStr += "-1"; // ex (-1,0) = -1
+					if (temp[1] == 1) {
+						tempStr += "-x";
+					} // ex (-1,1) = -x
+					else if (temp[1] == 0) {
+						tempStr += "-1";
+					} // ex (-1,0) = -1
 					else
 						tempStr += "-x^" + temp[1]; // ex (-1,5) = -x^5
 				} else if (temp[1] == 0) {
@@ -503,9 +516,9 @@ public class PolynomialSolver implements IPolynomialSolver {
 
 	/**
 	 * @param x
-	 *            1st Polynomail
+	 *            1st Polynomial
 	 * @param y
-	 *            2nd polynomail
+	 *            2nd polynomial
 	 */
 	public final void myMultiplyStyle(final SinglyLinkedList x, final SinglyLinkedList y) {
 		for (int i = 0; i < x.size(); i++) {
@@ -530,7 +543,7 @@ public class PolynomialSolver implements IPolynomialSolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param q
 	 *            1st char
 	 * @param w
@@ -557,6 +570,84 @@ public class PolynomialSolver implements IPolynomialSolver {
 		default:
 			throw new RuntimeException();
 		}
+	}
+
+	/*
+	 *
+	 */
+	public static void main(final String[] args) throws IOException {
+		System.out.println("Please choose an action");
+		System.out.println("-----------------------");
+		System.out.println("1- Set a polynomial variable");
+		System.out.println("2- Print the value of a polynomial variable");
+		System.out.println("3- Add two polynomials");
+		System.out.println("4- Subtract two polynomials");
+		System.out.println("5- Multiply two polynomials");
+		System.out.println("6- Evaluate a polynomial at some point");
+		System.out.println("7- Clear a polynomial variable");
+		System.out.println("====================================================================");
+		int[][] o = { { 2, 5 }, { -2, 4 }, { -1, 3 }, { 5, 1 } };
+		int[][] m = { { 2, 2 }, { 2, 0 } };
+		int[][] c = { { 2, 2 }, { 1, 1 }, { 1, 0 } };
+		PolynomialSolver omar = new PolynomialSolver();
+		Scanner input = new Scanner(System.in);
+		int action = input.nextInt();
+		switch (action) {
+		case 1:
+			System.out.println("Insert the variable name " + ": A , B or C");
+			input.nextLine(); // clear buffer
+			char poly = input.next(".").charAt(0);
+			System.out.println("Insert the polynomial " + "terms in the form :");
+			System.out.println("( coeff1 , exponent1 ) " + ", ( coeff2 , exponent2 ) , ..");
+			SinglyLinkedList terms = new SinglyLinkedList();
+			input.nextLine(); // clear buffer
+			String line = new String();
+			line = input.nextLine();
+			Scanner ali = new Scanner(line).useDelimiter("\\D+"); // ignoring
+																	// characters
+			while (ali.hasNext()) {
+				terms.add(ali.nextInt());
+			}
+			/*
+			 * coff and exp are in diff. node
+			 */
+			int[][] termsArray = new int[terms.size() / 2][2];
+			int j = 0;
+			for (int i = 0; i < terms.size() - 2; i++) {
+				termsArray[i][0] = (int) terms.get(j);
+				termsArray[i][1] = (int) terms.get(++j);
+				++j;
+			}
+			omar.setPolynomial(poly, termsArray);
+			break;
+		case 2:
+
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		case 7:
+			break;
+		default:
+			break;
+		}
+		// omar.setPolynomial('A', o);
+		// System.out.println(omar.print('A'));
+		// omar.clearPolynomial('A');
+		// System.out.println(omar.print('A'));
+		// omar.setPolynomial('B', m);
+		// System.out.println(omar.print('B'));
+		// omar.setPolynomial('C', c);
+		// System.out.println(omar.print('C'));
+		// omar.add('A', 'B');
+		// System.out.println(omar.print('R'));
+		// omar.multiply('B', 'C');
+		// System.out.println(omar.print('R'));
 	}
 
 }
