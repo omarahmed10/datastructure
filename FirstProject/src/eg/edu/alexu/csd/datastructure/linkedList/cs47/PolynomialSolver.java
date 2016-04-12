@@ -591,63 +591,151 @@ public class PolynomialSolver implements IPolynomialSolver {
 		int[][] c = { { 2, 2 }, { 1, 1 }, { 1, 0 } };
 		PolynomialSolver omar = new PolynomialSolver();
 		Scanner input = new Scanner(System.in);
-		int action = input.nextInt();
-		switch (action) {
-		case 1:
-			System.out.println("Insert the variable name " + ": A , B or C");
-			input.nextLine(); // clear buffer
-			char poly = input.next(".").charAt(0);
-			System.out.println("Insert the polynomial " + "terms in the form :");
-			System.out.println("( coeff1 , exponent1 ) " + ", ( coeff2 , exponent2 ) , ..");
-			SinglyLinkedList terms = new SinglyLinkedList();
-			input.nextLine(); // clear buffer
-			String line = new String();
-			line = input.nextLine();
-			Scanner ali = new Scanner(line).useDelimiter("\\D+"); // ignoring
-																	// characters
-			while (ali.hasNext()) {
-				terms.add(ali.nextInt());
+		Boolean flag = true;
+		while (flag) {
+			int action = input.nextInt();
+			switch (action) {
+			case 1:
+				System.out.println("Insert the variable name " + ": A , B or C");
+				input.nextLine(); // clear buffer
+				char poly1 = input.next(".").charAt(0); // reading char
+				System.out.println("Insert the polynomial " + "terms in the form :");
+				System.out.println("( coeff1 , exponent1 ) " + ", ( coeff2 , exponent2 ) , ..");
+				SinglyLinkedList terms = new SinglyLinkedList();
+				input.nextLine(); // clear buffer
+				String line = new String();
+				line = input.nextLine();
+				Scanner ali = new Scanner(line).useDelimiter("\\D+"); // ignoring
+																		// characters
+				while (ali.hasNext()) {
+					terms.add(ali.nextInt());
+				}
+				/*
+				 * coff and exp are in diff. node
+				 */
+				int[][] termsArray = new int[terms.size() / 2][2];
+				int j = 0;
+				for (int i = 0; i < terms.size() - 2; i++) {
+					termsArray[i][0] = (int) terms.get(j);
+					termsArray[i][1] = (int) terms.get(++j);
+					++j;
+				}
+				omar.setPolynomial(poly1, termsArray);
+				break;
+			case 2:
+				System.out.println("Insert the variable name : A , B , C or R");
+				input.nextLine(); // clear buffer
+				char poly2 = input.next(".").charAt(0); // reading char
+				try {
+					if (omar.print(poly2) == null)
+						System.out.println("Variable not set");
+					else {
+						flag = false;
+						System.out.println(omar.print(poly2));
+					}
+				} catch (Exception e) {
+					System.out.println("not valid polynomial");
+				}
+				break;
+			case 3:
+				char poly3;
+				Boolean flag1 = true;
+				do{
+					System.out.println("Insert first operand variable name : A , B or C");
+					poly3 = input.next(".").charAt(0);
+					try { // checking first input validation
+						if (omar.print(poly3) == null)
+							System.out.println("Variable not set");
+						else
+							flag1 = false;
+					} catch (Exception e) {
+						System.out.println("not valid polynomial");
+					}
+				}while (flag1);
+				
+				System.out.println("Insert second operand variable name : A , B or C");
+				char poly4 = input.next(".").charAt(0);
+				try {
+					System.out.println(omar.add(poly3, poly4));
+				} catch (Exception e) {
+					System.out.println("not valid polynomial");
+				}
+				break;
+			case 4:
+				char poly5;
+				boolean flag2 = true;
+				do{
+					System.out.println("Insert first operand variable name : A , B or C");
+					poly5 = input.next(".").charAt(0);
+					try { // checking first input validation
+						if (omar.print(poly5) == null)
+							System.out.println("Variable not set");
+						else
+							flag2 = false;
+					} catch (Exception e) {
+						System.out.println("not valid polynomial");
+					}
+				}while (flag2);
+				
+				System.out.println("Insert second operand variable name : A , B or C");
+				char poly6 = input.next(".").charAt(0);
+				try {
+					System.out.println(omar.subtract(poly5, poly6));
+				} catch (Exception e) {
+					System.out.println("not valid polynomial");
+				}
+				break;
+			case 5:
+				Boolean flag3 = true;
+				char poly7;
+				 do{
+					System.out.println("Insert first operand variable name : A , B or C");
+					poly7 = input.next(".").charAt(0);
+					try { // checking first input validation
+						if (omar.print(poly7) == null)
+							System.out.println("Variable not set");
+						else
+							flag3 = false;
+					} catch (Exception e) {
+						System.out.println("not valid polynomial");
+					}
+				}while (flag3);
+					
+				System.out.println("Insert second operand variable name : A , B or C");
+				char poly8 = input.next(".").charAt(0);
+				try {
+					System.out.println(omar.subtract(poly7, poly8));
+				} catch (Exception e) {
+					System.out.println("not valid polynomial");
+				}
+				break;
+			case 6:
+				System.out.println("Insert the variable name : A , B , C or R");
+				char poly9 = input.next(".").charAt(0);
+				float value = input.nextFloat(); // reading char
+				try {
+					System.out.println(omar.evaluatePolynomial(poly9, value));
+				} catch (Exception e) {
+					System.out.println("not valid polynomial");
+				}
+				break;
+			case 7:
+				System.out.println("Insert the variable name : A , B , C or R");
+				char poly10 = input.next(".").charAt(0);
+				try {
+					omar.clearPolynomial(poly10);
+				} catch (Exception e) {
+					System.out.println("not valid polynomial");
+				}
+				break;
+			default:
+				break;
 			}
-			/*
-			 * coff and exp are in diff. node
-			 */
-			int[][] termsArray = new int[terms.size() / 2][2];
-			int j = 0;
-			for (int i = 0; i < terms.size() - 2; i++) {
-				termsArray[i][0] = (int) terms.get(j);
-				termsArray[i][1] = (int) terms.get(++j);
-				++j;
-			}
-			omar.setPolynomial(poly, termsArray);
-			break;
-		case 2:
-
-			break;
-		case 3:
-			break;
-		case 4:
-			break;
-		case 5:
-			break;
-		case 6:
-			break;
-		case 7:
-			break;
-		default:
-			break;
+			System.out.println("====================================================================");
+			System.out.println("Please choose an action");
+			System.out.println("1 - Set a polynomial variable , ... etc");
+			System.out.println("====================================================================");
 		}
-		// omar.setPolynomial('A', o);
-		// System.out.println(omar.print('A'));
-		// omar.clearPolynomial('A');
-		// System.out.println(omar.print('A'));
-		// omar.setPolynomial('B', m);
-		// System.out.println(omar.print('B'));
-		// omar.setPolynomial('C', c);
-		// System.out.println(omar.print('C'));
-		// omar.add('A', 'B');
-		// System.out.println(omar.print('R'));
-		// omar.multiply('B', 'C');
-		// System.out.println(omar.print('R'));
 	}
 
 }
