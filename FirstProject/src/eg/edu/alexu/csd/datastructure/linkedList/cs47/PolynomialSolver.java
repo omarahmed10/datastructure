@@ -75,7 +75,7 @@ public class PolynomialSolver implements IPolynomialSolver {
 			System.out.println(myPrintStyle(r));
 			return myPrintStyle(r);
 		default:
-			throw new RuntimeException();
+			return null;
 		}
 	}
 
@@ -155,36 +155,36 @@ public class PolynomialSolver implements IPolynomialSolver {
 	 *            name of the polynomial
 	 */
 	public void clearPolynomial(char poly) {
-		String message = "3";
-		message += poly;
-		throw new RuntimeException(message);
-//		switch (poly) {
-//		case 'A': {
-//			if (a.size() < 0)
-//				throw new RuntimeException();
-//			a.clear();
-//		}
-//			break;
-//		case 'B': {
-//			if (b.size() < 0)
-//				throw new RuntimeException();
-//			b.clear();
-//		}
-//			break;
-//		case 'C': {
-//			if (c.size() < 0)
-//				throw new RuntimeException();
-//			c.clear();
-//		}
-//		case 'R': {
-//			if (r.size() < 0)
-//				throw new RuntimeException();
-//			r.clear();
-//		}
-//			break;
-//		default:
-//			throw new RuntimeException();
-//		}
+//		String message = "3";
+//		message += poly;
+//		throw new RuntimeException(message);
+		switch (poly) {
+		case 'A': {
+			if (a.size() < 0)
+				throw new RuntimeException();
+			a.clear();
+		}
+			break;
+		case 'B': {
+			if (b.size() < 0)
+				throw new RuntimeException();
+			b.clear();
+		}
+			break;
+		case 'C': {
+			if (c.size() < 0)
+				throw new RuntimeException();
+			c.clear();
+		}
+		case 'R': {
+			if (r.size() < 0)
+				throw new RuntimeException();
+			r.clear();
+		}
+			break;
+		default:
+			throw new RuntimeException();
+		}
 	}
 
 	/**
@@ -197,35 +197,35 @@ public class PolynomialSolver implements IPolynomialSolver {
 	 * @return the value of the polynomial
 	 */
 	public float evaluatePolynomial(char poly, float value) {
-		String message = "";
-		message += poly;
-		throw new RuntimeException(message);
-//		float v = 0;
-//		switch (poly) {
-//		case 'A': {
-//			for (int i = 0; i < a.size(); i++) {
-//				int[] term = (int[]) a.get(i);
-//				v += term[0] * Math.pow(value, term[1]);
-//			}
-//		}
-//			return v;
-//		case 'B': {
-//			for (int i = 0; i < b.size(); i++) {
-//				int[] term = (int[]) b.get(i);
-//				v += term[0] * Math.pow(value, term[1]);
-//			}
-//		}
-//			return v;
-//		case 'C': {
-//			for (int i = 0; i < c.size(); i++) {
-//				int[] term = (int[]) c.get(i);
-//				v += term[0] * Math.pow(value, term[1]);
-//			}
-//		}
-//			return v;
-//		default:
-//			throw new RuntimeException();
-//		}
+//		String message = "";
+//		message += poly;
+//		throw new RuntimeException(message);
+		float v = 0;
+		switch (poly) {
+		case 'A': {
+			for (int i = 0; i < a.size(); i++) {
+				int[] term = (int[]) a.get(i);
+				v += term[0] * Math.pow(value, term[1]);
+			}
+		}
+			return v;
+		case 'B': {
+			for (int i = 0; i < b.size(); i++) {
+				int[] term = (int[]) b.get(i);
+				v += term[0] * Math.pow(value, term[1]);
+			}
+		}
+			return v;
+		case 'C': {
+			for (int i = 0; i < c.size(); i++) {
+				int[] term = (int[]) c.get(i);
+				v += term[0] * Math.pow(value, term[1]);
+			}
+		}
+			return v;
+		default:
+			throw new RuntimeException();
+		}
 	}
 
 	/**
