@@ -12,6 +12,7 @@ package eg.edu.alexu.csd.datastructure.linkedList.cs47;
 
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 import eg.edu.alexu.csd.datastructure.linkedList.IPolynomialSolver;
 
@@ -520,7 +521,8 @@ public class PolynomialSolver implements IPolynomialSolver {
 	 * @param y
 	 *            2nd polynomial
 	 */
-	public final void myMultiplyStyle(final SinglyLinkedList x, final SinglyLinkedList y) {
+	public final void myMultiplyStyle(final SinglyLinkedList x,
+			final SinglyLinkedList y) {
 		for (int i = 0; i < x.size(); i++) {
 			int[] termX = (int[]) x.get(i);
 			multiVar.clear();
@@ -585,7 +587,8 @@ public class PolynomialSolver implements IPolynomialSolver {
 		System.out.println("5- Multiply two polynomials");
 		System.out.println("6- Evaluate a polynomial at some point");
 		System.out.println("7- Clear a polynomial variable");
-		System.out.println("====================================================================");
+		System.out.println(
+				"====================================================================");
 		int[][] o = { { 2, 5 }, { -2, 4 }, { -1, 3 }, { 5, 1 } };
 		int[][] m = { { 2, 2 }, { 2, 0 } };
 		int[][] c = { { 2, 2 }, { 1, 1 }, { 1, 0 } };
@@ -596,33 +599,42 @@ public class PolynomialSolver implements IPolynomialSolver {
 			int action = input.nextInt();
 			switch (action) {
 			case 1:
-				System.out.println("Insert the variable name " + ": A , B or C");
+				flag = true;
+				System.out
+						.println("Insert the variable name " + ": A , B or C");
 				input.nextLine(); // clear buffer
 				char poly1 = input.next(".").charAt(0); // reading char
-				System.out.println("Insert the polynomial " + "terms in the form :");
-				System.out.println("( coeff1 , exponent1 ) " + ", ( coeff2 , exponent2 ) , ..");
+				System.out.println(
+						"Insert the polynomial " + "terms in the form :");
+				System.out.println("( coeff1 , exponent1 ) "
+						+ ", ( coeff2 , exponent2 ) , ..");
 				SinglyLinkedList terms = new SinglyLinkedList();
 				input.nextLine(); // clear buffer
 				String line = new String();
 				line = input.nextLine();
-				Scanner ali = new Scanner(line).useDelimiter("\\D+"); // ignoring
-																		// characters
+				Scanner ali = new Scanner(line).useDelimiter("\\(|,|\\)|\\s"); // ignoring
+				// characters
 				while (ali.hasNext()) {
-					terms.add(ali.nextInt());
+					if (ali.hasNextInt())
+						terms.add(ali.nextInt());
+					else
+						ali.next();
 				}
 				/*
 				 * coff and exp are in diff. node
 				 */
-				int[][] termsArray = new int[terms.size() / 2][2];
+				int[][] termsArray = new int[(terms.size() / 2)][2];
 				int j = 0;
-				for (int i = 0; i < terms.size() - 2; i++) {
+				for (int i = 0; i < termsArray.length; i++) {
 					termsArray[i][0] = (int) terms.get(j);
 					termsArray[i][1] = (int) terms.get(++j);
 					++j;
 				}
 				omar.setPolynomial(poly1, termsArray);
+				System.out.println("Polynomial " + poly1 + " is set");
 				break;
 			case 2:
+				flag = true;
 				System.out.println("Insert the variable name : A , B , C or R");
 				input.nextLine(); // clear buffer
 				char poly2 = input.next(".").charAt(0); // reading char
@@ -630,8 +642,12 @@ public class PolynomialSolver implements IPolynomialSolver {
 					if (omar.print(poly2) == null)
 						System.out.println("Variable not set");
 					else {
-						flag = false;
-						System.out.println(omar.print(poly2));
+						if (poly2 == 'R') {
+							flag = false;
+							System.out.println(
+									"Value in R : " + omar.print(poly2));
+						} else
+							System.out.println(omar.print(poly2));
 					}
 				} catch (Exception e) {
 					System.out.println("not valid polynomial");
@@ -640,8 +656,9 @@ public class PolynomialSolver implements IPolynomialSolver {
 			case 3:
 				char poly3;
 				Boolean flag1 = true;
-				do{
-					System.out.println("Insert first operand variable name : A , B or C");
+				do {
+					System.out.println(
+							"Insert first operand variable name : A , B or C");
 					poly3 = input.next(".").charAt(0);
 					try { // checking first input validation
 						if (omar.print(poly3) == null)
@@ -651,12 +668,14 @@ public class PolynomialSolver implements IPolynomialSolver {
 					} catch (Exception e) {
 						System.out.println("not valid polynomial");
 					}
-				}while (flag1);
-				
-				System.out.println("Insert second operand variable name : A , B or C");
+				} while (flag1);
+
+				System.out.println(
+						"Insert second operand variable name : A , B or C");
 				char poly4 = input.next(".").charAt(0);
 				try {
-					System.out.println(omar.add(poly3, poly4));
+					omar.add(poly3, poly4);
+					System.out.println("Result set in R : " + omar.print('R'));
 				} catch (Exception e) {
 					System.out.println("not valid polynomial");
 				}
@@ -664,8 +683,9 @@ public class PolynomialSolver implements IPolynomialSolver {
 			case 4:
 				char poly5;
 				boolean flag2 = true;
-				do{
-					System.out.println("Insert first operand variable name : A , B or C");
+				do {
+					System.out.println(
+							"Insert first operand variable name : A , B or C");
 					poly5 = input.next(".").charAt(0);
 					try { // checking first input validation
 						if (omar.print(poly5) == null)
@@ -675,12 +695,14 @@ public class PolynomialSolver implements IPolynomialSolver {
 					} catch (Exception e) {
 						System.out.println("not valid polynomial");
 					}
-				}while (flag2);
-				
-				System.out.println("Insert second operand variable name : A , B or C");
+				} while (flag2);
+
+				System.out.println(
+						"Insert second operand variable name : A , B or C");
 				char poly6 = input.next(".").charAt(0);
 				try {
-					System.out.println(omar.subtract(poly5, poly6));
+					omar.subtract(poly5, poly6);
+					System.out.println("Result set in R : " + omar.print('R'));
 				} catch (Exception e) {
 					System.out.println("not valid polynomial");
 				}
@@ -688,8 +710,9 @@ public class PolynomialSolver implements IPolynomialSolver {
 			case 5:
 				Boolean flag3 = true;
 				char poly7;
-				 do{
-					System.out.println("Insert first operand variable name : A , B or C");
+				do {
+					System.out.println(
+							"Insert first operand variable name : A , B or C");
 					poly7 = input.next(".").charAt(0);
 					try { // checking first input validation
 						if (omar.print(poly7) == null)
@@ -699,12 +722,14 @@ public class PolynomialSolver implements IPolynomialSolver {
 					} catch (Exception e) {
 						System.out.println("not valid polynomial");
 					}
-				}while (flag3);
-					
-				System.out.println("Insert second operand variable name : A , B or C");
+				} while (flag3);
+
+				System.out.println(
+						"Insert second operand variable name : A , B or C");
 				char poly8 = input.next(".").charAt(0);
 				try {
-					System.out.println(omar.subtract(poly7, poly8));
+					omar.multiply(poly7, poly8);
+					System.out.println("Result set in R : " + omar.print('R'));
 				} catch (Exception e) {
 					System.out.println("not valid polynomial");
 				}
@@ -731,10 +756,14 @@ public class PolynomialSolver implements IPolynomialSolver {
 			default:
 				break;
 			}
-			System.out.println("====================================================================");
-			System.out.println("Please choose an action");
-			System.out.println("1 - Set a polynomial variable , ... etc");
-			System.out.println("====================================================================");
+			if (flag == true) {
+				System.out.println(
+						"====================================================================");
+				System.out.println("Please choose an action");
+				System.out.println("1 - Set a polynomial variable , ... etc");
+				System.out.println(
+						"====================================================================");
+			}
 		}
 	}
 
