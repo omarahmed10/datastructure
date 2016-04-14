@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import eg.edu.alexu.csd.datastructure.linkedList.ILinkedList;
+import eg.edu.alexu.csd.datastructure.linkedList.cs47.DoublyLinkedList;
 import eg.edu.alexu.csd.datastructure.linkedList.cs47.SinglyLinkedList;
 
 /**
@@ -50,6 +51,50 @@ public class TestPloynomial {
 		assertEquals(h, x.get(0));
 
 		ILinkedList y = new SinglyLinkedList();
+		y = x.sublist(0, c);
+
+		assertEquals(d, y.size());
+
+		x.remove(c);
+
+		assertEquals(f, x.size());
+		assertEquals(d, x.get(c));
+
+		assertTrue(x.contains(e));
+
+		assertFalse(x.contains(i));
+
+		x.clear();
+
+		assertTrue(x.isEmpty());
+
+	}
+	@org.junit.Test
+	public final void test1() {
+		DoublyLinkedList x = new DoublyLinkedList();
+		x.add(a);
+		x.add(b);
+		x.add(c);
+		x.add(d);
+		x.add(e);
+		x.add(f);
+
+		assertEquals(a, x.get(0));
+		assertEquals(b, x.get(a));
+		assertEquals(c, x.get(b));
+		assertEquals(d, x.get(c));
+		assertEquals(e, x.get(d));
+		assertEquals(f, x.get(e));
+
+		x.add(c, g);
+
+		assertEquals(g, x.get(c));
+
+		x.set(0, h);
+
+		assertEquals(h, x.get(0));
+
+		ILinkedList y = new DoublyLinkedList();
 		y = x.sublist(0, c);
 
 		assertEquals(d, y.size());
