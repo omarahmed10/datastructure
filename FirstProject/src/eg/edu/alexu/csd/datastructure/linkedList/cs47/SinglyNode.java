@@ -22,4 +22,10 @@ public class SinglyNode {
 		this.element = element;
 		next = null;
 	}
+	public static void main(String[] args){
+		SinglyNode n = new SinglyNode(5);
+		SinglyNode m = new SinglyNode(5);
+		if( n.element == m.element )
+			System.out.println("Done");
+	}
 }
