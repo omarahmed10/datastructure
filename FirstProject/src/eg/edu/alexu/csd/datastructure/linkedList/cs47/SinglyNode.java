@@ -1,31 +1,51 @@
 package eg.edu.alexu.csd.datastructure.linkedList.cs47;
-/**
- * 
- * @author Omar_Ahmed
- *
+
+/**.
+ * @author Ali-Metawea
  */
 public class SinglyNode {
 	/**
-	 *
 	 */
-	public Object element ;
-	/**
-	 *
+	private Object element;
+	/**.
 	 */
-	public SinglyNode next;
-	/**
-	 *
-	 * @param element
+	private SinglyNode next;
+
+	/**.
+	 * @param newEle a
 	 */
-	public SinglyNode(Object element){
-		
-		this.element = element;
+	public SinglyNode(final Object newEle) {
+
+		this.element = newEle;
 		next = null;
 	}
-	public static void main(String[] args){
-		SinglyNode n = new SinglyNode(5);
-		SinglyNode m = new SinglyNode(5);
-		if( n.element == m.element )
-			System.out.println("Done");
+
+	/**. Returns the element of this node
+	 *  @return element a 
+	 */
+	public final Object getElement() {
+		return element;
 	}
+
+	/** Returns the next node of this node.
+	 * @return next  
+	 */
+	public final SinglyNode getNext() {
+		return next;
+	}
+
+	/** Sets the element of this node.
+	 * @param newElem  
+	 */
+	public final void setElement(final Object newElem) {
+		element = newElem;
+	}
+
+	/** Sets the next node of this node.
+	 * @param newNext  
+	 */
+	public final void setNext(final SinglyNode newNext) {
+		next = newNext;
+	}
+
 }

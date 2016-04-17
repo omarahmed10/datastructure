@@ -4,7 +4,7 @@ import eg.edu.alexu.csd.datastructure.linkedList.ILinkedList;
 
 /**
  * 
- * @author Omar_Ahmed
+ * @author Ali-Metawea
  *
  */
 public class DoublyLinkedList implements ILinkedList {
@@ -29,14 +29,7 @@ public class DoublyLinkedList implements ILinkedList {
 		lastNode = header;
 	}
 
-	/**
-	 * Inserts a specified element at the specified sposition in the list.
-	 * 
-	 * @param index
-	 *            index of the node
-	 * @param element
-	 *            data of the node
-	 */
+	@Override
 	public final void add(final int index, final Object element) {
 		if (index < 0 || index > size) {
 			throw new RuntimeException();
@@ -44,15 +37,15 @@ public class DoublyLinkedList implements ILinkedList {
 		if (index == 0) {
 			DoublyNode n = new DoublyNode(element);
 			if (size == 0) {
-				header.next = n;
+				header.setNext(n);
 				lastNode = n;
-				n.prev = header;
+				n.setPrev(header);
 				size++;
 			} else {
-				n.next = header.next;
-				n.prev = header;
-				header.next = n;
-				n.next.prev = n;
+				n.setNext(header.getNext());
+				n.setPrev(header);
+				header.setNext(n);
+				n.getNext().setPrev(n);
 				size++;
 
 			}
@@ -60,37 +53,32 @@ public class DoublyLinkedList implements ILinkedList {
 			add(element);
 		} else {
 			DoublyNode n = new DoublyNode(element);
-			DoublyNode x = header.next;
+			DoublyNode x = header.getNext();
 			for (int i = 0; i < index; i++) {
-				x = x.next;
+				x = x.getNext();
 			}
 
-			n.next = x;
-			n.prev = x.prev;
-			x.prev.next = n;
-			x.prev = n;
+			n.setNext(x);
+			n.setPrev(x.getPrev());
+			x.getPrev().setNext(n);
+			x.setPrev(n);
 			size++;
 
 		}
 
 	}
 
-	/**
-	 * Inserts the specified element at the end of the list.
-	 * 
-	 * @param element
-	 *            data of the node
-	 */
+	@Override
 	public final void add(final Object element) {
 		DoublyNode n = new DoublyNode(element);
 		if (size == 0) {
-			header.next = n;
+			header.setNext(n);
 			lastNode = n;
-			n.prev = header;
+			n.setPrev(header);
 			size++;
 		} else {
-			lastNode.next = n;
-			n.prev = lastNode;
+			lastNode.setNext(n);
+			n.setPrev(lastNode);
 			lastNode = n;
 			size++;
 		}
@@ -101,12 +89,12 @@ public class DoublyLinkedList implements ILinkedList {
 		if (index < 0 || index > size - 1) {
 			throw new RuntimeException();
 		} else {
-			DoublyNode n = header.next;
+			DoublyNode n = header.getNext();
 			for (int i = 0; i < index; i++) {
-				n = n.next;
+				n = n.getNext();
 			}
 
-			return n.element;
+			return n.getElement();
 		}
 	}
 
@@ -115,71 +103,60 @@ public class DoublyLinkedList implements ILinkedList {
 		if (index < 0 || index > size - 1) {
 			throw new RuntimeException();
 		} else {
-			DoublyNode n = header.next;
+			DoublyNode n = header.getNext();
 			for (int i = 0; i < index; i++) {
-				n = n.next;
+				n = n.getNext();
 			}
 
-			n.element = element;
+			n.setElement(element);
 
 		}
 	}
 
-	/**
-	 * Removes all of the elements from this list.
-	 */
+	@Override
 	public final void clear() {
 		header = new DoublyNode(null);
 		lastNode = header;
 		size = 0;
 	}
 
-	/**
-	 * @return true
-	 */
+	@Override
 	public final boolean isEmpty() {
 		return size == 0;
 	}
 
-	/**
-	 * Removes the element at the specified position in this list.
-	 * 
-	 * @param index
-	 *            index of the node
-	 */
+	@Override
 	public final void remove(final int index) {
 		if (index < 0 || index > size - 1) {
 			throw new RuntimeException();
 		}
 		if (index == size - 1) {
 			if (size == 1) {
-				header.next = null;
+				header.setNext(null);
 				lastNode = header;
 				size--;
 			} else {
-				lastNode = lastNode.prev;
-				lastNode.next = null;
+				lastNode = lastNode.getPrev();
+				lastNode.setNext(null);
 				size--;
 			}
 		} else if (index == 0) {
-			header.next.next.prev = header;
-			header.next = header.next.next;
+			header.getNext().getNext().setPrev(header);
+			header.setNext(header.getNext().getNext());
 			size--;
 		} else {
-			DoublyNode n = header.next;
+			DoublyNode n = header.getNext();
 			for (int i = 0; i < index; i++) {
-				n = n.next;
+				n = n.getNext();
 			}
-			n.next.prev = n.prev;
-			n.prev.next = n.next;
+			n.getNext().setPrev(n.getPrev());
+			n.getPrev().setNext(n.getNext());
 			size--;
 		}
 
 	}
 
-	/**
-	 * @return Size
-	 */
+	@Override
 	public final int size() {
 		return size;
 	}
@@ -192,54 +169,47 @@ public class DoublyLinkedList implements ILinkedList {
 			throw new RuntimeException();
 		} else {
 			ILinkedList subList = new DoublyLinkedList();
-			DoublyNode n = header.next;
+			DoublyNode n = header.getNext();
 			for (int i = 0; i < size; i++) {
 				if (i >= fromIndex && i <= toIndex) {
-					subList.add(n.element);
+					subList.add(n.getElement());
 				}
-				n = n.next;
+				n = n.getNext();
 			}
 			return subList;
 		}
 
 	}
 
-	/**
-	 * Returns true if this list contains an element with the same value as the
-	 * specified element.
-	 * 
-	 * @param o
-	 *            data
-	 * @return true or false
-	 */
-
+	@Override
 	public final boolean contains(final Object o) {
 		if (isEmpty()) {
 			throw new RuntimeException();
 		}
-		DoublyNode n = header.next;
-		if (n.element.equals(o)) {
+		DoublyNode n = header.getNext();
+		if (n.getElement().equals(o)) {
 			return true;
 		}
 		for (int i = 0; i < size; i++) {
-			if (n.element.equals(o)) {
+			if (n.getElement().equals(o)) {
 				return true;
 			}
 
-			n = n.next;
+			n = n.getNext();
 		}
 		return false;
 	}
 
 	/**
+	 * @author Ali-Metawea
 	 * @return temp
 	 */
 	public final String toString() {
-		DoublyNode n = header.next;
+		DoublyNode n = header.getNext();
 		String temp = "";
 		while (n != null) {
-			temp = temp + n.element + " ";
-			n = n.next;
+			temp = temp + n.getElement() + " ";
+			n = n.getNext();
 		}
 		return temp;
 	}

@@ -15,7 +15,7 @@ public class MyStack implements IStack {
 	/**
 	 * 
 	 */
-	private LinkedList<Object> s = new LinkedList<Object>();
+	private SinglyLinkedList s = new SinglyLinkedList();
 	/**
 	 * 
 	 */
