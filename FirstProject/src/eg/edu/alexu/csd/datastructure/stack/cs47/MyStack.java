@@ -39,6 +39,7 @@ public class MyStack implements IStack {
 //		} else {
 //			throw new RuntimeException();
 //		}
+		return null;
 	}
 
 	@Override
