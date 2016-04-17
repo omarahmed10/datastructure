@@ -35,6 +35,7 @@ public class MyStack implements IStack {
 		if (i != 0) {
 			Object pop = s.get(0);
 			s.remove(0);
+			i--;
 			return pop;
 		} else {
 			throw new RuntimeException();
