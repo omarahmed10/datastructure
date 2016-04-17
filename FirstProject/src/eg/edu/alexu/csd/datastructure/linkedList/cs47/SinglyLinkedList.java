@@ -3,7 +3,7 @@ package eg.edu.alexu.csd.datastructure.linkedList.cs47;
 import eg.edu.alexu.csd.datastructure.linkedList.ILinkedList;
 
 /**
- * @author Ali-Metawea
+ * @author Omar_Ahmed
  */
 public class SinglyLinkedList implements ILinkedList {
 	/**
@@ -31,15 +31,9 @@ public class SinglyLinkedList implements ILinkedList {
 		}
 		if (index == 0) {
 			SinglyNode n = new SinglyNode(element);
-			if (size == 0) {
-				header.setNext(n);
-				lastNode = n;
-				size++;
-			} else {
-				n.setNext(header.getNext());
-				header.setNext(n);
-				size++;
-			}
+			n.setNext(header.getNext());
+			header.setNext(n);
+			size++;
 		} else if (index == size) {
 			add(element);
 		} else {
