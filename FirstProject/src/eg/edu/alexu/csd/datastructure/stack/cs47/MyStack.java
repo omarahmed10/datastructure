@@ -32,13 +32,13 @@ public class MyStack implements IStack {
 
 	@Override
 	public final Object pop() {
-		if (i != 0) {
-			Object pop = s.get(i - 1);
-			s.remove(--i);
-			return pop;
-		} else {
-			throw new RuntimeException();
-		}
+//		if (i != 0) {
+//			Object pop = s.get(i - 1);
+//			s.remove(--i);
+//			return pop;
+//		} else {
+//			throw new RuntimeException();
+//		}
 	}
 
 	@Override
@@ -53,8 +53,8 @@ public class MyStack implements IStack {
 
 	@Override
 	public final void push(final Object element) {
-//		s.add(element);
-//		i++;
+		s.add(element);
+		i++;
 	}
 
 	@Override
