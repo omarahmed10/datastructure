@@ -23,11 +23,11 @@ public class MyStack implements IStack {
 
 	@Override
 	public final void add(final int index, final Object element) {
-		if (index < 0 || index > i) {
-			throw new RuntimeException();
-		}
-		s.add(index, element);
-		i++;
+//		if (index < 0 || index > i) {
+//			throw new RuntimeException();
+//		}
+//		s.add(index, element);
+//		i++;
 	}
 
 	@Override
