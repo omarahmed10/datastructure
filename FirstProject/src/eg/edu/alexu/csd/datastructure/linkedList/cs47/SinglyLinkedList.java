@@ -31,9 +31,15 @@ public class SinglyLinkedList implements ILinkedList {
 		}
 		if (index == 0) {
 			SinglyNode n = new SinglyNode(element);
-			n.setNext(header.getNext());
-			header.setNext(n);
-			size++;
+			if (size == 0) {
+				header.setNext(n);
+				lastNode = n;
+				size++;
+			} else {
+				n.setNext(header.getNext());
+				header.setNext(n);
+				size++;
+			}
 		} else if (index == size) {
 			add(element);
 		} else {
