@@ -67,6 +67,8 @@ public class SinglyLinkedList implements ILinkedList {
 	public final Object get(final int index) {
 		if (index < 0 || index > size - 1) {
 			throw new RuntimeException();
+		} else if (index == size - 1) {
+			return lastNode.getElement();
 		} else {
 			SinglyNode n = header.getNext();
 			for (int i = 0; i < index; i++) {
