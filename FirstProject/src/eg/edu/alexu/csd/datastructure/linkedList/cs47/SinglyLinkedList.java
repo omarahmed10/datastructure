@@ -74,7 +74,6 @@ public class SinglyLinkedList implements ILinkedList {
 			for (int i = 0; i < index; i++) {
 				n = n.getNext();
 			}
-
 			return n.getElement();
 		}
 	}
