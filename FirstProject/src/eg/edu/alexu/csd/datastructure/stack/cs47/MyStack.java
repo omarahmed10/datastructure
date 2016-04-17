@@ -50,8 +50,8 @@ public class MyStack implements IStack {
 
 	@Override
 	public final void push(final Object element) {
-		s.add(element);
-		i++;
+//		s.add(element);
+//		i++;
 	}
 
 	@Override
