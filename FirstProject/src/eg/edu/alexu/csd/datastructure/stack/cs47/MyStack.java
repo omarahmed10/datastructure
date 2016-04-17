@@ -1,6 +1,9 @@
 package eg.edu.alexu.csd.datastructure.stack.cs47;
 
 import eg.edu.alexu.csd.datastructure.stack.IStack;
+
+import java.util.LinkedList;
+
 import eg.edu.alexu.csd.datastructure.linkedList.cs47.SinglyLinkedList;
 
 /**
@@ -12,7 +15,7 @@ public class MyStack implements IStack {
 	/**
 	 * 
 	 */
-	private SinglyLinkedList s = new SinglyLinkedList();
+	private LinkedList<Object> s = new LinkedList<Object>();
 	/**
 	 * 
 	 */
@@ -50,8 +53,8 @@ public class MyStack implements IStack {
 
 	@Override
 	public final void push(final Object element) {
-//		s.add(element);
-//		i++;
+		s.add(element);
+		i++;
 	}
 
 	@Override
