@@ -23,11 +23,11 @@ public class MyStack implements IStack {
 
 	@Override
 	public final void add(final int index, final Object element) {
-		if (index < 0 || index > i) {
-			throw new RuntimeException();
-		}
-		s.add(index, element);
-		i++;
+//		if (index < 0 || index > i) {
+//			throw new RuntimeException();
+//		}
+//		s.add(index, element);
+//		i++;
 	}
 
 	@Override
@@ -43,12 +43,13 @@ public class MyStack implements IStack {
 
 	@Override
 	public final Object peek() {
-		if (i != 0) {
-			Object peek = s.get(i - 1);
-			return peek;
-		} else {
-			throw new RuntimeException();
-		}
+//		if (i != 0) {
+//			Object peek = s.get(i - 1);
+//			return peek;
+//		} else {
+//			throw new RuntimeException();
+//		}
+		return null;
 	}
 
 	@Override
