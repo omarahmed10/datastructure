@@ -26,7 +26,7 @@ public class MyStack implements IStack {
 		if (index < 0 || index > i) {
 			throw new RuntimeException();
 		}
-		s.add(index, element);
+		s.add(index+1, element);
 		i++;
 	}
 
