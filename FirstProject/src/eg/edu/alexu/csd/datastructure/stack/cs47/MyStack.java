@@ -32,14 +32,13 @@ public class MyStack implements IStack {
 
 	@Override
 	public final Object pop() {
-//		if (i != 0) {
-//			Object pop = s.get(i - 1);
-//			s.remove(--i);
-//			return pop;
-//		} else {
-//			throw new RuntimeException();
-//		}
-		return null;
+		if (i != 0) {
+			Object pop = s.get(i - 1);
+			s.remove(--i);
+			return pop;
+		} else {
+			throw new RuntimeException();
+		}
 	}
 
 	@Override
