@@ -26,7 +26,8 @@ public class MyStack implements IStack {
 		if (index < 0 || index > i) {
 			throw new RuntimeException();
 		}
-		s.add(index+1, element);
+		int newIndex = i - index;
+		s.add(newIndex, element);
 		i++;
 	}
 
@@ -54,7 +55,7 @@ public class MyStack implements IStack {
 
 	@Override
 	public final void push(final Object element) {
-		s.add(0,element);
+		s.add(0, element);
 		i++;
 	}
 
@@ -74,13 +75,23 @@ public class MyStack implements IStack {
 	 */
 	public static void main(final String[] args) {
 		MyStack st = new MyStack();
-		st.push("omar");
-		System.out.println(st.peek());
-		st.push(5);
-		System.out.println(st.peek());
+		st.push(1);
+		st.push(2);
+		st.push(3);
+		st.push(4);
+		st.add(2, 0);
+		st.add(0,0);
+		st.add(6, '*');
+		st.add(3, '*');
 		System.out.println(st.pop());
-		System.out.println(st.size());
-//		st.add(10, "element");
+		System.out.println(st.pop());
+		System.out.println(st.pop());
+		System.out.println(st.pop());
+		System.out.println(st.pop());
+		System.out.println(st.pop());
+		System.out.println(st.pop());
+		System.out.println(st.pop());
+		
 	}
 
 }
