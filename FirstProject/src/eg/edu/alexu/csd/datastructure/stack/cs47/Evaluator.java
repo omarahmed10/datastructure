@@ -10,11 +10,39 @@ import eg.edu.alexu.csd.datastructure.stack.IExpressionEvaluator;
  *
  */
 public class Evaluator implements IExpressionEvaluator {
+	/**
+	 * 
+	 */
 	private MyStack exp = new MyStack();
 
 	@Override
 	public final String infixToPostfix(final String expression) {
-		// TODO Auto-generated method stub
+		Scanner omar = new Scanner(expression).useDelimiter("\\s*");
+		StringBuilder infix = new StringBuilder();
+		while (omar.hasNext()) {
+			if (omar.hasNextInt()) {
+				System.out.println("done1");
+				infix.append(omar.nextInt());
+				System.out.println(infix);
+			}
+			String c = omar.next();
+			System.out.println(c.charAt(0));
+			if (c.charAt(0) == '(' || c.charAt(0) == '*' || c.charAt(0) == '-'
+					|| c.charAt(0) == '+' || c.charAt(0) == '/') {
+				System.out.println("done");
+				exp.push(c);
+//				System.out.println(omar.next());
+			} else if (c.charAt(0) == ')') {
+				while (exp.size() > 0 && !exp.peek().equals('(')) {
+					infix.append(exp.pop());
+				}
+				if (exp.peek().equals('(')) {
+					infix.append(exp.pop());
+				} else {
+					throw new RuntimeException();
+				}
+			}
+		}
 		return null;
 	}
 
@@ -23,12 +51,10 @@ public class Evaluator implements IExpressionEvaluator {
 		Scanner omar = new Scanner(expression).useDelimiter("\\s");
 		while (omar.hasNext()) {
 			if (omar.hasNextInt()) {
-				exp.push(omar.nextInt());
+				exp.push((float) omar.nextInt());
 			} else {
-				System.out.println(exp.peek());
-				float x = (int) exp.pop();
-				System.out.println(exp.peek());
-				float y = (int) exp.pop();
+				float x = (float) exp.pop();
+				float y = (float) exp.pop();
 				switch (omar.next()) {
 				case "/":
 					exp.push(y / x);
@@ -45,19 +71,21 @@ public class Evaluator implements IExpressionEvaluator {
 				default:
 					throw new RuntimeException();
 				}
-				omar.next();
 			}
 		}
-		return (int)exp.pop();
+		float answer = (float) exp.pop();
+		return (int) answer;
 	}
 
 	/**
 	 * 
 	 * @param args
+	 *            *************
 	 */
 	public static void main(final String[] args) {
 		Evaluator i = new Evaluator();
 		i.evaluate("66 22 / 33 - 44 22 * +");
+		i.infixToPostfix("(2+4)/(3*2)*(2-1)");
 	}
 
 }
