@@ -88,6 +88,9 @@ public class Evaluator implements IExpressionEvaluator {
 
 	@Override
 	public final int evaluate(final String expression) {
+		if(expression.length() == 0){
+			throw new RuntimeException();
+		}
 		Scanner omar = new Scanner(expression).useDelimiter("\\s");
 		while (omar.hasNext()) {
 			if (omar.hasNextInt()) {
