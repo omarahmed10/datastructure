@@ -18,6 +18,9 @@ public class Evaluator implements IExpressionEvaluator {
 	@Override
 	public final String infixToPostfix(final String expression) {
 		String ali = expression.replaceAll("\\s+", "");
+		if(ali.length() == 0){
+			throw new RuntimeException();
+		}
 		String regex = "(?<=[-+*/()])|(?=[-+*/()])";
 		String[] omar = ali.split(regex);
 		StringBuilder infix = new StringBuilder();
@@ -91,7 +94,8 @@ public class Evaluator implements IExpressionEvaluator {
 
 	@Override
 	public final int evaluate(final String expression) {
-		if (expression.length() == 0) {
+		String ali = expression.replaceAll("\\s+", "");
+		if(ali.length() == 0){
 			throw new RuntimeException();
 		}
 		Scanner omar = new Scanner(expression).useDelimiter("\\s");
@@ -123,7 +127,7 @@ public class Evaluator implements IExpressionEvaluator {
 			throw new RuntimeException();
 		}
 		float answer = (float) exp.pop();
-		System.out.println(answer);
+//		System.out.println(answer);
 		return (int) answer;
 	}
 
@@ -134,8 +138,8 @@ public class Evaluator implements IExpressionEvaluator {
 	 */
 	public static void main(final String[] args) {
 		Evaluator i = new Evaluator();
-		i.evaluate("+ 55 2");
-		i.infixToPostfix("a/b-c+d*e-a*c");
+		i.evaluate("   ");
+		i.infixToPostfix("   ");
 	}
 
 }
