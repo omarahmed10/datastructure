@@ -17,33 +17,73 @@ public class Evaluator implements IExpressionEvaluator {
 
 	@Override
 	public final String infixToPostfix(final String expression) {
-		Scanner omar = new Scanner(expression).useDelimiter("\\s*");
+		String ali = expression.replaceAll("\\s+", "");
+		String regex = "(?<=[-+*/()])|(?=[-+*/()])";
+		String[] omar = ali.split(regex);
 		StringBuilder infix = new StringBuilder();
-		while (omar.hasNext()) {
-			if (omar.hasNextInt()) {
-				System.out.println("done1");
-				infix.append(omar.nextInt());
-				System.out.println(infix);
-			}
-			String c = omar.next();
-			System.out.println(c.charAt(0));
-			if (c.charAt(0) == '(' || c.charAt(0) == '*' || c.charAt(0) == '-'
-					|| c.charAt(0) == '+' || c.charAt(0) == '/') {
-				System.out.println("done");
-				exp.push(c);
-//				System.out.println(omar.next());
-			} else if (c.charAt(0) == ')') {
-				while (exp.size() > 0 && !exp.peek().equals('(')) {
-					infix.append(exp.pop());
-				}
-				if (exp.peek().equals('(')) {
-					infix.append(exp.pop());
+		short i = 0;
+		for (int j = 1; j < omar.length; j++) {
+			boolean flag = false;
+			try {
+				infix.append(Integer.parseInt(omar[j]));
+				i = 0;
+				flag = true;
+			} catch (Exception e) {
+				char p = omar[j].charAt(0);
+				if (p == '-' || p == '+' && i < 2) {
+					i++;
+					while (exp.size() > 0 && !exp.peek().equals('(')) {
+						infix.append(exp.pop() + " ");
+					}
+					exp.push(p);
+				} else if ((p == '*' || p == '/') && i < 2) {
+					i++;
+					while (exp.size() > 0 && (exp.peek().equals('*')
+							|| exp.peek().equals('/'))) {
+						infix.append(exp.pop() + " ");
+					}
+					exp.push(p);
+				} else if (p == '(') {
+					i = 0;
+					exp.push(p);
+				} else if (p == ')') {
+					i = 0;
+					while (exp.size() > 0 && !exp.peek().equals('(')) {
+						infix.append(exp.pop() + " ");
+					}
+					if (exp.size() > 0 && exp.peek().equals('(')) {
+						exp.pop();
+					} else { // there isn't an opening bracket wrong expression
+						throw new RuntimeException();
+					}
 				} else {
-					throw new RuntimeException();
+					i = 0;
+					flag = true;
+					infix.append(p);
 				}
+			}
+			if (flag) {
+				infix.append(" ");
+			}
+			if (i >= 2) { // there is two operation like (* -) and thats
+							// wrong
+				while (exp.size() > 0) { // clearing stack
+					exp.pop();
+				}
+				throw new RuntimeException();
 			}
 		}
-		return null;
+		while (exp.size() > 0 && !exp.peek().equals('(')) {
+			infix.append(exp.pop());
+			if (exp.size() > 1) {
+				infix.append(" ");
+			}
+		}
+		if (exp.size() > 0) {
+			throw new RuntimeException();
+		}
+		System.out.println(infix);
+		return infix.toString();
 	}
 
 	@Override
@@ -85,7 +125,7 @@ public class Evaluator implements IExpressionEvaluator {
 	public static void main(final String[] args) {
 		Evaluator i = new Evaluator();
 		i.evaluate("66 22 / 33 - 44 22 * +");
-		i.infixToPostfix("(2+4)/(3*2)*(2-1)");
+		i.infixToPostfix("(a / (b - c + d)) * (e - 77) * 58");
 	}
 
 }
