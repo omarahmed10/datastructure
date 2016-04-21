@@ -119,18 +119,22 @@ public class Evaluator implements IExpressionEvaluator {
 				}
 			}
 		}
+		if (exp.size() > 1) {
+			throw new RuntimeException();
+		}
 		float answer = (float) exp.pop();
+		System.out.println(answer);
 		return (int) answer;
 	}
 
 	/**
 	 * 
-	 * @param args            
+	 * @param args
 	 * 
 	 */
 	public static void main(final String[] args) {
 		Evaluator i = new Evaluator();
-		i.evaluate("66 22 / 33 - 44 22 * +");
+		i.evaluate("+ 55 2");
 		i.infixToPostfix("a/b-c+d*e-a*c");
 	}
 
