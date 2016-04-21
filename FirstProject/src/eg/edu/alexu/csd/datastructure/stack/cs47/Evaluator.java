@@ -22,8 +22,11 @@ public class Evaluator implements IExpressionEvaluator {
 		String[] omar = ali.split(regex);
 		StringBuilder infix = new StringBuilder();
 		short i = 0;
-		for (int j = 1; j < omar.length; j++) {
+		for (int j = 0; j < omar.length; j++) {
 			boolean flag = false;
+			if (omar[0] == "") {
+				continue;
+			}
 			try {
 				infix.append(Integer.parseInt(omar[j]));
 				i = 0;
@@ -75,7 +78,7 @@ public class Evaluator implements IExpressionEvaluator {
 		}
 		while (exp.size() > 0 && !exp.peek().equals('(')) {
 			infix.append(exp.pop());
-			if (exp.size() > 1) {
+			if (exp.size() != 0) {
 				infix.append(" ");
 			}
 		}
@@ -88,7 +91,7 @@ public class Evaluator implements IExpressionEvaluator {
 
 	@Override
 	public final int evaluate(final String expression) {
-		if(expression.length() == 0){
+		if (expression.length() == 0) {
 			throw new RuntimeException();
 		}
 		Scanner omar = new Scanner(expression).useDelimiter("\\s");
@@ -122,13 +125,13 @@ public class Evaluator implements IExpressionEvaluator {
 
 	/**
 	 * 
-	 * @param args
-	 *            *************
+	 * @param args            
+	 * 
 	 */
 	public static void main(final String[] args) {
 		Evaluator i = new Evaluator();
 		i.evaluate("66 22 / 33 - 44 22 * +");
-		i.infixToPostfix("(a / (b - c + d)) * (e - 77) * 58");
+		i.infixToPostfix("a/b-c+d*e-a*c");
 	}
 
 }
