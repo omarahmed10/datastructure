@@ -5,7 +5,7 @@ import java.util.Scanner;
 import eg.edu.alexu.csd.datastructure.stack.IExpressionEvaluator;
 
 /**
- * 
+ *
  * @author omar_ahmed
  *
  */
@@ -23,42 +23,43 @@ public class Evaluator implements IExpressionEvaluator {
 		}
 		String regex = "(?<=[-+*/()])|(?=[-+*/()])";
 		String[] omar = ali.split(regex);
-		if (omar[omar.length - 1] == "-" || omar[omar.length - 1] == "*"
-				|| omar[omar.length - 1] == "/"
-				|| omar[omar.length - 1] == "+") {
-			throw new RuntimeException();
-		}
 		StringBuilder infix = new StringBuilder();
-		short i = 0;
+		short noOperation = 0;
 		for (int j = 0; j < omar.length; j++) {
-			boolean flag = false;
-			if (omar[0] == "") {
+			boolean printSpace = false;
+			if (omar[j] == null || omar[j].isEmpty()) { // ignore it
 				continue;
 			}
 			try {
 				infix.append(Integer.parseInt(omar[j]));
-				i = 0;
-				flag = true;
+				noOperation = 0;
+				printSpace = true;
 			} catch (Exception e) {
 				char p = omar[j].charAt(0);
-				if (p == '-' || p == '+' && i < 2) {
-					i++;
+				if ((p == '-' || p == '+') && noOperation < 2) {
+					if (infix.length() == 0) {
+						throw new RuntimeException();
+					}
+					noOperation++;
 					while (exp.size() > 0 && !exp.peek().equals('(')) {
 						infix.append(exp.pop() + " ");
 					}
 					exp.push(p);
-				} else if ((p == '*' || p == '/') && i < 2) {
-					i++;
+				} else if ((p == '*' || p == '/') && noOperation < 2) {
+					if (infix.length() == 0) {
+						throw new RuntimeException();
+					}
+					noOperation++;
 					while (exp.size() > 0 && (exp.peek().equals('*')
 							|| exp.peek().equals('/'))) {
 						infix.append(exp.pop() + " ");
 					}
 					exp.push(p);
 				} else if (p == '(') {
-					i = 0;
+					noOperation = 0;
 					exp.push(p);
 				} else if (p == ')') {
-					i = 0;
+					noOperation = 0;
 					while (exp.size() > 0 && !exp.peek().equals('(')) {
 						infix.append(exp.pop() + " ");
 					}
@@ -68,16 +69,17 @@ public class Evaluator implements IExpressionEvaluator {
 						throw new RuntimeException();
 					}
 				} else {
-					i = 0;
-					flag = true;
+					noOperation = 0;
+					printSpace = true;
 					infix.append(p);
 				}
 			}
-			if (flag) {
+			if (printSpace) {
 				infix.append(" ");
 			}
-			if (i >= 2) { // there is two operation like (* -) and thats
-							// wrong
+			if (noOperation >= 2) { // there is two operation like (* -) and
+									// thats
+				// wrong
 				while (exp.size() > 0) { // clearing stack
 					exp.pop();
 				}
@@ -93,7 +95,6 @@ public class Evaluator implements IExpressionEvaluator {
 		if (exp.size() > 0) {
 			throw new RuntimeException();
 		}
-		System.out.println(infix);
 		return infix.toString();
 	}
 
@@ -144,7 +145,8 @@ public class Evaluator implements IExpressionEvaluator {
 	public static void main(final String[] args) {
 		Evaluator i = new Evaluator();
 		// i.evaluate("5 5 * 9 + +");
-		i.infixToPostfix("9 * 8 * 2 -");
+		i.infixToPostfix("+ 5 * 3 + 4 / 8");
+		// i.infixToPostfix("a + b * ( d - e ) + 58 / 30");
 	}
 
 }
