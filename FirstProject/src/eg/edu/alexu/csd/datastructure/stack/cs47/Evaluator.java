@@ -95,7 +95,6 @@ public class Evaluator implements IExpressionEvaluator {
 		if (exp.size() > 0) {
 			throw new RuntimeException();
 		}
-		System.out.println(infix);
 		return infix.toString();
 	}
 
