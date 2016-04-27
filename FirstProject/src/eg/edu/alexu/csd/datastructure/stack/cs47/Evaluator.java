@@ -1,7 +1,5 @@
 package eg.edu.alexu.csd.datastructure.stack.cs47;
 
-import java.util.Scanner;
-
 import eg.edu.alexu.csd.datastructure.stack.IExpressionEvaluator;
 
 /**
@@ -95,25 +93,76 @@ public class Evaluator implements IExpressionEvaluator {
 		if (exp.size() > 0) {
 			throw new RuntimeException();
 		}
+//		System.out.println(infix);
 		return infix.toString();
 	}
 
+	// @Override
+	// public final int evaluate(final String expression) {
+	// if (expression.length() == 0) {
+	// throw new RuntimeException();
+	// }
+	// //(?=[-+*/()])|\\s|(?<=[-+*/()])
+	// Scanner omar = new Scanner(expression)
+	// .useDelimiter("(?<=[-+*/()])|(?=[-+*/()])|\\s");
+	// while (omar.hasNext()) {
+	// System.out.println(omar.next());
+	//// if (omar.hasNextInt()) {
+	//// exp.push((float) omar.nextInt());
+	//// }
+	//// else {
+	//// float x = (float) exp.pop();
+	//// float y = (float) exp.pop();
+	//// switch (omar.next()) {
+	//// case "/":
+	//// exp.push(y / x);
+	//// break;
+	//// case "*":
+	//// exp.push(x * y);
+	//// break;
+	//// case "+":
+	//// exp.push(x + y);
+	//// break;
+	//// case "-":
+	//// exp.push(y - x);
+	//// break;
+	//// default:
+	//// throw new RuntimeException();
+	//// }
+	//// }
+	//// }
+	//// if (exp.size() > 1) {
+	//// throw new RuntimeException();
+	// }
+	//// float answer = (float) exp.pop();
+	//// System.out.println(answer);
+	//// return (int) answer;
+	// return 0;
+	// }
 	@Override
 	public final int evaluate(final String expression) {
 		if (expression.length() == 0) {
 			throw new RuntimeException();
 		}
-		Scanner omar = new Scanner(expression)
-				.useDelimiter("(?=[-+*/()])|\\s|(?<=[-+*/()])");
-		while (omar.hasNext()) {
-//			System.out.println(omar.next());
-			if (omar.hasNextInt()) {
-				exp.push((float) omar.nextInt());
-			} 
-			else {
+		String regex = "\\s";
+		String[] omar = expression.split(regex);
+		for (int i = 0; i < omar.length; i++) {
+
+			try {
+				/*
+				 * checking unary
+				 */
+				Integer.parseInt(omar[i]);
+				if (i != omar.length - 1 && (omar[i].charAt(0) == '-'
+						|| omar[i].charAt(0) == '+')) {
+					throw new RuntimeException();
+				} else {
+					exp.push(Float.parseFloat(omar[i]));
+				}
+			} catch (Exception e) {
 				float x = (float) exp.pop();
 				float y = (float) exp.pop();
-				switch (omar.next()) {
+				switch (omar[i]) {
 				case "/":
 					exp.push(y / x);
 					break;
@@ -135,8 +184,8 @@ public class Evaluator implements IExpressionEvaluator {
 			throw new RuntimeException();
 		}
 		float answer = (float) exp.pop();
+		// System.out.println(answer);
 		return (int) answer;
-//			return 0;
 	}
 
 	/**
@@ -146,9 +195,9 @@ public class Evaluator implements IExpressionEvaluator {
 	 */
 	public static void main(final String[] args) {
 		Evaluator i = new Evaluator();
-		i.evaluate("80 3 - 5 +");
-//		 i.infixToPostfix("(8-1+3)*6-((3+7)*2)");
-//		 i.infixToPostfix("a + b * ( d - e ) + 58 / 30");
+		// i.evaluate("55 3 9 +");
+		// i.infixToPostfix("(a / (b - c + d)) * (e - a) * c");
+		// i.infixToPostfix("a/b-c+d*e-a*c");
 	}
 
 }
