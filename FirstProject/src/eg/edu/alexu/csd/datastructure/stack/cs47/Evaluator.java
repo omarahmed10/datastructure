@@ -104,11 +104,13 @@ public class Evaluator implements IExpressionEvaluator {
 			throw new RuntimeException();
 		}
 		Scanner omar = new Scanner(expression)
-				.useDelimiter("(?<=[-+*/()])|(?=[-+*/()])");
+				.useDelimiter("(?=[-+*/()])|\\s|(?<=[-+*/()])");
 		while (omar.hasNext()) {
+//			System.out.println(omar.next());
 			if (omar.hasNextInt()) {
 				exp.push((float) omar.nextInt());
-			} else {
+			} 
+			else {
 				float x = (float) exp.pop();
 				float y = (float) exp.pop();
 				switch (omar.next()) {
@@ -134,6 +136,7 @@ public class Evaluator implements IExpressionEvaluator {
 		}
 		float answer = (float) exp.pop();
 		return (int) answer;
+//			return 0;
 	}
 
 	/**
@@ -143,9 +146,9 @@ public class Evaluator implements IExpressionEvaluator {
 	 */
 	public static void main(final String[] args) {
 		Evaluator i = new Evaluator();
-//		i.evaluate("80 - 3 +");
-		 i.infixToPostfix("(8-1+3)*6-((3+7)*2)");
-		// i.infixToPostfix("a + b * ( d - e ) + 58 / 30");
+		i.evaluate("80 3 - 5 +");
+//		 i.infixToPostfix("(8-1+3)*6-((3+7)*2)");
+//		 i.infixToPostfix("a + b * ( d - e ) + 58 / 30");
 	}
 
 }
