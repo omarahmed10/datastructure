@@ -95,6 +95,7 @@ public class Evaluator implements IExpressionEvaluator {
 		if (exp.size() > 0) {
 			throw new RuntimeException();
 		}
+		System.out.println(infix);
 		return infix.toString();
 	}
 
@@ -143,8 +144,8 @@ public class Evaluator implements IExpressionEvaluator {
 	 */
 	public static void main(final String[] args) {
 		Evaluator i = new Evaluator();
-//		i.evaluate("80 -3 +");
-		 i.infixToPostfix("(8 - 1 + 3) * 6 - ((3 + 7) * 2)");
+//		i.evaluate("80 - 3 +");
+		 i.infixToPostfix("(8-1+3)*6-((3+7)*2)");
 		// i.infixToPostfix("a + b * ( d - e ) + 58 / 30");
 	}
 
