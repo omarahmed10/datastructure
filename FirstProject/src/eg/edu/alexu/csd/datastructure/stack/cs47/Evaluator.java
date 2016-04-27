@@ -100,11 +100,11 @@ public class Evaluator implements IExpressionEvaluator {
 
 	@Override
 	public final int evaluate(final String expression) {
-		String ali = expression.replaceAll("\\s+", "");
-		if (ali.length() == 0) {
+		if (expression.length() == 0) {
 			throw new RuntimeException();
 		}
-		Scanner omar = new Scanner(expression).useDelimiter("\\s");
+		Scanner omar = new Scanner(expression)
+				.useDelimiter("(?<=[-+*/()])|(?=[-+*/()])");
 		while (omar.hasNext()) {
 			if (omar.hasNextInt()) {
 				exp.push((float) omar.nextInt());
@@ -133,7 +133,6 @@ public class Evaluator implements IExpressionEvaluator {
 			throw new RuntimeException();
 		}
 		float answer = (float) exp.pop();
-		// System.out.println(answer);
 		return (int) answer;
 	}
 
@@ -144,8 +143,8 @@ public class Evaluator implements IExpressionEvaluator {
 	 */
 	public static void main(final String[] args) {
 		Evaluator i = new Evaluator();
-		// i.evaluate("5 5 * 9 + +");
-		i.infixToPostfix("+ 5 * 3 + 4 / 8");
+//		i.evaluate("80 -3 +");
+//		 i.infixToPostfix("(8 - 1 + 3) * -6 - ((3 + 7) * 2 +)");
 		// i.infixToPostfix("a + b * ( d - e ) + 58 / 30");
 	}
 
