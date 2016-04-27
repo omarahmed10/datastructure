@@ -22,7 +22,8 @@ public class Evaluator implements IExpressionEvaluator {
 		String regex = "(?<=[-+*/()])|(?=[-+*/()])";
 		String[] omar = ali.split(regex);
 		StringBuilder infix = new StringBuilder();
-		short noOperation = 0;
+		int noOperator = 0;
+		int noOperand = 0;
 		for (int j = 0; j < omar.length; j++) {
 			boolean printSpace = false;
 			if (omar[j] == null || omar[j].isEmpty()) { // ignore it
@@ -30,34 +31,33 @@ public class Evaluator implements IExpressionEvaluator {
 			}
 			try {
 				infix.append(Integer.parseInt(omar[j]));
-				noOperation = 0;
+				noOperand++;
 				printSpace = true;
 			} catch (Exception e) {
 				char p = omar[j].charAt(0);
-				if ((p == '-' || p == '+') && noOperation < 2) {
+
+				if (p == '-' || p == '+') {
 					if (infix.length() == 0) {
 						throw new RuntimeException();
 					}
-					noOperation++;
+					noOperator++;
 					while (exp.size() > 0 && !exp.peek().equals('(')) {
 						infix.append(exp.pop() + " ");
 					}
 					exp.push(p);
-				} else if ((p == '*' || p == '/') && noOperation < 2) {
+				} else if (p == '*' || p == '/') {
 					if (infix.length() == 0) {
 						throw new RuntimeException();
 					}
-					noOperation++;
+					noOperator++;
 					while (exp.size() > 0 && (exp.peek().equals('*')
 							|| exp.peek().equals('/'))) {
 						infix.append(exp.pop() + " ");
 					}
 					exp.push(p);
 				} else if (p == '(') {
-					noOperation = 0;
 					exp.push(p);
 				} else if (p == ')') {
-					noOperation = 0;
 					while (exp.size() > 0 && !exp.peek().equals('(')) {
 						infix.append(exp.pop() + " ");
 					}
@@ -67,7 +67,7 @@ public class Evaluator implements IExpressionEvaluator {
 						throw new RuntimeException();
 					}
 				} else {
-					noOperation = 0;
+					noOperand++;
 					printSpace = true;
 					infix.append(p);
 				}
@@ -75,14 +75,12 @@ public class Evaluator implements IExpressionEvaluator {
 			if (printSpace) {
 				infix.append(" ");
 			}
-			if (noOperation >= 2) { // there is two operation like (* -) and
-									// thats
-				// wrong
-				while (exp.size() > 0) { // clearing stack
-					exp.pop();
-				}
-				throw new RuntimeException();
+		}
+		if (noOperand != noOperator + 1) {
+			while (exp.size() > 0) { // clearing stack
+				exp.pop();
 			}
+			throw new RuntimeException();
 		}
 		while (exp.size() > 0 && !exp.peek().equals('(')) {
 			infix.append(exp.pop());
@@ -93,7 +91,7 @@ public class Evaluator implements IExpressionEvaluator {
 		if (exp.size() > 0) {
 			throw new RuntimeException();
 		}
-//		System.out.println(infix);
+//		 System.out.println(infix);
 		return infix.toString();
 	}
 
@@ -147,7 +145,6 @@ public class Evaluator implements IExpressionEvaluator {
 		String regex = "\\s";
 		String[] omar = expression.split(regex);
 		for (int i = 0; i < omar.length; i++) {
-
 			try {
 				/*
 				 * checking unary
@@ -195,9 +192,9 @@ public class Evaluator implements IExpressionEvaluator {
 	 */
 	public static void main(final String[] args) {
 		Evaluator i = new Evaluator();
-		// i.evaluate("55 3 9 +");
+		// i.evaluate("55 3 + 9 +");
 		// i.infixToPostfix("(a / (b - c + d)) * (e - a) * c");
-		// i.infixToPostfix("a/b-c+d*e-a*c");
+//		i.infixToPostfix("a/b-c+d*e-a*c");
 	}
 
 }
