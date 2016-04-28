@@ -18,7 +18,7 @@ public class Evaluator implements IExpressionEvaluator {
 	 */
 	@Override
 	public final String infixToPostfix(final String expression) {
-		throw new RuntimeException();
+		throw new RuntimeException(expression);
 //		if (expression.length() == 0 || expression == null) {
 //			throw new RuntimeException();
 //		}
