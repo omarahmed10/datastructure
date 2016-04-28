@@ -9,16 +9,20 @@ import eg.edu.alexu.csd.datastructure.stack.IExpressionEvaluator;
  * @author omar_ahmed
  */
 public class Evaluator implements IExpressionEvaluator {
-	
+
 	/** The exp. */
 	private MyStack exp = new MyStack();
 
-	/* (non-Javadoc)
-	 * @see eg.edu.alexu.csd.datastructure.stack.IExpressionEvaluator#infixToPostfix(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * eg.edu.alexu.csd.datastructure.stack.IExpressionEvaluator#infixToPostfix(
+	 * java.lang.String)
 	 */
 	@Override
 	public final String infixToPostfix(final String expression) {
-//		throw new RuntimeException(expression);
+		// throw new RuntimeException(expression);
 		if (expression.length() == 0 || expression == null) {
 			throw new RuntimeException();
 		}
@@ -97,16 +101,19 @@ public class Evaluator implements IExpressionEvaluator {
 		if (exp.size() > 0) {
 			throw new RuntimeException();
 		}
-//		 System.out.println(infix);
+		// System.out.println(infix);
 		return infix.toString();
 	}
 
-	/* (non-Javadoc)
-	 * @see eg.edu.alexu.csd.datastructure.stack.IExpressionEvaluator#evaluate(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see eg.edu.alexu.csd.datastructure
+	 * .stack.IExpressionEvaluator#evaluate(java. lang.String)
 	 */
 	@Override
 	public final int evaluate(final String expression) {
-//		throw new RuntimeException(expression);
+		// throw new RuntimeException(expression);
 		if (expression.length() == 0) {
 			throw new RuntimeException();
 		}
@@ -154,34 +161,35 @@ public class Evaluator implements IExpressionEvaluator {
 			throw new RuntimeException();
 		}
 		float answer = (float) exp.pop();
-//		 System.out.println(answer);
+		// System.out.println(answer);
 		return (int) answer;
 	}
 
 	/**
 	 * The main method.
 	 *
-	 * @param args main argument
+	 * @param args
+	 *            main argument
 	 */
 	public static void main(final String[] args) {
-		 IExpressionEvaluator testMe = new Evaluator();
-		 StringBuilder string = new StringBuilder();
-//		 testMe.evaluate("5 3 + 2 * 3 / 3 * 4 2 * - 1 2 / -");
-//		 testMe.evaluate("5 3 + 2 * 3 / 3 * 4 2 * - 16 2 / -");
-//		 testMe.infixToPostfix("(5 + 3) * 2 / 3 * 3 - 4 * 2 - (1 / 2)");
-//		 testMe.infixToPostfix("((5+3)*2/3)*3-4*2-16/2");
-		 for (int i = 0; i < 10000000; i++) {
-		 string = string.append("1+");
-		 }
-		 string = string.append("1");
-		 long start = System.currentTimeMillis();
-		 String ev = testMe.infixToPostfix(string.toString());
-		 long first = System.currentTimeMillis();
-		 testMe.evaluate(ev);
-		 long second = System.currentTimeMillis();
-		 System.out.println(first - start);
-		 System.out.println(second - first);
-		 System.out.println(second - start);
+		IExpressionEvaluator testMe = new Evaluator();
+		StringBuilder string = new StringBuilder();
+		// testMe.evaluate("5 3 + 2 * 3 / 3 * 4 2 * - 1 2 / -");
+		// testMe.evaluate("5 3 + 2 * 3 / 3 * 4 2 * - 16 2 / -");
+		// testMe.infixToPostfix("(5 + 3) * 2 / 3 * 3 - 4 * 2 - (1 / 2)");
+		// testMe.infixToPostfix("((5+3)*2/3)*3-4*2-16/2");
+		// for (int i = 0; i < 10000000; i++) {
+		// string = string.append("1+");
+		// }
+		// string = string.append("1");
+		// long start = System.currentTimeMillis();
+		// String ev = testMe.infixToPostfix(string.toString());
+		// long first = System.currentTimeMillis();
+		// testMe.evaluate(ev);
+		// long second = System.currentTimeMillis();
+		// System.out.println(first - start);
+		// System.out.println(second - first);
+		// System.out.println(second - start);
 	}
 
 }
