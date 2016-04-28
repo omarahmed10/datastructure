@@ -97,7 +97,7 @@ public class Evaluator implements IExpressionEvaluator {
 		if (exp.size() > 0) {
 			throw new RuntimeException();
 		}
-		 System.out.println(infix);
+//		 System.out.println(infix);
 		return infix.toString();
 	}
 
@@ -154,7 +154,7 @@ public class Evaluator implements IExpressionEvaluator {
 			throw new RuntimeException();
 		}
 		float answer = (float) exp.pop();
-		 System.out.println(answer);
+//		 System.out.println(answer);
 		return (int) answer;
 	}
 
@@ -169,19 +169,19 @@ public class Evaluator implements IExpressionEvaluator {
 //		 testMe.evaluate("5 3 + 2 * 3 / 3 * 4 2 * - 1 2 / -");
 //		 testMe.evaluate("5 3 + 2 * 3 / 3 * 4 2 * - 16 2 / -");
 //		 testMe.infixToPostfix("(5 + 3) * 2 / 3 * 3 - 4 * 2 - (1 / 2)");
-		 testMe.infixToPostfix("((5+3)*2/3)*3-4*2-16/2");
-//		 for (int i = 0; i < 10000000; i++) {
-//		 string = string.append("1+");
-//		 }
-//		 string = string.append("1");
-//		 long start = System.currentTimeMillis();
-//		 String ev = testMe.infixToPostfix(string.toString());
-//		 long first = System.currentTimeMillis();
-//		 testMe.evaluate(ev);
-//		 long second = System.currentTimeMillis();
-//		 System.out.println(first - start);
-//		 System.out.println(second - first);
-//		 System.out.println(second - start);
+//		 testMe.infixToPostfix("((5+3)*2/3)*3-4*2-16/2");
+		 for (int i = 0; i < 10000000; i++) {
+		 string = string.append("1+");
+		 }
+		 string = string.append("1");
+		 long start = System.currentTimeMillis();
+		 String ev = testMe.infixToPostfix(string.toString());
+		 long first = System.currentTimeMillis();
+		 testMe.evaluate(ev);
+		 long second = System.currentTimeMillis();
+		 System.out.println(first - start);
+		 System.out.println(second - first);
+		 System.out.println(second - start);
 	}
 
 }
