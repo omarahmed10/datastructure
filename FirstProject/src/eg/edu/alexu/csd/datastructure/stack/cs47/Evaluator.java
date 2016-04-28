@@ -166,8 +166,8 @@ public class Evaluator implements IExpressionEvaluator {
 	public static void main(final String[] args) {
 		 IExpressionEvaluator testMe = new Evaluator();
 		 StringBuilder string = new StringBuilder();
-		 testMe.evaluate("5 3 + 2 * 3 / 3 * 4 2 * - 1 2 / -");
-//		 testMe.infixToPostfix("a*b+5");
+//		 testMe.evaluate("5 3 + 2 * 3 / 3 * 4 2 * - 1 2 / -");
+		 testMe.infixToPostfix("(5 + 3) * 2 / 3 * 3 - 4 * 2 - (1 / 2)");
 		// testMe.infixToPostfix("a/b-c+d*e-a*c");
 //		 for (int i = 0; i < 10000000; i++) {
 //		 string = string.append("1+");
