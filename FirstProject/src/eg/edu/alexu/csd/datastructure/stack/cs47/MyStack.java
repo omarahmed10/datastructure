@@ -68,7 +68,10 @@ public class MyStack implements IStack {
 	public final int size() {
 		return i;
 	}
-
+	
+	public String toString(){
+		return s.toString();
+	}
 	/**
 	 * 
 	 * @param args         
