@@ -94,49 +94,6 @@ public class Evaluator implements IExpressionEvaluator {
 //		 System.out.println(infix);
 		return infix.toString();
 	}
-
-	// @Override
-	// public final int evaluate(final String expression) {
-	// if (expression.length() == 0) {
-	// throw new RuntimeException();
-	// }
-	// //(?=[-+*/()])|\\s|(?<=[-+*/()])
-	// Scanner omar = new Scanner(expression)
-	// .useDelimiter("(?<=[-+*/()])|(?=[-+*/()])|\\s");
-	// while (omar.hasNext()) {
-	// System.out.println(omar.next());
-	//// if (omar.hasNextInt()) {
-	//// exp.push((float) omar.nextInt());
-	//// }
-	//// else {
-	//// float x = (float) exp.pop();
-	//// float y = (float) exp.pop();
-	//// switch (omar.next()) {
-	//// case "/":
-	//// exp.push(y / x);
-	//// break;
-	//// case "*":
-	//// exp.push(x * y);
-	//// break;
-	//// case "+":
-	//// exp.push(x + y);
-	//// break;
-	//// case "-":
-	//// exp.push(y - x);
-	//// break;
-	//// default:
-	//// throw new RuntimeException();
-	//// }
-	//// }
-	//// }
-	//// if (exp.size() > 1) {
-	//// throw new RuntimeException();
-	// }
-	//// float answer = (float) exp.pop();
-	//// System.out.println(answer);
-	//// return (int) answer;
-	// return 0;
-	// }
 	@Override
 	public final int evaluate(final String expression) {
 		if (expression.length() == 0) {
@@ -190,11 +147,22 @@ public class Evaluator implements IExpressionEvaluator {
 	 * @param args
 	 * 
 	 */
-	public static void main(final String[] args) {
-		Evaluator i = new Evaluator();
-		// i.evaluate("55 3 + 9 +");
-		// i.infixToPostfix("(a / (b - c + d)) * (e - a) * c");
-//		i.infixToPostfix("a/b-c+d*e-a*c");
-	}
+	public static void main(String[] args) {
+//	    IExpressionEvaluator testMe = new Evaluator();
+//	    StringBuilder string = new StringBuilder();
+//	 
+//	    for (int i = 0; i < 10000000; i++) {
+//	        string = string.append("1+");
+//	    }
+//	    string = string.append("1");
+//	    long start = System.currentTimeMillis();
+//	    String ev = testMe.infixToPostfix(string.toString());
+//	    long first = System.currentTimeMillis();
+//	    testMe.evaluate(ev);
+//	    long second = System.currentTimeMillis();
+//	    System.out.println(first-start);
+//	    System.out.println(second-first);
+//	    System.out.println(second-start);
+	    }
 
 }
