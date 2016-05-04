@@ -178,18 +178,18 @@ public class Evaluator implements IExpressionEvaluator {
 		// testMe.evaluate("5 3 + 2 * 3 / 3 * 4 2 * - 16 2 / -");
 		// testMe.infixToPostfix("(5 + 3) * 2 / 3 * 3 - 4 * 2 - (1 / 2)");
 		// testMe.infixToPostfix("((5+3)*2/3)*3-4*2-16/2");
-		// for (int i = 0; i < 10000000; i++) {
-		// string = string.append("1+");
-		// }
-		// string = string.append("1");
-		// long start = System.currentTimeMillis();
-		// String ev = testMe.infixToPostfix(string.toString());
-		// long first = System.currentTimeMillis();
-		// testMe.evaluate(ev);
-		// long second = System.currentTimeMillis();
-		// System.out.println(first - start);
-		// System.out.println(second - first);
-		// System.out.println(second - start);
+//		 for (int i = 0; i < 10000000; i++) {
+//		 string = string.append("1+");
+//		 }
+//		 string = string.append("1");
+//		 long start = System.currentTimeMillis();
+//		 String ev = testMe.infixToPostfix(string.toString());
+//		 long first = System.currentTimeMillis();
+//		 testMe.evaluate(ev);
+//		 long second = System.currentTimeMillis();
+//		 System.out.println(first - start);
+//		 System.out.println(second - first);
+//		 System.out.println(second - start);
 	}
 
 }

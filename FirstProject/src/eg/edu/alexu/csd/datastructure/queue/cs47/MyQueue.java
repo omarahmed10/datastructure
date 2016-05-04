@@ -1,14 +1,14 @@
 package eg.edu.alexu.csd.datastructure.queue.cs47;
 
 import eg.edu.alexu.csd.datastructure.queue.IQueue;
-
+import eg.edu.alexu.csd.datastructure.queue.ILinkedBased;
 import eg.edu.alexu.csd.datastructure.linkedList.cs47.SinglyLinkedList;;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class MyQueue.
  */
-public class MyQueue implements IQueue {
+public class MyQueue implements IQueue, ILinkedBased {
 
 	/** The list. */
 	private SinglyLinkedList list = new SinglyLinkedList();
