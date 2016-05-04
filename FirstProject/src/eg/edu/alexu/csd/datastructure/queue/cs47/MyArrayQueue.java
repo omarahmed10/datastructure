@@ -52,10 +52,11 @@ public class MyArrayQueue implements IQueue, IArrayBased {
 
 	@Override
 	public final Object dequeue() {
-		if(f == r){
+		if (f == r) {
 			throw new RuntimeException();
 		}
-		Object element = list[f];
+		Object element = new Object();
+		element = list[f];
 		list[f] = null;
 		f = (f + 1) % listSize;
 		count--;
@@ -75,7 +76,7 @@ public class MyArrayQueue implements IQueue, IArrayBased {
 	@Override
 	public final int size() {
 		// TODO Auto-generated method stub
-		return (listSize - f + r) % listSize;
+		return count;
 	}
 
 }

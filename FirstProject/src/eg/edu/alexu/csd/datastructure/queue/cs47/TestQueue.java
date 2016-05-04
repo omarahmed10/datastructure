@@ -19,7 +19,18 @@ public class TestQueue {
 	@Test
 	public final void test1() {
 		MyQueue queue = new MyQueue();
-		assertEquals(0, queue.size());
+		// long start = System.currentTimeMillis();
+		// for(int i = 0;i < 10000000 ;i++){
+		// queue.enqueue("omar");
+		// }
+		// long first = System.currentTimeMillis();
+		// for(int i = 0; i < 10000000 ;i++){
+		// queue.dequeue();
+		// }
+		// long second = System.currentTimeMillis();
+		// System.out.println(first-start);
+		// System.out.println(second-first);
+		// System.out.println(second-start);
 		queue.enqueue("omar");
 		queue.enqueue("Ahmed");
 		queue.enqueue("Ali");
@@ -37,7 +48,19 @@ public class TestQueue {
 	 */
 	@Test
 	public final void test2() {
-		MyArrayQueue aQueue = new MyArrayQueue(6);
+		MyArrayQueue aQueue = new MyArrayQueue(10000005);
+		// long start = System.currentTimeMillis();
+		// for(int i = 0;i < 10000000 ;i++){
+		// aQueue.enqueue("omar");
+		// }
+		// long first = System.currentTimeMillis();
+		// for(int i = 0; i < 10000000 ;i++){
+		// aQueue.dequeue();
+		// }
+		// long second = System.currentTimeMillis();
+		// System.out.println(first-start);
+		// System.out.println(second-first);
+		// System.out.println(second-start);
 		aQueue.enqueue("omar0");
 		aQueue.enqueue("omar1");
 		aQueue.enqueue("omar2");
@@ -58,7 +81,7 @@ public class TestQueue {
 		assertEquals("Ahmed3", aQueue.dequeue());
 		// aQueue.enqueue("Ahmed5");
 		assertEquals(true, aQueue.isEmpty());
-		aQueue.dequeue();
+		// aQueue.dequeue();
 	}
 
 }

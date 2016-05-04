@@ -20,7 +20,7 @@ public class MyQueue implements IQueue, ILinkedBased {
 
 	@Override
 	public final Object dequeue() {
-		if(list.size() == 0){
+		if (list.size() == 0) {
 			throw new RuntimeException();
 		}
 		Object dequeue = new Object();
@@ -46,7 +46,7 @@ public class MyQueue implements IQueue, ILinkedBased {
 	 * @param args
 	 *            the arguments
 	 */
-	public static void main(final String[] args) {
-		System.out.println("             ");
-	}
+//	public static void main(final String[] args) {
+//		System.out.println("             ");
+//	}
 }
