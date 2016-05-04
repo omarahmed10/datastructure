@@ -17,7 +17,7 @@ public class MyArrayQueue implements IQueue, IArrayBased {
 	private int f;
 	/** rear of the list. */
 	private int r;
-	/** number of elements in queue. */
+	/** number of elements in queue. */	
 	private int count;
 
 	/** size of List. */
@@ -42,7 +42,7 @@ public class MyArrayQueue implements IQueue, IArrayBased {
 
 	@Override
 	public final void enqueue(final Object item) {
-		if (count == listSize - 1) {
+		if (count == listSize) {
 			throw new RuntimeException();
 		}
 		list[r] = item;
