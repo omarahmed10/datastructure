@@ -52,6 +52,9 @@ public class MyArrayQueue implements IQueue, IArrayBased {
 
 	@Override
 	public final Object dequeue() {
+		if(f == r){
+			throw new RuntimeException();
+		}
 		Object element = list[f];
 		list[f] = null;
 		f = (f + 1) % listSize;

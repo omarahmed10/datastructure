@@ -20,6 +20,9 @@ public class MyQueue implements IQueue, ILinkedBased {
 
 	@Override
 	public final Object dequeue() {
+		if(list.size() == 0){
+			throw new RuntimeException();
+		}
 		Object dequeue = new Object();
 		dequeue = list.get(0);
 		list.remove(0);

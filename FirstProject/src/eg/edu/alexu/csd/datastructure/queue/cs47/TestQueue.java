@@ -12,8 +12,8 @@ import org.junit.rules.ExpectedException;
  */
 public class TestQueue {
 
-	/**.
-	 * test_1
+	/**
+	 * . test_1
 	 */
 
 	@Test
@@ -32,8 +32,8 @@ public class TestQueue {
 		assertEquals(true, queue.isEmpty());
 	}
 
-	/**.
-	 * Test_2
+	/**
+	 * . Test_2
 	 */
 	@Test
 	public final void test2() {
@@ -56,8 +56,9 @@ public class TestQueue {
 		assertEquals("Ahmed1", aQueue.dequeue());
 		assertEquals("Ahmed2", aQueue.dequeue());
 		assertEquals("Ahmed3", aQueue.dequeue());
-//		aQueue.enqueue("Ahmed5");
-		assertEquals(true,aQueue.isEmpty());
+		// aQueue.enqueue("Ahmed5");
+		assertEquals(true, aQueue.isEmpty());
+		aQueue.dequeue();
 	}
 
 }
