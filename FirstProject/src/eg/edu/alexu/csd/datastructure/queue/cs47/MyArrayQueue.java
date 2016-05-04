@@ -52,7 +52,7 @@ public class MyArrayQueue implements IQueue, IArrayBased {
 
 	@Override
 	public final Object dequeue() {
-		if (f == r) {
+		if (count == 0) {
 			throw new RuntimeException();
 		}
 		Object element = new Object();
@@ -70,7 +70,7 @@ public class MyArrayQueue implements IQueue, IArrayBased {
 	 */
 	@Override
 	public final boolean isEmpty() {
-		return f == r;
+		return count == 0;
 	}
 
 	@Override
