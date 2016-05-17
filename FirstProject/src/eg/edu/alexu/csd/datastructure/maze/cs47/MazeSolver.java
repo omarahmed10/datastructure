@@ -57,7 +57,11 @@ public class MazeSolver implements IMazeSolver {
 			path[i][1] = (int) yList.get(i);
 			yList.remove(i);
 		}
-		return path;
+		if (reached) {
+			return path;
+		} else {
+			return null;
+		}
 	}
 
 	/**
