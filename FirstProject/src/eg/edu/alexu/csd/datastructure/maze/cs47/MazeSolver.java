@@ -189,7 +189,7 @@ public class MazeSolver implements IMazeSolver {
 				x.close();
 				throw new RuntimeException();
 			}
-			int rowNumber = 0, entriesNumber = 0;
+			int rowNumber = 0, entriesNumber = 0, exitPoint = 0;
 			while (x.hasNext()) {
 				String row = x.next();
 				if (row.length() != m || entriesNumber > 1) {
@@ -203,8 +203,14 @@ public class MazeSolver implements IMazeSolver {
 						startY = i;
 						entriesNumber++;
 					}
+					if (dataArray[rowNumber][i] == 'E') {
+						exitPoint++;
+					}
 				}
 				rowNumber++;
+			}
+			if (entriesNumber == 0 || exitPoint == 0) {
+				throw new RuntimeException();
 			}
 			x.close();
 		} catch (Exception e) {
