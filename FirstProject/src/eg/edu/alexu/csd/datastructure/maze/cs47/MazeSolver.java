@@ -1,11 +1,12 @@
 package eg.edu.alexu.csd.datastructure.maze.cs47;
 
+import java.awt.Point;
 import java.io.File;
 import java.util.Scanner;
-import eg.edu.alexu.csd.datastructure.linkedList.*;
 
 import eg.edu.alexu.csd.datastructure.linkedList.cs47.SinglyLinkedList;
 import eg.edu.alexu.csd.datastructure.maze.IMazeSolver;
+import eg.edu.alexu.csd.datastructure.queue.cs47.MyQueue;
 
 /**
  * The Class MazeSolver.
@@ -25,9 +26,7 @@ public class MazeSolver implements IMazeSolver {
 	private int[][] path;
 
 	/** . */
-	private SinglyLinkedList xList = new SinglyLinkedList();
-	/** . */
-	private SinglyLinkedList yList = new SinglyLinkedList();
+	private SinglyLinkedList pointList = new SinglyLinkedList();
 
 	/** variable to determine size of the array. */
 	private int n, m;
@@ -38,28 +37,46 @@ public class MazeSolver implements IMazeSolver {
 	/** determine whether it reach the End point or not. */
 	private boolean reached = false;
 
+	/** to trace path. */
+	private MyQueue pathQueue = new MyQueue();
+
 	@Override
 	public final int[][] solveBFS(final File maze) {
 		mazeArray = changeData(maze);
-
-		return null;
+		reached = false;
+		bfs(startX, startY);
+		// system.out.println("=========BFS=============");
+		if (reached) {
+			// system.out.println(pointList.size());
+			path = new int[pointList.size()][2];
+			for (int i = 0; i < pointList.size(); i++) {
+				Point current = (Point) pointList.get(i);
+				path[i][0] = current.x;
+				path[i][1] = current.y;
+			}
+			return path;
+		} else {
+			// system.out.println("noExit or noPath");
+			return null;
+		}
 	}
 
 	@Override
 	public final int[][] solveDFS(final File maze) {
 		mazeArray = changeData(maze);
+		reached = false;
 		dfs(startX, startY);
-		System.out.println("======================");
-		path = new int[xList.size()][2];
-		for (int i = 0; i < xList.size(); i++) {
-			path[i][0] = (int) xList.get(i);
-			xList.remove(i);
-			path[i][1] = (int) yList.get(i);
-			yList.remove(i);
-		}
+		// system.out.println("=========DFS=============");
 		if (reached) {
+			path = new int[pointList.size()][2];
+			for (int i = 0; i < pointList.size(); i++) {
+				Point current = (Point) pointList.get(i);
+				path[i][0] = current.x;
+				path[i][1] = current.y;
+			}
 			return path;
 		} else {
+			// system.out.println("noExit or noPath");
 			return null;
 		}
 	}
@@ -67,9 +84,9 @@ public class MazeSolver implements IMazeSolver {
 	/**
 	 * 
 	 * @param x
-	 *            is the x-axis of the visited node
+	 *            is the x-axis of the current node
 	 * @param y
-	 *            is the y-axis of the visited node
+	 *            is the y-axis of the current node
 	 */
 	private void dfs(final int x, final int y) {
 		if (x < 0 || x >= n || y < 0 || y >= m || reached
@@ -78,16 +95,16 @@ public class MazeSolver implements IMazeSolver {
 		} else if (visited[x][y]) {
 			return;
 		} else if (mazeArray[x][y] == 'E') {
-			System.out.println(x + "," + y);
+			// system.out.println(x + "," + y);
 			reached = true;
-			xList.add(x);
-			yList.add(y);
+			Point current = new Point(x, y);
+			pointList.add(current);
 			visited[x][y] = true;
 			return;
 		} else {
-			System.out.println(x + "," + y);
-			xList.add(x);
-			yList.add(y);
+			// system.out.println(x + "," + y);
+			Point current = new Point(x, y);
+			pointList.add(current);
 			visited[x][y] = true;
 		}
 		dfs(x - 1, y);
@@ -95,6 +112,63 @@ public class MazeSolver implements IMazeSolver {
 		dfs(x + 1, y);
 		dfs(x, y - 1);
 	};
+
+	/**
+	 * Bfs.
+	 *
+	 * @param x
+	 *            is the x-axis of the current node
+	 * @param y
+	 *            is the y-axis of the current node
+	 */
+	private void bfs(final int x, final int y) {
+		// system.out.println(x + "," + y);
+		visited[x][y] = true;
+		Point current = new Point(x, y);
+		pointList.add(current);
+		// System.out.println(pointList);
+		if (x - 1 >= 0 && mazeArray[x - 1][y] != '#' && !visited[x - 1][y]) {
+			Point child = new Point(x - 1, y);
+			pathQueue.enqueue(child);
+			visited[x - 1][y] = true;
+			// System.out.println(child);
+		}
+		if (y + 1 < m && mazeArray[x][y + 1] != '#' && !visited[x][y + 1]) {
+			Point child = new Point(x, y + 1);
+			pathQueue.enqueue(child);
+			visited[x][y + 1] = true;
+			// System.out.println(child);
+		}
+		if (x + 1 < n && mazeArray[x + 1][y] != '#' && !visited[x + 1][y]) {
+			Point child = new Point(x + 1, y);
+			pathQueue.enqueue(child);
+			visited[x + 1][y] = true;
+			// System.out.println(child);
+		}
+		if (y - 1 >= 0 && mazeArray[x][y - 1] != '#' && !visited[x][y - 1]) {
+			Point child = new Point(x, y - 1);
+			pathQueue.enqueue(child);
+			visited[x][y - 1] = true;
+			// System.out.println(child);
+		}
+		if (!pathQueue.isEmpty()) {
+			Point newPoint = (Point) pathQueue.dequeue();
+			// System.out.println(newPoint.x + "," + newPoint.y);
+			if (mazeArray[newPoint.x][newPoint.y] == 'E') {
+				// System.out.println("DOne");
+				reached = true;
+				pointList.add(newPoint);
+				visited[newPoint.x][newPoint.y] = true;
+				return;
+			} else {
+				bfs(newPoint.x, newPoint.y);
+			}
+		} else {
+			// there is no path or there is no exit.
+			return;
+		}
+
+	}
 
 	/**
 	 * @param data
