@@ -54,6 +54,9 @@ public class MazeSolver implements IMazeSolver {
 				path[i][0] = current.getX();
 				path[i][1] = current.getY();
 			}
+			while (!pointList.isEmpty()) {
+				pointList.remove(pointList.size() - 1);
+			}
 			return path;
 		} else {
 			// system.out.println("noExit or noPath");
@@ -70,9 +73,12 @@ public class MazeSolver implements IMazeSolver {
 		if (reached) {
 			path = new int[pointList.size()][2];
 			for (int i = 0; i < pointList.size(); i++) {
-				Node current = (Node) pointList.get(i);
-				path[i][0] = current.getX();
-				path[i][1] = current.getY();
+				Point current = (Point) pointList.get(i);
+				path[i][0] = current.x;
+				path[i][1] = current.y;
+			}
+			while (!pointList.isEmpty()) {
+				pointList.remove(pointList.size() - 1);
 			}
 			return path;
 		} else {
@@ -156,14 +162,14 @@ public class MazeSolver implements IMazeSolver {
 			Node newNode = (Node) pathQueue.dequeue();
 			// System.out.println(newPoint.x + "," + newPoint.y);
 			if (mazeArray[newNode.getX()][newNode.getY()] == 'E') {
-//				System.out.println("DOne");
+				// System.out.println("DOne");
 				Node node2 = newNode;
 				while (node2 != null) {
 					pointList.add(0, node2);
 					node2 = node2.getParent();
 				}
 				reached = true;
-				// pointList.add(newNode);
+
 				return;
 			} else {
 				bfs(newNode.getX(), newNode.getY(), newNode);
