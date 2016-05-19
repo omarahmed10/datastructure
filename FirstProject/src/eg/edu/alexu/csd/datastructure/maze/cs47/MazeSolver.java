@@ -70,9 +70,9 @@ public class MazeSolver implements IMazeSolver {
 		if (reached) {
 			path = new int[pointList.size()][2];
 			for (int i = 0; i < pointList.size(); i++) {
-				Point current = (Point) pointList.get(i);
-				path[i][0] = current.x;
-				path[i][1] = current.y;
+				Node current = (Node) pointList.get(i);
+				path[i][0] = current.getX();
+				path[i][1] = current.getY();
 			}
 			return path;
 		} else {
