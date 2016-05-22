@@ -8,6 +8,9 @@ import eg.edu.alexu.csd.datastructure.maze.IMazeSolver;
 import eg.edu.alexu.csd.datastructure.queue.cs47.MyQueue;
 
 /**
+ * @author eng.omar ahmed
+ * @version v1.0.1.2
+ * @since 2016
  * The Class MazeSolver.
  */
 public class MazeSolver implements IMazeSolver {
@@ -64,6 +67,9 @@ public class MazeSolver implements IMazeSolver {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see eg.edu.alexu.csd.datastructure.maze.IMazeSolver#solveDFS(java.io.File)
+	 */
 	@Override
 	public final int[][] solveDFS(final File maze) {
 		mazeArray = changeData(maze);
